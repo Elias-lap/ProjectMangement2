@@ -3,6 +3,16 @@
   background-image: url('./assets/images/bg1.png');
   background-position: center center;
   background-size: cover;
-
+  flex-direction: column;
  
  }
+.login-container{
+  background-color: rgb(2, 36, 5);
+}
+.form-group{
+  margin-bottom: 10px;
+}
+.form-group label{
+  color: #ffc107;
+  margin-bottom: 15px;
+}
