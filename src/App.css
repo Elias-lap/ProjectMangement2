@@ -1,18 +1,24 @@
 .Auth-container {
-
-  background-image: url('./assets/images/bg1.png');
+  background-image: url("./assets/images/bg1.png");
   background-position: center center;
   background-size: cover;
   flex-direction: column;
- 
- }
-.login-container{
-  background-color: rgb(2, 36, 5);
 }
-.form-group{
+.login-container {
+  background-color: rgba(2, 36, 5, 0.705);
+}
+.form-group {
   margin-bottom: 10px;
 }
-.form-group label{
+.form-group label {
   color: #ffc107;
   margin-bottom: 15px;
+}
+.for-visibilty-password-container {
+  position: relative;
+}
+.for-visibilty-password-button {
+  position: absolute;
+  top: 51%;
+  right: 0;
 }
