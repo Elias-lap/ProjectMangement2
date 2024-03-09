@@ -60,7 +60,7 @@ export default function ReasetPassword() {
   };
 
   return (
-    <div className="Auth-container vh-100 d-flex align-items-center justify-content-center">
+    <div className="Auth-container vh-100 d-flex align-items-center justify-content-center overflow-auto">
       <div className="logo">
         <img src={logo} alt="logo" className="mb-3" />
       </div>
@@ -148,11 +148,11 @@ export default function ReasetPassword() {
               <i className="fa-solid fa-eye"></i>
             </button>
           </div>
-          {/* {errors.confirmPassword && (
+          {errors.confirmPassword && (
                <div className="alert alert-danger ">
                  {errors.confirmPassword.message}
                </div>
-             )} */}
+             )}
           {/* <div className="d-flex justify-content-between my-2">
            <Link to="/register" className="text-white">
              Register now

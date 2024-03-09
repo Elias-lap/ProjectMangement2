@@ -10,7 +10,7 @@ import axios from "axios";
 export default function Login() {
   // All states here on the top 
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const { showToast, showSuccessToast, showErrorToast } = useToast();
+  const { showSuccessToast, showErrorToast } = useToast();
   // note we will move it to context for using 
   const [spinner, setSpinner] = useState<boolean>(false);
   const {
@@ -44,7 +44,7 @@ const onSubmit = async (data: FormData) => {
 };
 
   return (
-    <div className="Auth-container vh-100 d-flex align-items-center justify-content-center">
+    <div className="Auth-container vh-100 d-flex align-items-center justify-content-center overflow-auto">
       <div className="logo">
         <img src={logo} alt="logo" className="mb-3" />
       </div>
