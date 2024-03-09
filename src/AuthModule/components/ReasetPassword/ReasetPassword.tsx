@@ -1,24 +1,31 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useForm } from "react-hook-form";
 import logo from "../../../assets/images/PMS 3.png";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { FormData } from "../../../interfaces/Auth";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import {useToast} from '../../../context/TostifyContext'
 import axios from "axios";
 
 export default function ReasetPassword() {
  // All states here on the top 
  const [showPassword, setShowPassword] = useState<boolean>(false);
+ const { showToast, showSuccessToast, showErrorToast } = useToast();
  const [showConfirmPassword, setshowConfirmPassword] = useState<boolean>(false);
  // note we will move it to context for using 
  const [spinner, setSpinner] = useState<boolean>(false);
  const {
    register,
+   watch,
    handleSubmit,
    formState: { errors },
  } = useForm<FormData>();
  const navigate = useNavigate();
+  // Custom validation function to check if passwords match
+  const validatePasswordMatch = (value:any) => {
+    const password = watch("password"); // Get the value of the "password" field
+    return value === password || "Passwords do not match"; // Return error message if passwords don't match
+  };
 
 // Function for password visibility
 //  void indicates that a function does not return any value
@@ -34,13 +41,13 @@ const onSubmit = async (data: FormData) => {
  setSpinner(true);
 
  try {
-   const response = await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Login', data );
+   const response = await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Reset', data );
  
-   toast.success('Login successfully');
+   showSuccessToast('Rest successfully');
    navigate('/login');
    console.log(response)
  } catch (error ) {
-   toast.error("An error occurred with login..");
+  showErrorToast("An error occurred with reset..");
  } finally {
    setSpinner(false);
  }
@@ -125,14 +132,9 @@ const onSubmit = async (data: FormData) => {
              className="form-control"
              placeholder="confirmPassword"
              {...register("confirmPassword", {
-               required: "confirmPassword is required ",
-               pattern: {
-                 value:
-                   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
-                 message:
-                   "confirmPassword must contain at least 8 characters, including upper and lowercase letters, and numbers",
-               },
-             })}
+              required: "password is required ",
+              validate: validatePasswordMatch,
+            })}
            />
                  <button
                  className="btn btn-outline-secondary for-visibilty-password-button"

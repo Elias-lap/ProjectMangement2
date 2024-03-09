@@ -3,9 +3,10 @@ import logo from "../../../assets/images/PMS 3.png";
 import { useNavigate } from "react-router-dom";
 import { FormData } from "../../../interfaces/Auth";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import {useToast} from '../../../context/TostifyContext'
 import axios from "axios";
 export default function ForgotPassword() {
+  const { showToast, showSuccessToast, showErrorToast } = useToast();
   const {
     register,
     handleSubmit,
@@ -17,16 +18,15 @@ export default function ForgotPassword() {
     try {
       const response = await axios.post("https://upskilling-egypt.com:3003/api/v1/Users/Reset/Request", data );
     
-      toast.success('Login successfully');
+      showSuccessToast('successfully');
       navigate("/ResetPasword");
       console.log(response)
     } catch (error ) {
-      toast.error("An error occurred with login..");
+      showErrorToast("An error occurred with login..");
   };
 }
   return (
     <div className="Auth-container vh-100 d-flex align-items-center justify-content-center">
-      <ToastContainer />
     <div className="logo">
       <img src={logo} alt="logo" className="mb-3" />
     </div>
