@@ -4,11 +4,13 @@ import logo from "../../../assets/images/PMS 3.png";
 import { Link, useNavigate } from "react-router-dom";
 import { FormData } from "../../../interfaces/Auth";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import {useToast} from '../../../context/TostifyContext'
 import axios from "axios";
+
 export default function Login() {
   // All states here on the top 
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const { showToast, showSuccessToast, showErrorToast } = useToast();
   // note we will move it to context for using 
   const [spinner, setSpinner] = useState<boolean>(false);
   const {
@@ -17,7 +19,7 @@ export default function Login() {
     formState: { errors },
   } = useForm<FormData>();
   const navigate = useNavigate();
-
+// test done 
 // Function for password visibility
 //  void indicates that a function does not return any value
 const togglePasswordVisibility = (): void => {
@@ -29,13 +31,13 @@ const onSubmit = async (data: FormData) => {
   setSpinner(true);
 
   try {
-    const response = await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Reset', data );
+    const response = await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Login', data );
   
-    toast.success('Login successfully');
+    showSuccessToast('Login successfully');
     navigate('/dashboard');
     console.log(response)
   } catch (error ) {
-    toast.error("An error occurred with login..");
+    showErrorToast("An error occurred with login..");
   } finally {
     setSpinner(false);
   }

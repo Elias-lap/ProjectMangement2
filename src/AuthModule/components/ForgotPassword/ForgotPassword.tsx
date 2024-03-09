@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import logo from "../../../assets/images/PMS 3.png";
 import { useNavigate } from "react-router-dom";
 import { FormData } from "../../../interfaces/Auth";
-import { ToastContainer, toast } from "react-toastify";
+import {useToast} from '../../../context/TostifyContext'
 import axios from "axios";
 export default function ForgotPassword() {
+  const {  showSuccessToast, showErrorToast } = useToast();
   const {
     register,
     handleSubmit,
@@ -17,16 +18,20 @@ export default function ForgotPassword() {
     try {
       const response = await axios.post("https://upskilling-egypt.com:3003/api/v1/Users/Reset/Request", data );
     
-      toast.success('Login successfully');
+      showSuccessToast('successfully password reseted');
       navigate("/ResetPasword");
       console.log(response)
     } catch (error ) {
-      toast.error("An error occurred with login..");
+      showErrorToast("An error occurred with Reset..");
+      
   }
-}
+
+      
+  };
+
+
   return (
     <div className="Auth-container vh-100 d-flex align-items-center justify-content-center">
-      <ToastContainer />
     <div className="logo">
       <img src={logo} alt="logo" className="mb-3" />
     </div>
@@ -50,9 +55,9 @@ export default function ForgotPassword() {
             placeholder="email"
           />
         </div>
-        {/* {errors.email && (
-                    <p className="alert alert-danger">{errors.email.message}</p>
-                  )} */}
+        {errors.email && (
+            <div className="alert alert-danger ">{errors.email.message}</div>
+          )}
         <button type="submit" className="w-100 btn btn-warning rounded-5">
         Verify
             </button>
