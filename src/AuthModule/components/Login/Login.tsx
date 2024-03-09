@@ -29,7 +29,7 @@ const onSubmit = async (data: FormData) => {
   setSpinner(true);
 
   try {
-    const response = await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Login', data );
+    const response = await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Reset', data );
   
     toast.success('Login successfully');
     navigate('/dashboard');
@@ -103,7 +103,7 @@ const onSubmit = async (data: FormData) => {
             <Link to="/register" className="text-white">
               Register now
             </Link>
-            <Link to="/ForgetPass" className="text-white">
+            <Link to="/ForgetPasword" className="text-white">
               Forgetpassword
             </Link>
           </div>
