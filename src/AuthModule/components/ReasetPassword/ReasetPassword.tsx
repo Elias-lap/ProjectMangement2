@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useForm } from "react-hook-form";
 import logo from "../../../assets/images/PMS 3.png";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { FormData } from "../../../interfaces/Auth";
 import { useState } from "react";
 import { toast } from "react-toastify";

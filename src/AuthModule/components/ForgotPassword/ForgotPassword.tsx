@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useForm } from "react-hook-form";
 import logo from "../../../assets/images/PMS 3.png";
 import { useNavigate } from "react-router-dom";
 import { FormData } from "../../../interfaces/Auth";
-import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 export default function ForgotPassword() {
@@ -22,7 +22,7 @@ export default function ForgotPassword() {
       console.log(response)
     } catch (error ) {
       toast.error("An error occurred with login..");
-  };
+  }
 }
   return (
     <div className="Auth-container vh-100 d-flex align-items-center justify-content-center">
