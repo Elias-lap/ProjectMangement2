@@ -2,8 +2,8 @@ export interface FormData {
   email: string;
   password: string;
   message?: string;
-  confirmPassword:string;
-  seed:string;
+  confirmPassword?:string;
+  seed?:string;
 }
 export interface ToastContextType {
   showToast: (message: string) => void;

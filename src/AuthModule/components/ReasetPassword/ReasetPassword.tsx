@@ -49,7 +49,7 @@ export default function ReasetPassword() {
         data
       );
 
-      showSuccessToast("Rest successfully");
+      showSuccessToast('Verification successful. Password reset initiated.');
       navigate("/login");
       console.log(response);
     } catch (error) {

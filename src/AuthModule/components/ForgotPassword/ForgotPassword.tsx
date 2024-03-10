@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { FormData } from "../../../interfaces/Auth";
 import {useToast} from '../../../context/TostifyContext'
 import axios from "axios";
+import { useState } from "react";
 export default function ForgotPassword() {
+  const [spinner, setSpinner] = useState<boolean>(false);
   const {  showSuccessToast, showErrorToast } = useToast();
   const {
     register,
@@ -15,15 +17,18 @@ export default function ForgotPassword() {
   const navigate = useNavigate();
 
   const onSubmit = async (data: FormData) => {
+    setSpinner(true);
     try {
       const response = await axios.post("https://upskilling-egypt.com:3003/api/v1/Users/Reset/Request", data );
     
-      showSuccessToast('successfully password reseted');
+      showSuccessToast('Verification code sent successfully to');
       navigate("/ResetPasword");
       console.log(response)
     } catch (error ) {
-      showErrorToast("An error occurred with Reset..");
+      showErrorToast("An error occurred with sent Verification code..");
       
+  }finally{
+    setSpinner(false);
   }
 
       
@@ -58,9 +63,13 @@ export default function ForgotPassword() {
         {errors.email && (
             <div className="alert alert-danger ">{errors.email.message}</div>
           )}
-        <button type="submit" className="w-100 btn btn-warning rounded-5">
-        Verify
-            </button>
+            <button type="submit" className="w-100 btn btn-warning rounded-5">
+                  {spinner ? (
+                    <div className="spinner-border" role="status"></div>
+                  ) : (
+                    "Verify"
+                  )}
+                </button>
       
       </form>
     </div>
