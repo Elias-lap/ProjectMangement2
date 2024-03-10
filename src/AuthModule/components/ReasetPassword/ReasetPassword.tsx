@@ -60,12 +60,12 @@ export default function ReasetPassword() {
   };
 
   return (
-    <div className="Auth-container vh-100 d-flex align-items-center justify-content-center overflow-auto">
-      <div className="logo">
+    <div className="Auth-container vh-100 row align-items-center justify-content-center overflow-auto gx-0 flex-nowrap ">
+    <div className="logo  col-md-5 d-flex align-items-center justify-content-center">
         <img src={logo} alt="logo" className="mb-3" />
       </div>
 
-      <div className="login-container  w-50 rounded-4 px-5 py-5">
+      <div className="login-container col-md-5 rounded-4 px-5 py-5">
         <p className="text-white">Welcome Back!</p>
         <h3 className="text-warning mb-3">Reset Password</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
