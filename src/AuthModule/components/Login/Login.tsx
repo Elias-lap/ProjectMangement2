@@ -7,7 +7,7 @@ import { useState } from "react";
 import {useToast} from '../../../context/TostifyContext'
 import axios from "axios";
 
-export default function Login() {
+export default function Login({savLoginData}) {
   // All states here on the top 
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const { showSuccessToast, showErrorToast } = useToast();
@@ -34,8 +34,10 @@ const onSubmit = async (data: FormData) => {
     const response = await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Login', data );
   
     showSuccessToast('Login successfully');
+    localStorage.setItem("token",response.data.token);
+    savLoginData();
     navigate('/dashboard');
-    console.log(response)
+    // console.log(response)
   } catch (error ) {
     showErrorToast("An error occurred with login..");
   } finally {
