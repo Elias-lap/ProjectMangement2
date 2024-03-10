@@ -61,7 +61,7 @@ export default function ReasetPassword() {
 
   return (
     <div className="Auth-container vh-100 row align-items-center justify-content-center overflow-auto gx-0 flex-nowrap ">
-    <div className="logo  col-md-5 d-flex align-items-center justify-content-center">
+    <div className="logo  col-md-5 text-center">
         <img src={logo} alt="logo" className="mb-3" />
       </div>
 
