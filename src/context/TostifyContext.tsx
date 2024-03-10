@@ -27,7 +27,7 @@ export const ToastProvider:  React.FC<{ children: ReactNode }>=({ children }) =>
   const showErrorToast = (message: string) => {
     toast.error(message);
   };
-
+              
   // Define the context value
   const contextValue: ToastContextType = {
     showToast,

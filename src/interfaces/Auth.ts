@@ -4,9 +4,14 @@ export interface FormData {
   message?: string;
   confirmPassword:string;
   seed:string;
+  
 }
 export interface ToastContextType {
   showToast: (message: string) => void;
   showSuccessToast: (message: string) => void;
   showErrorToast: (message: string) => void;
+}
+
+export interface AuthContextType {
+  token:string;
 }
