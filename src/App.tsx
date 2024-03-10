@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, json } from "react-router-dom";
 import "./App.css";
 import AuthLayout from "./SharedModule/components/AuthLayout/AuthLayout";
 import NotFound from "./SharedModule/components/NotFound/NotFound";
@@ -14,7 +14,13 @@ import UserList from "./UsersModule/Components/userList/UserList";
 import TasksList from "./TasksModule/components/TasksList/TasksList";
 
 import 'react-toastify/dist/ReactToastify.css';
+
+import ProtectedRoute from "./SharedModule/components/ProtectedRoute/ProtectedRoute";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 function App() {
+
+ const { loginData,savLoginData} = useContext(AuthContext)
   const router = createBrowserRouter([
     {
       path: "/",
@@ -23,11 +29,11 @@ function App() {
       children: [
         {
           index: true,
-          element: <Login />,
+          element: <Login savLoginData={savLoginData} />,
         },
         {
           path: "login",
-          element: <Login />,
+          element: <Login savLoginData={savLoginData} />,
         },
         {
           path: "Register",
@@ -49,7 +55,9 @@ function App() {
     },
     {
       path: "dashboard",
-      element: <MasterLayout />,
+      element:<ProtectedRoute loginData ={loginData}>
+         <MasterLayout />
+      </ProtectedRoute>,
       errorElement: <NotFound />,
       children: [
         {
