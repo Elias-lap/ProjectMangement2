@@ -3,15 +3,18 @@ import { useForm } from "react-hook-form";
 import logo from "../../../assets/images/PMS 3.png";
 import { Link, useNavigate } from "react-router-dom";
 import { FormData } from "../../../interfaces/Auth";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {useToast} from '../../../context/TostifyContext'
 import axios from "axios";
+import { AuthContext } from "../../../context/Authcontext";
+
 
 export default function Login() {
   // All states here on the top 
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const { showSuccessToast, showErrorToast } = useToast();
-  // note we will move it to context for using 
+  const authContext = useContext(AuthContext);
+  const saveAdminData =  authContext?.saveAdminData 
   const [spinner, setSpinner] = useState<boolean>(false);
   const {
     register,
@@ -32,10 +35,10 @@ const onSubmit = async (data: FormData) => {
 
   try {
     const response = await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Login', data );
-  
+    localStorage.setItem("adminToken", response?.data?.token);
     showSuccessToast('Login successfully');
     navigate('/dashboard');
-    console.log(response)
+    saveAdminData && saveAdminData(); // Call saveAdminData only if it exists
   } catch (error ) {
     showErrorToast("An error occurred with login..");
   } finally {

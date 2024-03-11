@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { FormData } from "../../../interfaces/Auth";
 import {useToast} from '../../../context/TostifyContext'
 import axios from "axios";
-import { useState } from "react";
+import {  useState } from "react";
 export default function ForgotPassword() {
+
+
   const [spinner, setSpinner] = useState<boolean>(false);
   const {  showSuccessToast, showErrorToast } = useToast();
   const {
