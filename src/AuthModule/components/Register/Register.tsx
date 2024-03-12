@@ -77,7 +77,7 @@ export default function Register() {
         <div className=" container-register-Box-Image w-100 d-flex justify-content-center mb-2 ">
           <div className="register-Box-Image  text-center position-relative  ">
             <img
-              className=" w-100 h-100 rounded-circle  "
+              className=" w-100 h-100 rounded-circle "
               src={imageLogo}
               alt="image"
             />
