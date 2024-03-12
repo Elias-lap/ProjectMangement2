@@ -9,7 +9,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import "react-toastify/dist/ReactToastify.css"; // Import ReactToastify CSS
 import "./index.css";
-import {AuthContextProvider} from "./context/Authcontext.tsx";
+import { AuthContextProvider } from "./context/AuthContext.tsx";
+
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

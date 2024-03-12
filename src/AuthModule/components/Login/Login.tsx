@@ -6,7 +6,8 @@ import { FormData } from "../../../interfaces/Auth";
 import { useContext, useState } from "react";
 import {useToast} from '../../../context/TostifyContext'
 import axios from "axios";
-import { AuthContext } from "../../../context/Authcontext";
+import { AuthContext } from "../../../context/AuthContext";
+
 
 
 export default function Login() {
@@ -37,6 +38,7 @@ const onSubmit = async (data: FormData) => {
     const response = await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Login', data );
     localStorage.setItem("adminToken", response?.data?.token);
     showSuccessToast('Login successfully');
+    localStorage.setItem("token",response.data.token);
     navigate('/dashboard');
     saveAdminData && saveAdminData(); // Call saveAdminData only if it exists
   } catch (error ) {
