@@ -5,20 +5,55 @@
   flex-direction: column;
 }
 .login-container {
-  background-color: rgba(2, 36, 5, 0.705);
+  /* background-color: rgba(2, 36, 5, 0.705); */
+  background-color: #2d564ecb;
 }
 .form-group {
   margin-bottom: 10px;
 }
 .form-group label {
   color: #ffc107;
-  margin-bottom: 15px;
 }
 .for-visibilty-password-container {
   position: relative;
+  
 }
 .for-visibilty-password-button {
   position: absolute;
   top: 51%;
   right: 0;
+  border: none !important;
+}
+.for-visibilty-password-button:hover {
+background-color: transparent !important;
+}
+/* style for image in register  */
+.register-Box-Image{
+  width: 90px;
+  height: 80px;
+opacity: 0.5;
+}
+.vector{
+  left:  35%;
+  top: 43%;
+}
+.form-control{
+  background-color: transparent !important;
+  border: none !important;
+  color: white !important;
+  padding: 0.5rem  0 !important;
+
+  /* border-bottom: .5px solid white !important; */
+}
+.form-control::placeholder{
+  color: white !important;
+  padding-left: -10px !important;
+
+}
+.form-control::focus{
+border:  none !important;
+}
+.border_bottom{
+  width: 100%;
+  border-bottom: .5px solid rgba(206, 205, 205, 0.507);
 }
