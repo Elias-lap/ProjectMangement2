@@ -181,8 +181,9 @@ export default function Register() {
                 </div>
               )}
               <div className="form-group">
-                <label htmlFor="exampleFormControlInput1 mb-3">phone number</label>
+                <label htmlFor="exampleFormControlInput12">phone number</label>
                 <input
+                id="exampleFormControlInput12"
                   type="tel"
                   className="form-control"
                   {...register("phoneNumber", {

@@ -73,6 +73,7 @@ const onSubmit = async (data: FormData) => {
                 })}
                 placeholder="email"
               />
+              <div className="border_bottom"></div>
             </div>
             {errors.email && (
               <div className="alert alert-danger ">{errors.email.message}</div>
@@ -100,7 +101,7 @@ const onSubmit = async (data: FormData) => {
                   >
                     <i className="fa-solid fa-eye"></i>
                   </button>
-            
+            <div className="border_bottom"></div>
             </div>
             {errors.password && (
                   <div className="alert alert-danger ">

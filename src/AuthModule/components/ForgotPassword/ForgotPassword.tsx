@@ -61,6 +61,7 @@ export default function ForgotPassword() {
             })}
             placeholder="email"
           />
+          <div className="border_bottom"></div>
         </div>
         {errors.email && (
             <div className="alert alert-danger ">{errors.email.message}</div>
