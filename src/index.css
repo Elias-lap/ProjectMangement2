@@ -6,3 +6,55 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* share data */
+
+.textYellow{
+  color: rgb(239,155,40);
+
+}
+
+/*  change Pass */
+.conInput{
+  position: relative;
+}
+.fa-eye {
+  position: absolute;
+  top: 60%;
+  right: 10px; 
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: white;
+
+}
+
+.fa-regular , .fa-eye-slash{
+  color: white;
+
+  position: absolute;
+  top: 75%;
+  right: 10px; 
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+.modal-content ,.modal-body{
+  background-color: #29534eb2 !important;
+  
+}
+
+.modal-header {
+
+  border-bottom:none;
+}
+
+.color{
+  background-color:  rgb(239,155,40);
+  height: 0.2rem;
+  width: 1rem;
+}
+
+.form-control:focus{
+  box-shadow: none;
+}
+
