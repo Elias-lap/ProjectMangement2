@@ -57,4 +57,9 @@
 .form-control:focus{
   box-shadow: none;
 }
+.form-control{
+
+
+  border-radius:0rem !important
+}
 

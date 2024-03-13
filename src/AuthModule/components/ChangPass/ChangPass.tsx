@@ -19,7 +19,7 @@ interface FormValues {
 
 const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
   //   const [loadingBtn, setLoadingBtn] = useState<boolean>(false);
-  const [massageError, setMassageError] = useState<string>("");
+  // const [massageError, setMassageError] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showNewPassword, setShowNewPassword] = useState<boolean>(false);
   const [showPasswordConfirm, setShowPasswordConfirm] =
@@ -84,13 +84,15 @@ const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
       if (axios.isAxiosError(error)) {
         const axiosError = error as AxiosError;
         if (axiosError.response) {
-            toast.error("error")
-        //   toast.error(axiosError.response.data.message || "An error occurred");
+          // console.log(axiosError.response)
+          toast.error(axiosError.response.data.message || "Failed to change password");
         } else {
           toast.error("An error occurred");
         }
       } else {
-        toast.error(error instanceof Error ? error.message : "An error occurred");
+        toast.error(
+          error instanceof Error ? error.message : "Failed to change password"
+        );
       }
     }
   };

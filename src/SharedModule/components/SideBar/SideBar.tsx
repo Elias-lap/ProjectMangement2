@@ -20,8 +20,9 @@ export default function SideBar() {
   return (
     <>
       <Modal  show={show} onHide={handleClose}>
-        <Modal.Header closeButton></Modal.Header>
+        {/* <Modal.Header closeButton></Modal.Header> */}
         <Modal.Body>
+        <Modal.Header closeButton></Modal.Header>
           <ChangPass handleClose={handleClose} />
         </Modal.Body>
       </Modal>
