@@ -12,7 +12,7 @@ import axios from "axios";
 export default function ReasetPassword() {
   // All states here on the top
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const {  showSuccessToast, showErrorToast } = useToast();
+  const { showSuccessToast, showErrorToast } = useToast();
   const [showConfirmPassword, setshowConfirmPassword] =
     useState<boolean>(false);
   // note we will move it to context for using
@@ -49,11 +49,16 @@ export default function ReasetPassword() {
         data
       );
 
-      showSuccessToast('Verification successful. Password reset initiated.');
+      showSuccessToast("Verification successful. Password reset initiated.");
       navigate("/login");
       console.log(response);
     } catch (error) {
-      showErrorToast("An error occurred with reset..");
+      if (axios.isAxiosError(error) && error.response) {
+        showErrorToast(error.response.data.message)}
+        else {
+          // Handle other types of errors here
+          showErrorToast("An error occurred.");
+        }
     } finally {
       setSpinner(false);
     }
@@ -61,17 +66,20 @@ export default function ReasetPassword() {
 
   return (
     <div className="Auth-container vh-100 row align-items-center justify-content-center overflow-auto gx-0 flex-nowrap ">
-    <div className="logo  col-md-5 text-center">
+      <div className="logo  col-md-5 text-center">
         <img src={logo} alt="logo" className="mb-3" />
       </div>
 
       <div className="login-container col-md-5 rounded-4 px-5 py-5">
         <p className="text-white">Welcome Back!</p>
-        <h3 className="text-warning mb-3">Reset Password</h3>
+        <h3 className="color-text mb-3">Reset Password</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label htmlFor="exampleFormControlInput1 mb-3">Email</label>
+            <label className="color-text" htmlFor="exampleFormControlInput1">
+              Email
+            </label>
             <input
+              id="exampleFormControlInput1"
               type="email"
               className="form-control"
               {...register("email", {
@@ -83,15 +91,17 @@ export default function ReasetPassword() {
               })}
               placeholder="email"
             />
+            <div className="border_bottom"></div>
           </div>
           {errors.email && (
             <div className="alert alert-danger ">{errors.email.message}</div>
           )}
           <div className="form-group">
-            <label htmlFor="exampleFormControlInput1 mb-3">
+            <label className="color-text" htmlFor="exampleFormControlInput2">
               OTP Verification
             </label>
             <input
+              id="exampleFormControlInput2"
               type="text"
               className="form-control"
               {...register("seed", {
@@ -99,13 +109,17 @@ export default function ReasetPassword() {
               })}
               placeholder="otp"
             />
+            <div className="border_bottom"></div>
           </div>
           {errors.seed && (
             <div className="alert alert-danger ">{errors.seed.message}</div>
           )}
           <div className="form-group for-visibilty-password-container">
-            <label htmlFor="exampleFormControlInput1">password</label>
+            <label className="color-text" htmlFor="exampleFormControlInput3">
+              password
+            </label>
             <input
+              id="exampleFormControlInput3"
               type={showPassword ? "text" : "password"}
               className="form-control"
               placeholder="password"
@@ -125,13 +139,17 @@ export default function ReasetPassword() {
             >
               <i className="fa-solid fa-eye"></i>
             </button>
+            <div className="border_bottom"></div>
           </div>
           {errors.password && (
             <div className="alert alert-danger ">{errors.password.message}</div>
           )}
           <div className="form-group for-visibilty-password-container">
-            <label htmlFor="exampleFormControlInput1">Confirm Password</label>
+            <label className="color-text" htmlFor="exampleFormControlInput4">
+              Confirm Password
+            </label>
             <input
+              id="exampleFormControlInput4"
               type={showConfirmPassword ? "text" : "password"}
               className="form-control"
               placeholder="confirmPassword"
@@ -147,23 +165,16 @@ export default function ReasetPassword() {
             >
               <i className="fa-solid fa-eye"></i>
             </button>
+            <div className="border_bottom"></div>
           </div>
           {errors.confirmPassword && (
-               <div className="alert alert-danger ">
-                 {errors.confirmPassword.message}
-               </div>
-             )}
-          {/* <div className="d-flex justify-content-between my-2">
-           <Link to="/register" className="text-white">
-             Register now
-           </Link>
-           <Link to="/ForgetPasword" className="text-white">
-             Forgetpassword
-           </Link>
-         </div> */}
+            <div className="alert alert-danger ">
+              {errors.confirmPassword.message}
+            </div>
+          )}
           <button
             type="submit"
-            className="w-100 btn btn-warning rounded-5 my-2"
+            className="w-100 btn color-button rounded-5 my-2"
           >
             {spinner ? (
               <div className="spinner-border" role="status"></div>

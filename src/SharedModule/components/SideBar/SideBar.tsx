@@ -1,5 +1,5 @@
-import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-import React, { useState } from "react";
+import { Sidebar, Menu, MenuItem} from "react-pro-sidebar";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function SideBar() {

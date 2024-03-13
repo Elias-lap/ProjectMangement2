@@ -45,11 +45,12 @@ export default function ForgotPassword() {
 
     <div className="login-container col-md-5 rounded-4 px-5 py-5">
       <p className="text-white">Welcome Back!</p>
-      <h3 className="text-warning mb-3">Forget Password </h3>
+      <h3 className="color-text mb-3">Forget Password </h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
-          <label htmlFor="exampleFormControlInput1 mb-3">Email</label>
+          <label className="color-text" htmlFor="exampleFormControlInput1">Email</label>
           <input
+            id="exampleFormControlInput1"
             type="email"
             className="form-control"
             {...register("email", {
@@ -66,7 +67,7 @@ export default function ForgotPassword() {
         {errors.email && (
             <div className="alert alert-danger ">{errors.email.message}</div>
           )}
-            <button type="submit" className="w-100 btn btn-warning rounded-5">
+            <button type="submit" className="w-100 btn color-button rounded-5">
                   {spinner ? (
                     <div className="spinner-border" role="status"></div>
                   ) : (

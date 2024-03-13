@@ -1,13 +1,13 @@
 
 import  { jwtDecode} from "jwt-decode";
-import { ReactNode, createContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
-interface Authcontext {
+interface AuthContextType {
   saveAdminData: () => void;
   adminData?: string | null;
 }
 
-export const AuthContext = createContext<Authcontext | null>(null);
+export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [adminData, setAdminData] = useState<string | null>(null);
@@ -24,7 +24,7 @@ export const AuthContextProvider: React.FC<{ children: ReactNode }> = ({ childre
     saveAdminData();
   }, []);
 
-  const contextValue: Authcontext = {
+  const contextValue: AuthContextType = {
     adminData,
     saveAdminData
   };
@@ -37,7 +37,14 @@ export const AuthContextProvider: React.FC<{ children: ReactNode }> = ({ childre
 };
 
 
-
+// Custom hook to use the toast context
+export const useToken = (): AuthContextType => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useToast must be used within a ToastProvider');
+  }
+  return context;
+};
 
 
 

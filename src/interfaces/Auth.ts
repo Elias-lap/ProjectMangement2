@@ -16,6 +16,7 @@ export interface FormDataRegister {
   phoneNumber: string;
   password: string;
   confirmPassword: string;
+  profileImage :File[]
 }
 export interface ToastContextType {
   showToast: (message: string) => void;

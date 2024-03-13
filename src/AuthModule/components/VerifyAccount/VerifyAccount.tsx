@@ -22,12 +22,17 @@ const onSubmit = async (data: FormDataVerify) => {
   setSpinner(true);
 
   try {
-    const response = await axios.post('https://upskilling-egypt.com:3003/api/v1/Users/Login', data );
-    showSuccessToast('Verify successfully');
-    localStorage.setItem("token",response.data.token);
+    const response = await axios.put('https://upskilling-egypt.com:3003/api/v1/Users/verify', data );
+    showSuccessToast('Account verified successfully');
     navigate('/');
+    console.log(response)
   } catch (error ) {
-    showErrorToast("An error occurred with Verify..");
+    if (axios.isAxiosError(error) && error.response) {
+      showErrorToast(error.response.data.message)}
+      else {
+        // Handle other types of errors here
+        showErrorToast("An error occurred.");
+      }
   } finally {
     setSpinner(false);
   }
@@ -40,11 +45,12 @@ const onSubmit = async (data: FormDataVerify) => {
 
     <div className="login-container  col-md-5 rounded-4 px-5 py-5">
       <p className="text-white">Welcome Back!</p>
-      <h3 className="text-warning mb-3">Log In</h3>
+      <h3 className="color-text mb-3">Verify Account</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
-          <label htmlFor="exampleFormControlInput1 mb-3">Email</label>
+          <label className="color-text" htmlFor="exampleFormControlInput1 ">Email</label>
           <input
+          id="exampleFormControlInput1"
             type="email"
             className="form-control"
             {...register("email", {
@@ -62,14 +68,15 @@ const onSubmit = async (data: FormDataVerify) => {
           <div className="alert alert-danger ">{errors.email.message}</div>
         )}
         <div className="form-group">
-          <label htmlFor="exampleFormControlInput1 mb-3">OTP Verification</label>
+          <label  className="color-text" htmlFor="exampleFormControlInput2 ">OTP Verification</label>
           <input
+          id="exampleFormControlInput2"
             type="text"
             className="form-control"
             {...register("code", {
               required: "code is required",
             })}
-            placeholder="email"
+            placeholder="code Verification"
           />
           <div className="border_bottom"></div>
         </div>
@@ -78,7 +85,7 @@ const onSubmit = async (data: FormDataVerify) => {
         )}
       
       
-        <button type="submit" className="w-100 btn btn-warning rounded-5">
+        <button type="submit" className="w-100 btn color-button rounded-5">
               {spinner ? (
                 <div className="spinner-border" role="status"></div>
               ) : (

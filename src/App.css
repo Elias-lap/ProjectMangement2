@@ -37,13 +37,19 @@ opacity: 0.5;
   left:  35%;
   top: 43%;
 }
+.vector2{
+  left: 0%;
+  top: 43%;
+}
+.color-transparent {
+  color: transparent;
+}
+/* end style for register section  */
 .form-control{
   background-color: transparent !important;
   border: none !important;
   color: white !important;
   padding: 0.5rem  0 !important;
-
-  /* border-bottom: .5px solid white !important; */
 }
 .form-control::placeholder{
   color: white !important;
@@ -57,3 +63,15 @@ border:  none !important;
   width: 100%;
   border-bottom: .5px solid rgba(206, 205, 205, 0.507);
 }
+/*custom color for button  */
+.color-button {
+  background-color: #EF9B28 !important;
+}
+/*custom color for text  */
+.color-text {
+  color: #EF9B28 !important;
+}
+  /* Custom cursor pointer */
+  .custom-cursor {
+    cursor: pointer;
+  }
