@@ -23,3 +23,7 @@ export interface ToastContextType {
   showSuccessToast: (message: string) => void;
   showErrorToast: (message: string) => void;
 }
+
+export interface AuthContextType {
+  token:string;
+}
