@@ -11,6 +11,7 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showPassword2, setShowPassword2] = useState<boolean>(false);
   const { showSuccessToast, showErrorToast } = useToast();
+  
 
   const [spinner, setSpinner] = useState<boolean>(false);
   const {
@@ -61,6 +62,7 @@ export default function Register() {
     return formData ;
   };
   // senD Data to Api
+  
   const onSubmit = async (data: FormDataRegister) => {
     setSpinner(true);
      const fotmData = appendToFormData(data)
@@ -83,6 +85,7 @@ export default function Register() {
     } finally {
       setSpinner(false);
     }
+
   };
 
   return (
