@@ -15,7 +15,7 @@ export default function SideBar() {
   const navigate = useNavigate();
 
   const logOut = () => {
-    localStorage.removeItem("loginData");
+    localStorage.removeItem("adminToken");
     localStorage.removeItem("token");
     navigate("/login")
   }
@@ -35,7 +35,7 @@ export default function SideBar() {
          
         </Menu>
       </Sidebar>
-      ;
+      
     </>
   );
 }
