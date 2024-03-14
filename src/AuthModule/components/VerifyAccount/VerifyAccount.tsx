@@ -1,11 +1,4 @@
-
-import { useForm } from "react-hook-form";
-import logo from "../../../assets/images/PMS 3.png";
-import {  useNavigate } from "react-router-dom";
-import {  FormDataVerify } from "../../../interfaces/Auth";
-import {  useState } from "react";
-import {useToast} from '../../../context/TostifyContext'
-import axios from "axios";
+import React from 'react'
 
 export default function VerifyAccount() {
   const { showSuccessToast, showErrorToast } = useToast();
@@ -38,63 +31,6 @@ const onSubmit = async (data: FormDataVerify) => {
   }
 };
   return (
-    <div className="Auth-container vh-100 row align-items-center justify-content-center overflow-auto gx-0 flex-nowrap ">
-    <div className="logo  col-md-5 text-center">
-      <img src={logo} alt="logo" className="mb-3" />
-    </div>
-
-    <div className="login-container  col-md-5 rounded-4 px-5 py-5">
-      <p className="text-white">Welcome Back!</p>
-      <h3 className="color-text mb-3">Verify Account</h3>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group">
-          <label className="color-text" htmlFor="exampleFormControlInput1 ">Email</label>
-          <input
-          id="exampleFormControlInput1"
-            type="email"
-            className="form-control"
-            {...register("email", {
-              required: "email is required",
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: "email is not valid ",
-              },
-            })}
-            placeholder="email"
-          />
-          <div className="border_bottom"></div>
-        </div>
-        {errors.email && (
-          <div className="alert alert-danger ">{errors.email.message}</div>
-        )}
-        <div className="form-group">
-          <label  className="color-text" htmlFor="exampleFormControlInput2 ">OTP Verification</label>
-          <input
-          id="exampleFormControlInput2"
-            type="text"
-            className="form-control"
-            {...register("code", {
-              required: "code is required",
-            })}
-            placeholder="code Verification"
-          />
-          <div className="border_bottom"></div>
-        </div>
-        {errors.email && (
-          <div className="alert alert-danger ">{errors.email.message}</div>
-        )}
-      
-      
-        <button type="submit" className="w-100 btn color-button rounded-5">
-              {spinner ? (
-                <div className="spinner-border" role="status"></div>
-              ) : (
-                "Verify"
-              )}
-            </button>
-      
-      </form>
-    </div>
-  </div>
+    <div>VerifyAccount</div>
   )
 }
