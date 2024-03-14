@@ -44,7 +44,7 @@ function App() {
         },
         {
           path: "VerifyEmail",
-          element: <VerifyAccount />,
+          element: <VerifyAccount/>,
         },
       ],
     },

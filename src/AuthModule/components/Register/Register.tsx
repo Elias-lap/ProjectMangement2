@@ -74,7 +74,7 @@ export default function Register() {
     
       console.log(response);
       showSuccessToast(response.data.message);
-      navigate("/VerifyEmail");
+      navigate("/VerifyEmail")
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         showErrorToast(error.response.data.message)}
