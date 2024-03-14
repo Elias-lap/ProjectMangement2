@@ -19,7 +19,7 @@ interface FormValues {
 
 const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
   //   const [loadingBtn, setLoadingBtn] = useState<boolean>(false);
-  const [massageError, setMassageError] = useState<string>("");
+
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showNewPassword, setShowNewPassword] = useState<boolean>(false);
   const [showPasswordConfirm, setShowPasswordConfirm] =
@@ -39,7 +39,7 @@ const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
 
 //   password
   const isPasswordComplex = (password: string): boolean => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+\\\|\[\]{};:'",<.>/?]).{6,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+\\|[\]{};:'",<.>/?]).{6,}$/;
     return passwordRegex.test(password);
   };
   const {
