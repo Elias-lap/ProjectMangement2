@@ -2,7 +2,7 @@ import { Sidebar, Menu, MenuItem} from "react-pro-sidebar";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ChangPass from '../../../AuthModule/components/ChangPass/ChangPass';
-import { Modal } from "react-bootstrap";
+import  {Modal}  from "react-bootstrap";
 
 export default function SideBar() {
   const navigate = useNavigate();
