@@ -204,7 +204,11 @@ export default function Register() {
                   type="button"
                   onClick={togglePasswordVisibility}
                 >
-                  <i className="fa-solid fa-eye"></i>
+                    <i
+                  className={`fa-regular fa-eye${
+                    showPassword ? "-slash" : ""
+                  }`}
+                ></i>
                 </button>
                 <div className="border_bottom"></div>
               </div>
@@ -287,7 +291,11 @@ export default function Register() {
                   type="button"
                   onClick={togglePasswordVisibility2}
                 >
-                  <i className="fa-solid fa-eye"></i>
+                    <i
+                  className={`fa-regular fa-eye${
+                    showPassword2 ? "-slash" : ""
+                  }`}
+                ></i>
                 </button>
                 <div className="border_bottom"></div>
               </div>

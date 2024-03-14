@@ -5,7 +5,6 @@
 .styleInput{
     border: 0 !important;
     background-color: transparent !important;
-    border-bottom: 1px solid #FFFFFF !important ;
   }
   
   .styleInput::placeholder{

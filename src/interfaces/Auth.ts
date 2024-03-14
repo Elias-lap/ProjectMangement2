@@ -27,3 +27,12 @@ export interface ToastContextType {
 export interface AuthContextType {
   token:string;
 }
+export interface ChangPassProps {
+  handleClose: () => void;
+}
+
+export  interface FormValues {
+  oldPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+}

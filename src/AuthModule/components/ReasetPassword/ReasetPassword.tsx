@@ -137,7 +137,11 @@ export default function ReasetPassword() {
               type="button"
               onClick={togglePasswordVisibility}
             >
-              <i className="fa-solid fa-eye"></i>
+                <i
+                  className={`fa-regular fa-eye${
+                    showPassword ? "-slash" : ""
+                  }`}
+                ></i>
             </button>
             <div className="border_bottom"></div>
           </div>
@@ -163,7 +167,11 @@ export default function ReasetPassword() {
               type="button"
               onClick={toggleConfirmPasswordVisibility}
             >
-              <i className="fa-solid fa-eye"></i>
+                <i
+                  className={`fa-regular fa-eye${
+                    showConfirmPassword ? "-slash" : ""
+                  }`}
+                ></i>
             </button>
             <div className="border_bottom"></div>
           </div>

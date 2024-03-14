@@ -1,27 +1,17 @@
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { RotatingLines } from "react-loader-spinner";
-import styleChangPass from "./ChangPass.module.css"
-import axios, { AxiosError } from "axios";
-
-
-interface ChangPassProps {
-  handleClose: () => void;
-}
-
-interface FormValues {
-  oldPassword: string;
-  newPassword: string;
-  confirmNewPassword: string;
-}
+import styleChangPass from "./ChangPass.module.css";
+import axios from "axios";
+import { useToast } from "../../../context/TostifyContext";
+import { ChangPassProps, FormValues } from "../../../interfaces/Auth";
 
 const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
-  //   const [loadingBtn, setLoadingBtn] = useState<boolean>(false);
-
+  const { showSuccessToast, showErrorToast } = useToast();
+  const [spinner, setSpinner] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showNewPassword, setShowNewPassword] = useState<boolean>(false);
+
   const [showPasswordConfirm, setShowPasswordConfirm] =
     useState<boolean>(false);
 
@@ -37,35 +27,28 @@ const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
     setShowPasswordConfirm((prevState) => !prevState);
   };
 
-//   password
-  const isPasswordComplex = (password: string): boolean => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+\\|[\]{};:'",<.>/?]).{6,}$/;
-    return passwordRegex.test(password);
-  };
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<FormValues>();
+  // Custom validation function to check if passwords match
+  const validatePasswordMatch = (value: unknown) => {
+    const password = watch("newPassword"); // Get the value of the "password" field
+    return value === password || "Passwords do not match"; // Return error message if passwords don't match
+  };
 
- 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    setSpinner(true);
+    console.log(data);
+    const token = localStorage.getItem("adminToken");
+    if (!token) {
+      throw new Error("User is not authenticated");
+    }
     try {
-      if (!isPasswordComplex(data.newPassword)) {
-        throw new Error("The password must include at least one lowercase letter, one uppercase letter, one digit, one special character, and be at least 6 characters long.");
-      }
-  
-      if (data.newPassword !== data.confirmNewPassword) {
-        throw new Error("New Password and Confirm New Password do not match");
-      }
-  
-      const token = localStorage.getItem("TokenUser");
-      if (!token) {
-        throw new Error("User is not authenticated");
-      }
-  
       const response = await axios.put(
-        "https://upskilling-egypt.com:443/api/v1/Users/ChangePassword",
+        "https://upskilling-egypt.com:3003/api/v1/Users/ChangePassword",
         data,
         {
           headers: {
@@ -73,32 +56,20 @@ const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
           },
         }
       );
-  
-      if (response.data.success) {
-        handleClose();
-        toast.success("Password changed successfully");
-      } else {
-        throw new Error("Failed to change password");
-      }
+      console.log(response)
+      handleClose();
+      showSuccessToast("Password has been updated successfully");
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const axiosError = error as AxiosError;
-        if (axiosError.response) {
-            toast.error("error")
-        //   toast.error(axiosError.response.data.message || "An error occurred");
-        } else {
-          toast.error("An error occurred");
-        }
-      } else {
-        toast.error(error instanceof Error ? error.message : "An error occurred");
+      if (axios.isAxiosError(error) && error.response) {
+        showErrorToast(error.response.data.message);
       }
+    } finally {
+      setSpinner(false);
     }
   };
-  
 
   return (
     <>
-      <ToastContainer />
       <div className=" row justify-content-center align-items-center">
         <div className=" col-md-12">
           <div className="  rounded-3 px-5 py-4">
@@ -111,119 +82,107 @@ const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
             </h4>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-             
-
-                <div className="form-group conInput  mb-3">
-                  <label className=" textYellow" htmlFor="old ">Old Password</label>
-                  <input
-                    className={`${styleChangPass.styleInput} form-control mt-2 `}
-
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your Old Password  "
-                    {...register("oldPassword", {
-                      required: "old Password is required ",
-                    })}
-                    id="old"
-                  />
-                 <i
-                        className={`fa-regular fa-eye${
-                          showPassword ? "-slash" : ""
-                        }`}
-                        onClick={togglePasswordVisibility}
-                      ></i>
+              <div className="form-group conInput  mb-3">
+                <label className=" color-text" htmlFor="old ">
+                  Old Password
+                </label>
+                <input
+                  className={`${styleChangPass.styleInput} form-control mt-2 `}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your Old Password  "
+                  {...register("oldPassword", {
+                    required: "old Password is required ",
+                  })}
+                  id="old"
+                />
+                <i
+                  className={`fa-regular fa-eye${showPassword ? "-slash" : ""}`}
+                  onClick={togglePasswordVisibility}
+                ></i>
 
                 {errors.oldPassword && (
                   <div className="alert alert-danger  d-inline-block w-100 mt-1">
                     {errors.oldPassword.message}
                   </div>
                 )}
+                <div className="border_bottom"></div>
               </div>
 
               {/*new password */}
 
-            
-
               <div className="form-group conInput  my-4">
-                  <label className=" textYellow" htmlFor="New ">New Password</label>
-                  <input
-                    className={`${styleChangPass.styleInput} form-control mt-2 `}
-
-                    placeholder="Enter your New Password"
-                    type={showNewPassword ? "text" : "password"}
-                    {...register("newPassword", {
-                      required: "new Password is required",
-                    })}
-                    id="New"
-                  />
-                    <i
+                <label className=" color-text" htmlFor="New ">
+                  New Password
+                </label>
+                <input
+                  className={`${styleChangPass.styleInput} form-control mt-2 `}
+                  placeholder="Enter your New Password"
+                  type={showNewPassword ? "text" : "password"}
+                  {...register("newPassword", {
+                    required: "new Password is required",
+                    pattern: {
+                      value:
+                        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
+                      message:
+                        "Password must contain at least 8 characters, including upper and lowercase letters, and numbers",
+                    },
+                  })}
+                  id="New"
+                />
+                <i
                   className={`fa-regular fa-eye${
                     showNewPassword ? "-slash" : ""
                   }`}
                   onClick={toggleNewPassword}
                 ></i>
 
-{errors.newPassword && (
+                {errors.newPassword && (
                   <div className="alert alert-danger  d-inline-block w-100 mt-1">
                     {errors.newPassword.message}
                   </div>
                 )}
+                <div className="border_bottom"></div>
               </div>
 
               {/* confirmPassword */}
 
-                          <div className="form-group conInput  my-4">
-                  <label className=" textYellow" htmlFor="ConfirmPass ">Confirm New Password</label>
-                  <input
-                    className={`${styleChangPass.styleInput} form-control mt-2 `}
-
-                    type={showPasswordConfirm ? "text" : "password"}
+              <div className="form-group conInput  my-4">
+                <label className="color-text" htmlFor="ConfirmPass ">
+                  Confirm New Password
+                </label>
+                <input
+                  className={`${styleChangPass.styleInput} form-control mt-2 `}
+                  type={showPasswordConfirm ? "text" : "password"}
                   placeholder="Confirm New Password"
                   {...register("confirmNewPassword", {
                     required: "confirm Password is required",
+                    validate: validatePasswordMatch,
                   })}
-                    id="ConfirmPass"
-                  />
-                      <i
+                  id="ConfirmPass"
+                />
+                <i
                   className={`fa-regular fa-eye${
                     showPasswordConfirm ? "-slash" : ""
                   }`}
                   onClick={togglePasswordVisibilityconfirm}
                 ></i>
 
-{errors.confirmNewPassword && (
+                {errors.confirmNewPassword && (
                   <div className="alert alert-danger  d-inline-block w-100 mt-1 ">
                     {errors.confirmNewPassword.message}
                   </div>
                 )}
+                <div className="border_bottom"></div>
               </div>
-
-
-
-
-              {/* {massageError ? (
-                <div className=" alert alert-danger"> {massageError}</div>
-              ) : (
-                ""
-              )} */}
-
-
-              <button className={`${styleChangPass.btnSave} btn w-100`}>
-                Save
-                {/* {loadingBtn ? (
-                  <RotatingLines
-                    visible={true}
-                    // height="20"
-                    width="20"
-                    color="grey"
-                    strokeWidth="5"
-                    animationDuration="0.75"
-                    ariaLabel="rotating-lines-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                  />
+              <button
+                type="submit"
+                className="w-100 btn color-button rounded-5"
+              >
+                {spinner ? (
+                  <div className="spinner-border" role="status"></div>
                 ) : (
-                  "Change Password"
-                )} */}
+                  "Save"
+                )}
               </button>
             </form>
           </div>

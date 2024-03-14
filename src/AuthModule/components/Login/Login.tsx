@@ -110,7 +110,11 @@ export default function Login() {
               type="button"
               onClick={togglePasswordVisibility}
             >
-              <i className="fa-solid fa-eye"></i>
+              <i
+                  className={`fa-regular fa-eye${
+                    showPassword ? "-slash" : ""
+                  }`}
+                ></i>
             </button>
             <div className="border_bottom"></div>
           </div>
