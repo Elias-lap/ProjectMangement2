@@ -6,7 +6,7 @@ import  {Modal}  from "react-bootstrap";
 
 export default function SideBar() {
   const navigate = useNavigate();
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
@@ -39,7 +39,7 @@ export default function SideBar() {
          
           </div>
         
-          <MenuItem className="pt-3" icon={<i className=" fa fa-home" ></i>} component={<Link to="/dashboard" />}> Home</MenuItem>
+          <MenuItem className="pt-4" icon={<i className=" fa fa-home" ></i>} component={<Link to="/dashboard" />}> Home</MenuItem>
           <MenuItem className="" icon={<i className=" fa fa-user" ></i>} component={<Link to="/dashboard/users" />}> Users</MenuItem>
           <MenuItem icon={<i className="fa-solid fa-rectangle-list"></i>} component={<Link to="/dashboard/project" />}> Projects</MenuItem>
           <MenuItem icon={<i className="fa-solid fa-list"></i>} component={<Link to="/dashboard/tasks" />}> Tasks</MenuItem>
