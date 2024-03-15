@@ -75,3 +75,42 @@ border:  none !important;
   .custom-cursor {
     cursor: pointer;
   }
+  .sidbar-con .chevron-right{
+    color: white;
+    background-color: #EF9B28;
+    padding: 8px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    position: absolute;
+    right: 0px;
+}
+  .sidbar-con {
+    height:100vh;
+    background-color: #0E382F !important;
+    color: white;
+  }
+ /* .sideBar-container{
+    height: 100vh;
+    background-color: #0E382F !important;
+  } */
+  .css-dip3t8 {
+    
+    background-color: #0E382F !important;
+}
+ .ps-menu-button:hover{
+background-color: #EF9B284D !important;
+border-radius: 10px;
+}
+
+i{
+  cursor: pointer;
+}
+
+.header-container{
+  background-image: url(./assets/images/bgHeader.jpg);
+  background-size: cover;
+  width: 100%;
+  color: white;
+  height: 400px;
+  
+ }
