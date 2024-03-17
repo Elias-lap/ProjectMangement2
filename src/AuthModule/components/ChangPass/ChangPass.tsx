@@ -16,6 +16,9 @@ interface FormValues {
   newPassword: string;
   confirmNewPassword: string;
 }
+interface AxiosResponseData {
+  message: string;
+}
 
 const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
   //   const [loadingBtn, setLoadingBtn] = useState<boolean>(false);
@@ -85,7 +88,9 @@ const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
         const axiosError = error as AxiosError;
         if (axiosError.response) {
           // console.log(axiosError.response)
-          toast.error(axiosError.response.data.message || "Failed to change password");
+          toast.error((axiosError.response?.data as AxiosResponseData)?.message || "Failed to change password");
+
+          // toast.error(axiosError.response.data.message || "Failed to change password");
         } else {
           toast.error("An error occurred");
         }
