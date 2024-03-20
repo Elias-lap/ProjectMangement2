@@ -6,7 +6,7 @@ import axios from "axios";
 import { useToast } from "../../../context/TostifyContext";
 import { ChangPassProps, FormValues } from "../../../interfaces/Auth";
 
-const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
+const ChangePassword: React.FC<ChangPassProps> = ({ handleClose }) => {
   const { showSuccessToast, showErrorToast } = useToast();
   const [spinner, setSpinner] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -92,16 +92,29 @@ const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
                   placeholder="Enter your Old Password  "
                   {...register("oldPassword", {
                     required: "old Password is required ",
+                        pattern: {
+                  value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
+                  message:
+                    "Password must contain at least 8 characters, including upper and lowercase letters, and numbers",
+                },
                   })}
                   id="old"
                 />
+              
+                    <button
+              className="btn btn-outline-secondary for-visibilty-password-button"
+              type="button"
+              onClick={togglePasswordVisibility}
+            >
                 <i
-                  className={`fa-regular fa-eye${showPassword ? "-slash" : ""}`}
-                  onClick={togglePasswordVisibility}
+                  className={`fa-regular fa-eye${
+                    !showPassword ? "-slash" : ""
+                  }`}
                 ></i>
+            </button>
 
                 {errors.oldPassword && (
-                  <div className="alert alert-danger  d-inline-block w-100 mt-1">
+                  <div className="alert alert-danger  ">
                     {errors.oldPassword.message}
                   </div>
                 )}
@@ -129,15 +142,20 @@ const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
                   })}
                   id="New"
                 />
+                    <button
+              className="btn btn-outline-secondary for-visibilty-password-button"
+              type="button"
+              onClick={toggleNewPassword}
+            >
                 <i
                   className={`fa-regular fa-eye${
-                    showNewPassword ? "-slash" : ""
+                    !showNewPassword ? "-slash" : ""
                   }`}
-                  onClick={toggleNewPassword}
                 ></i>
+            </button>
 
                 {errors.newPassword && (
-                  <div className="alert alert-danger  d-inline-block w-100 mt-1">
+                  <div className="alert alert-danger  ">
                     {errors.newPassword.message}
                   </div>
                 )}
@@ -160,15 +178,20 @@ const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
                   })}
                   id="ConfirmPass"
                 />
+                    <button
+              className="btn btn-outline-secondary for-visibilty-password-button"
+              type="button"
+              onClick={togglePasswordVisibilityconfirm}
+            >
                 <i
                   className={`fa-regular fa-eye${
-                    showPasswordConfirm ? "-slash" : ""
+                    !showPasswordConfirm ? "-slash" : ""
                   }`}
-                  onClick={togglePasswordVisibilityconfirm}
                 ></i>
+            </button>
 
                 {errors.confirmNewPassword && (
-                  <div className="alert alert-danger  d-inline-block w-100 mt-1 ">
+                  <div className="alert alert-danger   ">
                     {errors.confirmNewPassword.message}
                   </div>
                 )}
@@ -181,7 +204,7 @@ const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
                 {spinner ? (
                   <div className="spinner-border" role="status"></div>
                 ) : (
-                  "Save"
+                  "Save Changes"
                 )}
               </button>
             </form>
@@ -192,4 +215,4 @@ const ChangPass: React.FC<ChangPassProps> = ({ handleClose }) => {
   );
 };
 
-export default ChangPass;
+export default ChangePassword;

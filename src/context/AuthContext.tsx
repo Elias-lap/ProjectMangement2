@@ -38,7 +38,7 @@ export const AuthContextProvider: React.FC<{ children: ReactNode }> = ({ childre
 
 
 // Custom hook to use the toast context
-export const useToken = (): AuthContextType => {
+export const useUser = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error('useToast must be used within a ToastProvider');

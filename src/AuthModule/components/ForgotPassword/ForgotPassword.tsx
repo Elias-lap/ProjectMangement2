@@ -48,9 +48,9 @@ export default function ForgotPassword() {
       <h3 className="color-text mb-3">Forget Password </h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
-          <label className="color-text" htmlFor="exampleFormControlInput1">Email</label>
+          <label className="color-text" htmlFor="EmailForgot">Email</label>
           <input
-            id="exampleFormControlInput1"
+            id="EmailForgot"
             type="email"
             className="form-control"
             {...register("email", {

@@ -169,7 +169,7 @@ export default function ReasetPassword() {
             >
                 <i
                   className={`fa-regular fa-eye${
-                    showConfirmPassword ? "-slash" : ""
+                    !showConfirmPassword ? "-slash" : ""
                   }`}
                 ></i>
             </button>

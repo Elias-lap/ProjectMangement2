@@ -1,12 +1,12 @@
 
 import { ReactNode} from 'react';
 import { Navigate } from 'react-router-dom';
-import {useToken} from '../../../context/AuthContext';
+import {useUser} from '../../../context/AuthContext';
 
 
 const ProtectedRoute: React.FC<{ children: ReactNode }> = ({ children }) => {
 
-  const {adminData} = useToken();
+  const {adminData} = useUser();
   
   if (adminData == null && localStorage.getItem("adminToken") == null) {
     return <Navigate to="/login" />;

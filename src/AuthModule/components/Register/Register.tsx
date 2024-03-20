@@ -206,7 +206,7 @@ export default function Register() {
                 >
                     <i
                   className={`fa-regular fa-eye${
-                    showPassword ? "-slash" : ""
+                    !showPassword ? "-slash" : ""
                   }`}
                 ></i>
                 </button>
@@ -293,7 +293,7 @@ export default function Register() {
                 >
                     <i
                   className={`fa-regular fa-eye${
-                    showPassword2 ? "-slash" : ""
+                    !showPassword2 ? "-slash" : ""
                   }`}
                 ></i>
                 </button>

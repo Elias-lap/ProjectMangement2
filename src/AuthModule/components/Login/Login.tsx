@@ -6,14 +6,14 @@ import { FormData } from "../../../interfaces/Auth";
 import {  useState } from "react";
 import { useToast } from "../../../context/TostifyContext";
 import axios from "axios";
-import {  useToken } from "../../../context/AuthContext";
+import {  useUser } from "../../../context/AuthContext";
 
 export default function Login() {
   // All states here on the top
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const { showSuccessToast, showErrorToast } = useToast();
 
-  const {saveAdminData , adminData} = useToken();
+  const {saveAdminData , adminData} = useUser();
   console.log(adminData)
   const [spinner, setSpinner] = useState<boolean>(false);
   const {
@@ -112,7 +112,7 @@ export default function Login() {
             >
               <i
                   className={`fa-regular fa-eye${
-                    showPassword ? "-slash" : ""
+                    !showPassword ? "-slash" : ""
                   }`}
                 ></i>
             </button>
