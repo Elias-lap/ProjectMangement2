@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 
 
-=======
 import navLogo from "../../../assets/images/nav-logo.png"
->>>>>>> 7befc8adfcc2f78143c0ea0500e3134111e9aa93
 export default function NavBar() {
   return (
     <>
