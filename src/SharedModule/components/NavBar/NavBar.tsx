@@ -1,16 +1,12 @@
-<<<<<<< HEAD
 
-
-=======
 import navLogo from "../../../assets/images/nav-logo.png"
->>>>>>> 7befc8adfcc2f78143c0ea0500e3134111e9aa93
 export default function NavBar() {
   return (
     <>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <div className="container-fluid">
     <a className="navbar-brand" href="#">
-      <img src={navLogo} alt=""  />
+      <img src={navLogo} alt="logo"  />
     </a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
