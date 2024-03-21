@@ -1,3 +1,7 @@
+body{
+  background-color: #F5F5F5 !important;
+}
+
 .Auth-container {
   background-image: url("./assets/images/bg1.png");
   background-position: center center;
@@ -79,15 +83,20 @@ border:  none !important;
     color: white;
     background-color: #EF9B28;
     padding: 8px;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
     position: absolute;
-    right: 0px;
+    right: -26px;
+    z-index: 1000;
 }
   .sidbar-con {
     height:100vh;
     background-color: #0E382F !important;
     color: white;
+    /* position:fixed;
+    top:80px;
+    left:0;
+    z-index:1; */
   }
  /* .sideBar-container{
     height: 100vh;
@@ -114,3 +123,21 @@ i{
   height: 330px;
   
  }
+ .sidbar-con .css-1wvake5{
+  border-right-width: 0;
+ }
+ .main-div{
+  box-sizing: border-box;
+ }
+ .fa-bell{
+  color: #ffc107;
+ }
+ .navbar-expand-lg .navbar-nav .nav-link {
+  display: flex;
+ }
+ .dropdown-toggle::after{
+  margin-top: 16px;
+ }
+.border-left{
+  border-left:0.3px solid #9A9A9A;
+}

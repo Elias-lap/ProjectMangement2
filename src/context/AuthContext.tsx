@@ -5,13 +5,14 @@ import { ReactNode, createContext, useContext, useEffect, useState } from "react
 interface AuthContextType {
   saveAdminData: () => void;
   adminData?: string | null;
+  Token? : string | null
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [adminData, setAdminData] = useState<string | null>(null);
-
+ const Token = localStorage.getItem("adminToken");
   const saveAdminData = () => {
     const encodedToken = localStorage.getItem("adminToken");
     if (encodedToken) {
@@ -26,7 +27,8 @@ export const AuthContextProvider: React.FC<{ children: ReactNode }> = ({ childre
 
   const contextValue: AuthContextType = {
     adminData,
-    saveAdminData
+    saveAdminData,
+    Token
   };
 
   return (
@@ -45,7 +47,3 @@ export const useUser = (): AuthContextType => {
   }
   return context;
 };
-
-
-
-
