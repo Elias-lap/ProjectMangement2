@@ -4,120 +4,215 @@
   background-size: cover;
   flex-direction: column;
 }
+
 .login-container {
   /* background-color: rgba(2, 36, 5, 0.705); */
   background-color: #2d564ecb;
 }
+
 .form-group {
   margin-bottom: 10px;
 }
+
 .form-group label {
   color: #ffc107;
 }
+
 .for-visibilty-password-container {
   position: relative;
-  
+
 }
+
+.main-content {
+  background-color: #f5f5f5;
+
+}
+
 .for-visibilty-password-button {
   position: absolute;
   top: 51%;
   right: 0;
   border: none !important;
 }
+
 .for-visibilty-password-button:hover {
-background-color: transparent !important;
+  background-color: transparent !important;
 }
+
 /* style for image in register  */
-.register-Box-Image{
+.register-Box-Image {
   width: 90px;
   height: 80px;
-opacity: 0.5;
+  opacity: 0.5;
 }
-.vector{
-  left:  35%;
+
+.vector {
+  left: 35%;
   top: 43%;
 }
-.vector2{
+
+.vector2 {
   left: 0%;
   top: 43%;
 }
+
 .color-transparent {
   color: transparent;
 }
+
 /* end style for register section  */
 .form-control{
   background-color: transparent !important;
   border: none !important;
   color: white !important;
   padding: 0.5rem  0 !important;
-}
+} 
 .form-control::placeholder{
   color: white !important;
   padding-left: -10px !important;
 
 }
-.form-control::focus{
-border:  none !important;
+.form-control::focus {
+  border: none !important;
 }
-.border_bottom{
+
+.border_bottom {
   width: 100%;
   border-bottom: .5px solid rgba(206, 205, 205, 0.507);
 }
+
 /*custom color for button  */
 .color-button {
   background-color: #EF9B28 !important;
 }
+
 /*custom color for text  */
 .color-text {
   color: #EF9B28 !important;
 }
-  /* Custom cursor pointer */
-  .custom-cursor {
-    cursor: pointer;
-  }
-  .sidbar-con .chevron-right{
-    color: white;
-    background-color: #EF9B28;
-    padding: 8px;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-   position: absolute;
-   top: 0;
-   right: 0;
-}
-  .sidbar-con {
-    height:100vh;
-    background-color: #0E382F !important;
-    color: white;
-  }
- /* .sideBar-container{
-    height: 100vh;
-    background-color: #0E382F !important;
-  } */
-  .css-dip3t8 {
-    
-    background-color: #0E382F !important;
-}
- .ps-menuitem-root:hover{
-background-color: #EF9B284D !important;
-border-radius: 10px;
-}
- .ps-menuitem-root:first-of-type:hover{
-background-color: transparent !important;
-}
-.ps-menu-button:hover{
-  background-color: transparent !important;
-}
 
-i{
+/* Custom cursor pointer */
+.custom-cursor {
   cursor: pointer;
 }
 
-.header-container{
+.sidbar-con .chevron-right {
+  color: white;
+  background-color: #EF9B28;
+  padding: 8px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+/* sidbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaar */
+
+.sidebar-style {
+  
+  background-color: #0E382F !important;
+}
+
+.sidbar-con {
+  /* height:100vh; */
+  /* background-color: #0E382F !important; */
+  color: white;
+}
+
+.sideBar-container {
+  overflow: hidden;
+  background-color: #0E382F !important;
+}
+
+
+.css-dip3t8 {
+
+  background-color: #0E382F !important;
+}
+
+/* sidbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaar */
+
+
+.ps-menuitem-root:hover {
+  background-color: #EF9B284D !important;
+  border-radius: 10px;
+}
+
+.ps-menuitem-root:first-of-type:hover {
+  background-color: transparent !important;
+}
+
+.ps-menu-button:hover {
+  background-color: transparent !important;
+}
+
+i {
+  cursor: pointer;
+}
+
+.header-container {
   background-image: url(./assets/images/bgHeader.jpg);
   background-size: cover;
   width: 100%;
   color: white;
   height: 330px;
-  
- }
+
+}
+
+
+.table .thead-style {
+  --bs-table-bg: #315951 !important;
+
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  margin: auto;
+  margin-top: 200px;
+  width: 100px;
+  aspect-ratio: 1;
+  background:
+    linear-gradient(#f77825 0 0),
+    linear-gradient(#f77825 0 0),
+    linear-gradient(#f77825 0 0),
+    linear-gradient(#f77825 0 0),
+    linear-gradient(#60B99A 0 0),
+    linear-gradient(#60B99A 0 0),
+    linear-gradient(#554236 0 0),
+    linear-gradient(#554236 0 0);
+  background-size: 25% 25%, 25% 25%, 25% 25%, 25% 25%, 25% 50%, 25% 50%, 50% 25%, 50% 25%;
+  background-repeat: no-repeat;
+  animation: l20 1.5s infinite alternate;
+}
+
+@keyframes l20 {
+
+  0%,
+  10% {
+    background-position:
+      calc(1*100%/3) calc(1*100%/3), calc(2*100%/3) calc(1*100%/3), calc(1*100%/3) calc(2*100%/3), calc(2*100%/3) calc(2*100%/3),
+      calc(1*100%/3) 50%, calc(2*100%/3) 50%, 50% calc(1*100%/3), 50% calc(2*100%/3)
+  }
+
+  33% {
+    background-position:
+      calc(0*100%/3) calc(0*100%/3), calc(3*100%/3) calc(0*100%/3), calc(0*100%/3) calc(3*100%/3), calc(3*100%/3) calc(3*100%/3),
+      calc(1*100%/3) 50%, calc(2*100%/3) 50%, 50% calc(1*100%/3), 50% calc(2*100%/3)
+  }
+
+  66% {
+    background-position:
+      calc(0*100%/3) calc(0*100%/3), calc(3*100%/3) calc(0*100%/3), calc(0*100%/3) calc(3*100%/3), calc(3*100%/3) calc(3*100%/3),
+      calc(0*100%/3) 50%, calc(3*100%/3) 50%, 50% calc(1*100%/3), 50% calc(2*100%/3)
+  }
+
+  90%,
+  100% {
+    background-position:
+      calc(0*100%/3) calc(0*100%/3), calc(3*100%/3) calc(0*100%/3), calc(0*100%/3) calc(3*100%/3), calc(3*100%/3) calc(3*100%/3),
+      calc(0*100%/3) 50%, calc(3*100%/3) 50%, 50% calc(0*100%/3), 50% calc(3*100%/3)
+  }
+}

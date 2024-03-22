@@ -14,6 +14,7 @@ import UserList from "./UsersModule/Components/userList/UserList";
 import TasksList from "./TasksModule/components/TasksList/TasksList";
 import ProtectedRoute from "./SharedModule/components/ProtectedRoute/ProtectedRoute";
 import "react-toastify/dist/ReactToastify.css";
+import ProjectsData from "./ProjectModule/components/ProjectsData/ProjectsData";
 
 function App() {
   const router = createBrowserRouter([
@@ -73,6 +74,10 @@ function App() {
         {
           path: "tasks",
           element: <TasksList />,
+        },
+        {
+          path: "project-data/:id?",
+          element: <ProjectsData />,
         },
       ],
     },

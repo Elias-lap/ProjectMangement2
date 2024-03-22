@@ -24,14 +24,15 @@ export default function SideBar() {
   }
   return (
     <>
+    
     <Modal  show={show} onHide={handleClose}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <ChangPass handleClose={handleClose} />
         </Modal.Body>
       </Modal>
-      <div className="sidbar-con">
-      <Sidebar  collapsed={isCollapsed}>
+      <div className="sidbar-con  ">
+      <Sidebar className="vh-100  sidebar-style" collapsed={isCollapsed}>
         <Menu>
           <MenuItem className="frist" onClick={toggleCollapse}>
             {isCollapsed===true? <i className="py-3 fa-solid fa-chevron-right chevron-right"></i>:
@@ -52,5 +53,6 @@ export default function SideBar() {
         </Menu>
       </Sidebar>
       </div>
+   
       </>
 )}
