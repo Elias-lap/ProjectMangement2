@@ -68,7 +68,7 @@
   padding: 0.5rem  0 !important;
 } 
 .form-control::placeholder{
-  color: white !important;
+  /* color: white !important; */
   padding-left: -10px !important;
 
 }
@@ -160,6 +160,11 @@ i {
   height: 330px;
 
 }
+.iconsearch{
+  /* position: absolute; */
+  z-index: 2;
+  
+}
 
 
 .table .thead-style {
@@ -216,3 +221,43 @@ i {
       calc(0*100%/3) 50%, calc(3*100%/3) 50%, 50% calc(0*100%/3), 50% calc(3*100%/3)
   }
 }
+
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  max-width: 190px;
+ }
+ 
+ .input {
+  width: 25%;
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  padding-left: 2.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  color: #0d0c22;
+  transition: .3s ease;
+ }
+ 
+ .input::placeholder {
+  color: #9e9ea7;
+ }
+ 
+ 
+ .icon {
+  position: absolute;
+  left: 1rem;
+  fill: #9e9ea7;
+  width: 1rem;
+  height: 1rem;
+ }
+ 
+ 
+ 
+ 
+ 
+ 

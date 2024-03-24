@@ -77,7 +77,10 @@ interface addProjectType{
   
   return (
     <>
-      <div className="title mb-3 mt-1 bg-white">
+    <div className="project-form ">
+
+    
+      <div className="title mb-3 mt-1 bg-white ">
         <div className="container  py-3 ">
           <p onClick={goToProject}>
             {" "}
@@ -87,16 +90,16 @@ interface addProjectType{
         </div>
       </div>
 <div className="row justify-content-center align-items-center">
-      <div className="form-con col-md-8 shadow  rounded-4 p-4 mt-4 ">
+      <div className="form-con col-md-8 shadow bg-white  rounded-4 p-4 mt-4 ">
         <div className="mb-3">
           <label htmlFor="formGroupExampleInput" className="form-label">
           Title
           </label>
           <input
             type="text"
-            className="form-control " 
+            className="form-control text-dark  " 
             id="formGroupExampleInput"
-            placeholder="Title"
+            placeholder="Enter project Title  "
             {...register("title", {
                 required: " title is required",
               })}
@@ -112,8 +115,8 @@ interface addProjectType{
           Description
           </label>
           <textarea
-            className="form-control mb-5 "
-            placeholder="Description"
+            className="form-control text-dark  "
+            placeholder="Enter project Description"
             id="floatingTextarea2"
             {...register("description", {
                 required: " description is required",
@@ -135,6 +138,7 @@ interface addProjectType{
           </div>
       </div>
      
+      </div>
       </div>
     </>
   );
