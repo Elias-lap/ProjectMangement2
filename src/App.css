@@ -160,11 +160,7 @@ i {
   height: 330px;
 
 }
-.iconsearch{
-  /* position: absolute; */
-  z-index: 2;
-  
-}
+
 
 
 .table .thead-style {
@@ -256,8 +252,22 @@ i {
   height: 1rem;
  }
  
+ .tasks , .user{
+background-color: #E5E6F4;
+ }
+ .tasks1{
+background-color: #F4F4E5;
+ }
+ .tasks2{
+background-color: #F4E5ED;
+ }
  
- 
+ .dashboaed-charts i{
+  background-color: #ffffff;
+  width: 25%;
+  padding: 10px;
+  border-radius: 15px;
+ }
  
  
  
