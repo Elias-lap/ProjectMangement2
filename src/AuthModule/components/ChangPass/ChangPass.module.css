@@ -1,0 +1,26 @@
+.changeWord{
+    color: rgb(239,155,40);
+}
+
+.styleInput{
+    border: 0 !important;
+    background-color: transparent !important;
+  }
+  
+  .styleInput::placeholder{
+    color: #FFFFFF !important;
+  
+  }
+
+
+  .btnSave{
+    background-color: rgb(239,155,40) !important;
+    padding: 0.7rem 2rem!important;
+    border-radius: 96px !important;
+  }
+
+  
+  .modal-content ,.modal-body{
+    background-color: #29534eb2 !important;
+    
+  }
