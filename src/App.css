@@ -121,3 +121,15 @@ i{
   height: 330px;
   
  }
+/* style for commponent UserList  */
+.container-userList{
+  background-color: #F5F5F5;
+  height: 100vh;
+
+}
+.thead-userList {
+  background-color: #0E382F  !important;
+}
+.top-75{
+  top: 75% !important;
+}
