@@ -8,15 +8,12 @@ export default function MasterLayout() {
   <> 
     <NavBar/>
   <div className=' d-flex '>
-    <div className='sideBar-container'>
+    <div className='sideBar-container '>
       <SideBar/>
     </div>
   <div className='main-content w-100'>
       <Outlet/>
-  </div>
-    
-
-
+  </div>   
   </div>
   
   
