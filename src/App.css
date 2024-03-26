@@ -225,7 +225,6 @@ i {
   position: relative;
   max-width: 190px;
  }
-<<<<<<< HEAD
 /* style for commponent UserList  */
 .container-userList{
   background-color: #F5F5F5;
@@ -238,51 +237,6 @@ i {
 .top-75{
   top: 75% !important;
 }
-=======
- 
- .input {
-  width: 25%;
-  height: 40px;
-  line-height: 28px;
-  padding: 0 1rem;
-  padding-left: 2.5rem;
-  border: 2px solid transparent;
-  border-radius: 8px;
-  outline: none;
-  color: #0d0c22;
-  transition: .3s ease;
- }
- 
- .input::placeholder {
-  color: #9e9ea7;
- }
- 
- 
- .icon {
-  position: absolute;
-  left: 1rem;
-  fill: #9e9ea7;
-  width: 1rem;
-  height: 1rem;
- }
- 
- .tasks , .user{
-background-color: #E5E6F4;
- }
- .tasks1{
-background-color: #F4F4E5;
- }
- .tasks2{
-background-color: #F4E5ED;
- }
- 
- .dashboaed-charts i{
-  background-color: #ffffff;
-  width: 25%;
-  padding: 10px;
-  border-radius: 15px;
- }
- 
- 
- 
->>>>>>> 78f79ce076bc7382f7ac37b7bbb2b5f716665dd3
+.text-white {
+  color: white !important;
+}

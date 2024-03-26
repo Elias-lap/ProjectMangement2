@@ -160,10 +160,10 @@ export default function UserList() {
       </Modal>
       <div className="row m-3  thead-userList rounded-2 overflow-hidden">
         <div className="col-md-3 thead-userList ">
-          <div className="input-group mb-3">
+          <div className="input-group mb-3 ">
             <input
               type="text"
-              className="form-control"
+              className="form-control  text-white"
               placeholder="Search By Name "
               aria-label="Username"
               onChange={SearchByName}
