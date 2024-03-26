@@ -11,9 +11,9 @@
 .form-group {
   margin-bottom: 10px;
 }
-.form-group label {
+/* .form-group label {
   color: #ffc107;
-}
+} */
 .for-visibilty-password-container {
   position: relative;
   
@@ -59,6 +59,8 @@ opacity: 0.5;
 .form-control::focus{
 border:  none !important;
 }
+
+
 .border_bottom{
   width: 100%;
   border-bottom: .5px solid rgba(206, 205, 205, 0.507);
@@ -121,3 +123,34 @@ i{
   height: 330px;
   
  }
+
+
+/* style for takes data */
+ .formControlTasksData{
+  border: 1px solid #dee2e6 !important;
+  color: #212529 !important;
+  background-color: #fff !important;
+
+
+
+}
+
+.formControlTasksData::placeholder{
+  color: grey !important;
+  padding-left: 1rem !important;
+
+}
+
+.pagination {
+  cursor: pointer;
+
+
+}
+
+.page-item:first-child .page-link{
+  color: #2d564ecb;
+}
+.page-item:not(:first-child) .page-link{
+  color: #2d564ecb;
+
+}

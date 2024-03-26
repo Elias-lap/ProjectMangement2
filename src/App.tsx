@@ -14,6 +14,13 @@ import UserList from "./UsersModule/Components/userList/UserList";
 import TasksList from "./TasksModule/components/TasksList/TasksList";
 import ProtectedRoute from "./SharedModule/components/ProtectedRoute/ProtectedRoute";
 import "react-toastify/dist/ReactToastify.css";
+import BaceUrlContext from "./context/BaceUrlContext";
+import TaskesListContext from "./context/TaskesListContext";
+import TasksData from "./TasksModule/components/TasksList/TasksData";
+import TakeUpdate from "./TasksModule/TakeUpdate";
+import { ListUserAndProject } from "./context/ListUserAndProject";
+// import { DeleteModalProvider } from "./context/DeleteModalContext";
+
 
 function App() {
   const router = createBrowserRouter([
@@ -74,13 +81,35 @@ function App() {
           path: "tasks",
           element: <TasksList />,
         },
+
+        {
+          path: "tasksData",
+          element: <TasksData />,
+        },
+        {
+          path: "takeUpdate/:id",
+          element: <TakeUpdate />,
+        },
       ],
     },
   ]);
 
   return (
     <>
+
+    <TaskesListContext>
+    
+    <BaceUrlContext>
+      {/* <DeleteModalProvider> */}
+<ListUserAndProject>
+
       <RouterProvider router={router} />
+      </ListUserAndProject>
+
+      {/* </DeleteModalProvider> */}
+      </BaceUrlContext>
+      
+      </TaskesListContext>
     </>
   );
 }

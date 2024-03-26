@@ -109,6 +109,7 @@ export default function Login() {
               className="btn btn-outline-secondary for-visibilty-password-button"
               type="button"
               onClick={togglePasswordVisibility}
+              title=" btn"
             >
               <i
                   className={`fa-regular fa-eye${
