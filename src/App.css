@@ -84,17 +84,14 @@ border:  none !important;
     position: absolute;
     right: 0px;
 }
-  .sidbar-con {
-    height:100vh;
+  .sidbar-icon  {
+    min-height:100vh !important;
     background-color: #0E382F !important;
     color: white;
   }
- /* .sideBar-container{
-    height: 100vh;
-    background-color: #0E382F !important;
-  } */
+  
   .css-dip3t8 {
-    
+  
     background-color: #0E382F !important;
 }
  .ps-menu-button:hover{
