@@ -47,7 +47,3 @@ export const useUser = (): AuthContextType => {
   }
   return context;
 };
-
-
-
-

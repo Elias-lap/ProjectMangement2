@@ -36,3 +36,6 @@ export  interface FormValues {
   newPassword: string;
   confirmNewPassword: string;
 }
+export interface AuthAdmin {
+  adminData:string;
+}

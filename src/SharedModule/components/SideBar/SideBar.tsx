@@ -23,7 +23,7 @@ export default function SideBar() {
     navigate("/login")
   }
   return (
-    <>
+    <div style={{width:isCollapsed?"5rem":"16rem"}}>
     <Modal  show={show} onHide={handleClose}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
@@ -52,5 +52,5 @@ export default function SideBar() {
         </Menu>
       </Sidebar>
       </div>
-      </>
+      </div>
 )}
