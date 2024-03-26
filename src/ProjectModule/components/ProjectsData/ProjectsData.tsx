@@ -1,16 +1,18 @@
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUser } from "../../../context/AuthContext";
-import { useForm } from "react-hook-form";
+import { useForm  , SubmitHandler} from "react-hook-form";
 import { useEffect } from "react";
+
+
 
 export default function ProjectsData() {
   const navigate = useNavigate();
   const { Token } = useUser();
-  let param = useParams ();
+  const param = useParams ();
 //   console.log(param);
   
-interface addProjectType{
+interface FormData{
     title:string;
     description:string;
 }
@@ -20,11 +22,11 @@ interface addProjectType{
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormData>();
 
   const getProjects = async () => {
     try {
-      let response = await axios.get(
+      const response = await axios.get(
         `https://upskilling-egypt.com:3003/api/v1/Project/${param.id?param.id : ""}`,
         {
           headers: { Authorization: `Bearer ${Token}` },
@@ -34,34 +36,36 @@ interface addProjectType{
     setValue("title", response.data.title);
     setValue("description", response.data.description);
 
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   };
 
  
-  const addProject =async(data:addProjectType)=>{
+  const addProject: SubmitHandler<FormData> =async(data)=>{
    try {
-   let addProgect= await axios.post(`https://upskilling-egypt.com:3003/api/v1/Project`,data,
-    {headers:{Authorization: `Bearer ${Token}`}}
-    )
-    // console.log(addProgect);
-    goToProject();
-    
-   } catch (error) {
-    
-   }
-
-  }
-
-  const updateProject =async(data:addProjectType)=>{
-   try {
-   let addProgect= await axios.put(`https://upskilling-egypt.com:3003/api/v1/Project/${param.id}`,data,
+   const addProgect= await axios.post(`https://upskilling-egypt.com:3003/api/v1/Project`,data,
     {headers:{Authorization: `Bearer ${Token}`}}
     )
     console.log(addProgect);
     goToProject();
     
    } catch (error) {
+    console.log(error)
+   }
+
+  }
+
+  const updateProject: SubmitHandler<FormData> =async(data)=>{
+   try {
+   const addProgect= await axios.put(`https://upskilling-egypt.com:3003/api/v1/Project/${param.id}`,data,
+    {headers:{Authorization: `Bearer ${Token}`}}
+    )
+    console.log(addProgect);
+    goToProject();
     
+   } catch (error) {
+     console.log(error)
    }
 // console.log(data);
   }
