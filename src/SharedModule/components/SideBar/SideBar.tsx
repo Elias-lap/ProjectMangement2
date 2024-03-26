@@ -30,7 +30,7 @@ export default function SideBar() {
           <ChangPass handleClose={handleClose} />
         </Modal.Body>
       </Modal>
-      <div className="sidbar-icon   ">
+      <div className="sidbar-icon ">
       <Sidebar   collapsed={isCollapsed}>
         <Menu>
           <div className="position-relative mb-4 pt-2"  onClick={toggleCollapse}>
