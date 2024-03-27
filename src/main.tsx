@@ -10,13 +10,19 @@ import "react-toastify/dist/ReactToastify.css";
 // import "react-toastify/dist/ReactToastify.css"; // Import ReactToastify CSS
 import "./index.css";
 import { AuthContextProvider } from "./context/AuthContext.tsx";
-
+import BaceUrlFun from "./context/BaceUrlContext.tsx";
+import TaskesListContext from "./context/TaskesListContext.tsx";
+TaskesListContext
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthContextProvider>
       <ToastProvider>
+      <TaskesListContext>
+        <BaceUrlFun>
         <App />
+        </BaceUrlFun>
+        </TaskesListContext>
       </ToastProvider>
       <ToastContainer />
     </AuthContextProvider>

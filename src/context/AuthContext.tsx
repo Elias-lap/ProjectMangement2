@@ -12,7 +12,8 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [adminData, setAdminData] = useState<string | null>(null);
- const Token = localStorage.getItem("adminToken");
+ const Token = localStorage.getItem("adminToken") ;
+ 
   const saveAdminData = () => {
     const encodedToken = localStorage.getItem("adminToken");
     if (encodedToken) {

@@ -1,0 +1,88 @@
+.tasksWord{
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.btnAdd{
+    background-color: #EF9B28 !important;
+}
+
+
+.bgColorGray{
+    background-color: #F5F5F5;
+}
+
+.ConInput{
+    position: relative;
+  }
+  
+.iconSearch{
+    position: absolute ;
+    top: 50%;
+    left: 1.2rem; 
+    transform: translateY(-50%);
+    color: rgb(65, 63, 63);
+  }
+
+  .inputSearch{
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #26385A40;
+    border-radius: 5rem;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+
+  }
+
+.inputSearch::placeholder{
+    padding-left:0.7rem;
+  }
+
+
+  /* table */
+
+
+.tableThead{
+    background-color: #315951E5 !important;
+    color: white !important;
+}
+
+.WordsTheadTable ,.fontChevron {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.iconTasks{
+  color: #22554a !important;
+
+}
+
+
+/* tasksData */
+
+.bgGray{
+  background-color: #F5F5F5 !important;
+}
+
+.conForm{
+  box-shadow: 0px 2px 4px 0px #00000040;
+
+
+}
+
+.colorInputTaskesData{
+  color: #4F4F4F;
+  ;
+}
+
+.line{
+  background-color:  #D9D9D9;
+  width: 100% !important;
+  height: 0.01rem;
+  margin-bottom:1.4rem ;
+  margin-top:0.4rem ;
+
+}
