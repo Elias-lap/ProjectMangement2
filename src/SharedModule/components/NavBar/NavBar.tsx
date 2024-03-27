@@ -1,12 +1,12 @@
 
-import avatar from "../../../assets/images/avatar.png";
-import { AuthAdmin } from "../../../interfaces/Auth";
+// import avatar from "../../../assets/images/avatar.png";
+
 import navLogo from "../../../assets/images/nav-logo.png"
-import { useContext } from "react";
-import { AuthContext } from "../../../context/AuthContext";
+import {  useUser } from "../../../context/AuthContext";
 // interface AuthAdmin{adminData:string};
 export default function NavBar() {
-  let{adminData}=useContext(AuthContext);
+  const{adminData}=useUser();
+  console.log(adminData)
   return (
     <>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
