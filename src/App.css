@@ -190,3 +190,19 @@ background-color: #0E382F !important;
   color: #2d564ecb;
 
 }
+.tasks , .user{
+  background-color: #E5E6F4;
+   }
+   .tasks1,.user1{
+  background-color: #F4F4E5;
+   }
+   .tasks2{
+  background-color: #F4E5ED;
+   }
+   
+   .dashboaed-charts i{
+    /* background-color: #ffffff; */
+    width: %;
+    padding: 10px;
+    border-radius: 15px;
+   }

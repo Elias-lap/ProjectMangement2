@@ -64,7 +64,7 @@ export default function TaskesListContext({ children }: { children: ReactNode })
 
       setPagesArray(pagesArray);
       setListTasks(responseData); 
-      console.log(response.data.data)
+      // console.log(response.data.data)
       return responseData;
     } catch (error) {
       // console.error(error);
@@ -74,7 +74,7 @@ export default function TaskesListContext({ children }: { children: ReactNode })
 
   useEffect(() => {
     getTasks(1, 10, "", "");
-    console.log(listTasks)
+    // console.log(listTasks)
 
 
   }, []);
