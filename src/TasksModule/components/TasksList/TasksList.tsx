@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styleTasks from "../TasksList/TasksList.module.css";
 import Table from "react-bootstrap/Table";
 import { useContext, useEffect, useState } from "react";

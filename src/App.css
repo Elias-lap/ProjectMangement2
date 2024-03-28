@@ -93,7 +93,7 @@
   cursor: pointer;
 }
 
-.sidbar-con .chevron-right {
+.sidbar-icon .chevron-right {
   color: white;
   background-color: #EF9B28;
   padding: 8px;
@@ -101,42 +101,38 @@
   border-bottom-left-radius: 15px;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 63%;
 }
-
+.sidbar-icon .chevron-left {
+  color: white;
+  background-color: #EF9B28;
+  padding: 8px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  position: absolute;
+  top: 0;
+  left: 74.5%;
+}
 
 /* sidbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaar */
 
 .sidebar-style {
-  
   background-color: #0E382F !important;
 }
-
-.sidbar-con {
-  /* height:100vh; */
-  /* background-color: #0E382F !important; */
+.sidbar-icon {
   color: white;
 }
-
 .sideBar-container {
   overflow: hidden;
   background-color: #0E382F !important;
 }
-
-
 .css-dip3t8 {
-
   background-color: #0E382F !important;
 }
-
-/* sidbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaar */
-
-
 .ps-menuitem-root:hover {
   background-color: #EF9B284D !important;
   border-radius: 10px;
 }
-
 .ps-menuitem-root:first-of-type:hover {
   background-color: transparent !important;
 }
