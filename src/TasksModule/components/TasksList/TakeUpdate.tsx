@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { BaceUrlCon } from "../context/BaceUrlContext";
-import styleTasks from "../TasksModule/components/TasksList/TasksList.module.css";
+import { BaceUrlCon } from "../../../context/BaceUrlContext";
+import styleTasks from "../TasksList/TasksList.module.css";
 import { toast } from "react-toastify";
 
 interface FormData {

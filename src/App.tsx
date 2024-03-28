@@ -19,7 +19,7 @@ import TaskesListContext from "./context/TaskesListContext";
 import TasksData from "./TasksModule/components/TasksList/TasksData";
 import { ListUserAndProject } from "./context/ListUserAndProject";
 import TasksList from "./TasksModule/components/TasksList/TasksList";
-import TakeUpdate from "./TasksModule/TakeUpdate";
+import TakeUpdate from "./TasksModule/components/TasksList/TakeUpdate";
 import ProjectsData from "./ProjectModule/components/ProjectsData/ProjectsData";
 // import { DeleteModalProvider } from "./context/DeleteModalContext";
 
