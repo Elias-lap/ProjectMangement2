@@ -25,7 +25,6 @@ export default function TasksList() {
   });
   const [showViewModal, setShowViewModal] = useState(false);
   const [nameSearch, setNameSearch] = useState("");
-
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredTasks, setFilteredTasks] = useState<DataTasks[]>([]);
@@ -147,7 +146,7 @@ useEffect(() => {
         <div className={`${styleTasks.bgColorGray} p-4`}>
           <div className="container  bg-white p-4 rounded-2">
             <form className=" row ">
-              <div className={`${styleTasks.ConInput}  col-md-3`}>
+              <div className={`${styleTasks.ConInput}  col-md-3 mb-3`}>
                 <input
                   className={`${styleTasks.inputSearch}`}
                   type="text"
@@ -181,203 +180,205 @@ useEffect(() => {
               </div>
             </form>
 
-            <Table striped bordered hover className=" mt-4 text-center">
-              <thead className={`${styleTasks.tableThead}`}>
-                <tr>
-                  <th className={`${styleTasks.WordsTheadTable}  `}>
-                    Title
-                    <i
-                      className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
-                    ></i>
-                  </th>
-                  <th className={`${styleTasks.WordsTheadTable}  `}>
-                    Statues
-                    <i
-                      className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
-                    ></i>
-                  </th>
-                  <th className={`${styleTasks.WordsTheadTable}  `}>
-                    User
-                    <i
-                      className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
-                    ></i>
-                  </th>
-                  <th className={`${styleTasks.WordsTheadTable}  `}>
-                    Project
-                    <i
-                      className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
-                    ></i>
-                  </th>
-                  <th className={`${styleTasks.WordsTheadTable}  `}>
-                    Date Created
-                    <i
-                      className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
-                    ></i>
-                  </th>
-                  {/* Add an empty th for the actions column */}
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-              {loading ? (
+          <div className=" table-responsive">
+              <Table striped bordered hover className=" mt-4 text-center table">
+                <thead className={`${styleTasks.tableThead}`}>
                   <tr>
-                    <td colSpan={parseInt("6")}>
-                      <div className="d-flex justify-content-center align-items-center">
-                        <InfinitySpin  />
-                      </div>
-                    </td>
+                    <th className={`${styleTasks.WordsTheadTable}  `}>
+                      Title
+                      <i
+                        className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
+                      ></i>
+                    </th>
+                    <th className={`${styleTasks.WordsTheadTable}  `}>
+                      Statues
+                      <i
+                        className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
+                      ></i>
+                    </th>
+                    <th className={`${styleTasks.WordsTheadTable}  `}>
+                      User
+                      <i
+                        className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
+                      ></i>
+                    </th>
+                    <th className={`${styleTasks.WordsTheadTable}  `}>
+                      Project
+                      <i
+                        className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
+                      ></i>
+                    </th>
+                    <th className={`${styleTasks.WordsTheadTable}  `}>
+                      Date Created
+                      <i
+                        className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
+                      ></i>
+                    </th>
+                    {/* Add an empty th for the actions column */}
+                    <th></th>
                   </tr>
-                ) : listTasks.length > 0 ? (
-                  listTasks.map((tasks, index) => (
-                    <tr
-                      className=" "
-                      key={index}
-                      style={{
-                        backgroundColor:
-                          index % 2 === 0 ? "#FFFFFF" : "#F8F9FB",
-                      }}
-                    >
-                      <td className="TdTable">{tasks.title}</td>
-                      <td className="TdTable">
-                        {tasks.status === "ToDo" ? (
-                          <span className="  bg-secondary text-white p-1 px-2 rounded-3">
-                            {tasks.status}
-                          </span>
-                        ) : tasks.status === "InProgress" ? (
-                          <span className=" bg-warning text-white p-1 px-2 rounded-3">
-                            {tasks.status}
-                          </span>
-                        ) : tasks.status === "Done" ? (
-                          <span className=" bg-success text-white p-1 px-2 rounded-3">
-                            {tasks.status}
-                          </span>
-                        ) : (
-                          <span className=" bg-secondary">{tasks.status}</span>
-                        )}
-                      </td>
-                      <td className="TdTable">
-                        {tasks.employee ? tasks.employee.userName : "N/A"}
-                      </td>
-                      <td className="TdTable">{tasks.project.title}</td>
-                      <td className="TdTable">
-                        {tasks.employee && tasks.employee.creationDate
-                          ? tasks.employee.creationDate.substring(0, 10)
-                          : "N/A"}
-                      </td>
-                      {/* Actions column */}
-                      <td>
-                        {adminData?.userGroup === "Manager" && (
-                          <div className="btn-group">
-                            <a
-                              className=" dropdown-toggle"
-                              href="#"
-                              role="button"
-                              id="dropdownMenuLink"
-                              data-bs-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              <i
-                                className={`${styleTasks.iconTasks} fa-solid fa-ellipsis-vertical`}
-                              ></i>
-                            </a>
-                            <ul className="dropdown-menu">
-                              <li>
-                                <span
-                                  onClick={() =>
-                                    openViewModal(tasks.title, tasks.status)
-                                  }
-                                  className="dropdown-item"
-                                >
-                                  <span
-                                    className={`${styleTasks.btnCursor} border-0 px-2`}
-                                  >
-                                    <i
-                                      className={`${styleTasks.iconTasks} fa-solid fa-street-view me-1`}
-                                    ></i>
-                                    View
-                                  </span>{" "}
-                                </span>
-                              </li>
-                              <li>
-                                <span
-                                  onClick={() => navigateToEdit(tasks.id)}
-                                  className="dropdown-item"
-                                >
-                                  <span
-                                    className={`${styleTasks.btnCursor}  border-0 px-2`}
-                                  >
-                                    <i
-                                      className={`${styleTasks.iconTasks} fa-solid fa-pen-to-square me-1`}
-                                    ></i>
-                                    Edit
-                                  </span>{" "}
-                                </span>
-                              </li>
-                              <li>
-                                <span
-                                  onClick={() => openDeleteModal(tasks.id)}
-                                  className="dropdown-item"
-                                >
-                                  <span
-                                    className={`${styleTasks.btnCursor}   border-0  px-2`}
-                                  >
-                                    <i
-                                      className={`${styleTasks.iconTasks} fa-solid fa-trash me-1`}
-                                    ></i>
-                                    Delete
-                                  </span>{" "}
-                                </span>
-                              </li>
-                            </ul>
-                          </div>
-                        )}
+                </thead>
+                <tbody>
+                {loading ? (
+                    <tr>
+                      <td colSpan={parseInt("6")}>
+                        <div className="d-flex justify-content-center align-items-center">
+                          <InfinitySpin  />
+                        </div>
                       </td>
                     </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={parseInt("6")}>
-                      <ImgNotData />
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-
-              <nav aria-label="Page navigation example">
-                <ul className="pagination">
-                  <li className="page-item">
-                    <button
-                      className="page-link"
-                      onClick={handlePreviousPage}
-                      aria-label="Previous"
-                    >
-                      <span aria-hidden="true">&laquo;</span>
-                    </button>
-                  </li>
-
-                  {pagesArray.map((pageNu, index) => (
-                    <li
-                      key={index}
-                      className="page-item"
-                      onClick={() => getTasks(pageNu, 10 ,'','')}
-                    >
-                      <a className="page-link">{pageNu}</a>
+                  ) : listTasks.length > 0 ? (
+                    listTasks.map((tasks, index) => (
+                      <tr
+                        className=" "
+                        key={index}
+                        style={{
+                          backgroundColor:
+                            index % 2 === 0 ? "#FFFFFF" : "#F8F9FB",
+                        }}
+                      >
+                        <td className="TdTable">{tasks.title}</td>
+                        <td className="TdTable">
+                          {tasks.status === "ToDo" ? (
+                            <span className="  bg-secondary text-white p-1 px-2 rounded-3">
+                              {tasks.status}
+                            </span>
+                          ) : tasks.status === "InProgress" ? (
+                            <span className=" bg-warning text-white p-1 px-2 rounded-3">
+                              {tasks.status}
+                            </span>
+                          ) : tasks.status === "Done" ? (
+                            <span className=" bg-success text-white p-1 px-2 rounded-3">
+                              {tasks.status}
+                            </span>
+                          ) : (
+                            <span className=" bg-secondary">{tasks.status}</span>
+                          )}
+                        </td>
+                        <td className="TdTable">
+                          {tasks.employee ? tasks.employee.userName : "N/A"}
+                        </td>
+                        <td className="TdTable">{tasks.project.title}</td>
+                        <td className="TdTable">
+                          {tasks.employee && tasks.employee.creationDate
+                            ? tasks.employee.creationDate.substring(0, 10)
+                            : "N/A"}
+                        </td>
+                        {/* Actions column */}
+                        <td>
+                          {adminData?.userGroup === "Manager" && (
+                            <div className="btn-group">
+                              <a
+                                className=" dropdown-toggle"
+                                href="#"
+                                role="button"
+                                id="dropdownMenuLink"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                <i
+                                  className={`${styleTasks.iconTasks} fa-solid fa-ellipsis-vertical`}
+                                ></i>
+                              </a>
+                              <ul className="dropdown-menu">
+                                <li>
+                                  <span
+                                    onClick={() =>
+                                      openViewModal(tasks.title, tasks.status)
+                                    }
+                                    className="dropdown-item"
+                                  >
+                                    <span
+                                      className={`${styleTasks.btnCursor} border-0 px-2`}
+                                    >
+                                      <i
+                                        className={`${styleTasks.iconTasks} fa-solid fa-street-view me-1`}
+                                      ></i>
+                                      View
+                                    </span>{" "}
+                                  </span>
+                                </li>
+                                <li>
+                                  <span
+                                    onClick={() => navigateToEdit(tasks.id)}
+                                    className="dropdown-item"
+                                  >
+                                    <span
+                                      className={`${styleTasks.btnCursor}  border-0 px-2`}
+                                    >
+                                      <i
+                                        className={`${styleTasks.iconTasks} fa-solid fa-pen-to-square me-1`}
+                                      ></i>
+                                      Edit
+                                    </span>{" "}
+                                  </span>
+                                </li>
+                                <li>
+                                  <span
+                                    onClick={() => openDeleteModal(tasks.id)}
+                                    className="dropdown-item"
+                                  >
+                                    <span
+                                      className={`${styleTasks.btnCursor}   border-0  px-2`}
+                                    >
+                                      <i
+                                        className={`${styleTasks.iconTasks} fa-solid fa-trash me-1`}
+                                      ></i>
+                                      Delete
+                                    </span>{" "}
+                                  </span>
+                                </li>
+                              </ul>
+                            </div>
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={parseInt("6")}>
+                        <ImgNotData />
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+            
+                <nav aria-label="Page navigation example">
+                  <ul className="pagination">
+                    <li className="page-item">
+                      <button
+                        className="page-link"
+                        onClick={handlePreviousPage}
+                        aria-label="Previous"
+                      >
+                        <span aria-hidden="true">&laquo;</span>
+                      </button>
                     </li>
-                  ))}
-
-                  <li className="page-item">
-                    <button
-                      className="page-link"
-                      onClick={handleNextPage}
-                      aria-label="Next"
-                    >
-                      <span aria-hidden="true">&raquo;</span>
-                    </button>
-                  </li>
-                </ul>
-              </nav>
-            </Table>
+            
+                    {pagesArray.map((pageNu, index) => (
+                      <li
+                        key={index}
+                        className="page-item"
+                        onClick={() => getTasks(pageNu, 10 ,'','')}
+                      >
+                        <a className="page-link">{pageNu}</a>
+                      </li>
+                    ))}
+            
+                    <li className="page-item">
+                      <button
+                        className="page-link"
+                        onClick={handleNextPage}
+                        aria-label="Next"
+                      >
+                        <span aria-hidden="true">&raquo;</span>
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </Table>
+          </div>
           </div>
         </div>
       </section>

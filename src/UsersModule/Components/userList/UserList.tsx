@@ -3,7 +3,8 @@ import axios from "axios";
 import { useEffect,useState } from "react";
 import { useUser } from "../../../context/AuthContext";
 import { useToast } from "../../../context/TostifyContext";
-import { Button, Modal, Spinner } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
+import { InfinitySpin } from "react-loader-spinner";
 interface UserListTypes {
   country: string;
   phoneNumber: string;
@@ -188,11 +189,8 @@ export default function UserList() {
 
       {/* start Tabel  */}
       {spinner ? (
-        <div className="d-flex justify-content-center align-items-center">
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-          <span className="ms-2 fs-1">Loading...</span>
+          <div className="d-flex justify-content-center align-items-center">
+          <InfinitySpin  />
         </div>
       ) : (
         <div className=" container-fluid">

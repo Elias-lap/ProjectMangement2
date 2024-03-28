@@ -16,7 +16,6 @@ export default function ProjectModule() {
   // closing and opening Modal
   const [show, setShow] = useState<boolean>(false);
   const [projectId, setprojectId] = useState<number>(0);
-  const [loading, setLoading] = useState(true);
   const handleClose = () => {
     setShow(false);
   };
@@ -41,7 +40,6 @@ export default function ProjectModule() {
     title?: string
   ) => {
     try {
-      setLoading(true)
       const response = await axios.get(
         "https://upskilling-egypt.com:3003/api/v1/Project/",
         {
@@ -64,8 +62,6 @@ export default function ProjectModule() {
       console.log(response)
     } catch (error) {
       console.log(error)
-    }finally{
-      setLoading(false)
     }
   };
 
@@ -165,43 +161,37 @@ export default function ProjectModule() {
                   </tr>
                 </thead>
                 <tbody>
-                {loading ? (
-                  <tr>
-                    <td colSpan={parseInt("6")}>
-                      <div className="d-flex justify-content-center align-items-center">
-                        <InfinitySpin  />
-                      </div>
-                    </td>
-                  </tr>
-                ) :projecList.map((pro) => (
-                  <tr key={pro.id}>
-                    <th scope="row">{pro.title}</th>
-                    <td>{pro.manager?.id}</td>
-                    <td>{pro.description}</td>
-                    <td>{pro.creationDate}</td>
-                    <td>
-                      <Link to={`/dashboard/project-data/${pro.id}`}>
-                        <i
-                          title="تعديل"
-                          className="fas fa-edit text-warning mx-2 px-2 "
-                        ></i>
-                      </Link>
-                      <button
-                        onClick={() => {
-                          handleShow(), setprojectId(pro.id);
-                        }}
-                        title="Deletep"
-                        className="fas fa-trash text-danger px-2 border-0  bg-transparent"
-                      ></button>
-                    </td>
-                  </tr>
-                ))}
                   
+                  {projecList.map((pro) => (
+                    <tr key={pro.id}>
+                      <th scope="row">{pro.title}</th>
+                      <td>{pro.manager?.id}</td>
+                      <td>{pro.description}</td>
+                      <td>{pro.creationDate}</td>
+                      <td>
+                        <Link to={`/dashboard/project-data/${pro.id}`}>
+                          <i
+                            title="تعديل"
+                            className="fas fa-edit text-warning mx-2 px-2 "
+                          ></i>
+                        </Link>
+                        <button
+                          onClick={() => {
+                            handleShow(), setprojectId(pro.id);
+                          }}
+                          title="Deletep"
+                          className="fas fa-trash text-danger px-2 border-0  bg-transparent"
+                        ></button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
           </div>
           ) : (
-            <div className="loader text-center"></div>
+            <div className="d-flex justify-content-center align-items-center">
+            <InfinitySpin  />
+          </div>
           )}
         </div>
       </div>
