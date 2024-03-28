@@ -75,7 +75,7 @@ function App() {
           element: <ProjectList />,
         },
         {
-          path: "project-data/:id",
+          path: "project-data/:id?",
           element: <ProjectsData />,
         },
         {
