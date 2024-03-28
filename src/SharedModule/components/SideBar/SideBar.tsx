@@ -31,12 +31,12 @@ export default function SideBar() {
           <ChangPass handleClose={handleClose} />
         </Modal.Body>
       </Modal>
-      <div className="sidbar-con  ">
+      <div className="sidbar-icon  ">
       <Sidebar className="vh-100  sidebar-style" collapsed={isCollapsed}>
-        <Menu>
-          <MenuItem className="frist" onClick={toggleCollapse}>
-            {isCollapsed===true? <i className="py-3 fa-solid fa-chevron-right chevron-right"></i>:
-            <i className="py-3 fa-solid fa-chevron-left chevron-right"></i>}     
+        <Menu className=" position-relative">
+          <MenuItem className="frist " onClick={toggleCollapse}>
+            {isCollapsed  ? <i className="py-3 fa-solid fa-chevron-right chevron-right"></i>:
+            <i className="py-3 fa-solid fa-chevron-left chevron-left"></i>}     
           </MenuItem>
           
         
