@@ -4,7 +4,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { BaceUrlCon } from "../context/BaceUrlContext";
 import styleTasks from "../TasksModule/components/TasksList/TasksList.module.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 interface FormData {
   title: string;
@@ -40,6 +40,7 @@ export default function TakeUpdate() {
           Authorization: localStorage.getItem("adminToken"),
         },
       });
+      console.log(response)
       toast.success(`Task Updated Successfully`);
       navigate("/dashboard/tasks");
     } catch (error) {
@@ -50,6 +51,7 @@ export default function TakeUpdate() {
 
   const [userList, setUserList] = useState<User[]>([]);
   const [userProject, setUserProject] = useState<Project[]>([]);
+  console.log(userProject)
 
   const getUserList = async () => {
     try {

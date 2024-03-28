@@ -11,16 +11,17 @@ import MasterLayout from "./SharedModule/components/MasterLayout/MasterLayout";
 import Dashboard from "./Dashboard/components/Dashboard/Dashboard";
 import ProjectList from "./ProjectModule/components/ProjectList/ProjectList";
 import UserList from "./UsersModule/Components/userList/UserList";
-import TasksList from "./TasksModule/components/TasksList/TasksList";
+
 import ProtectedRoute from "./SharedModule/components/ProtectedRoute/ProtectedRoute";
 import "react-toastify/dist/ReactToastify.css";
 import BaceUrlContext from "./context/BaceUrlContext";
 import TaskesListContext from "./context/TaskesListContext";
 import TasksData from "./TasksModule/components/TasksList/TasksData";
-import TakeUpdate from "./TasksModule/TakeUpdate";
 import { ListUserAndProject } from "./context/ListUserAndProject";
+import TasksList from "./TasksModule/components/TasksList/TasksList";
+import TakeUpdate from "./TasksModule/TakeUpdate";
+import ProjectsData from "./ProjectModule/components/ProjectsData/ProjectsData";
 // import { DeleteModalProvider } from "./context/DeleteModalContext";
-
 
 function App() {
   const router = createBrowserRouter([
@@ -51,7 +52,7 @@ function App() {
         },
         {
           path: "VerifyEmail",
-          element: <VerifyAccount/>,
+          element: <VerifyAccount />,
         },
       ],
     },
@@ -74,6 +75,10 @@ function App() {
           element: <ProjectList />,
         },
         {
+          path: "project-data/:id",
+          element: <ProjectsData />,
+        },
+        {
           path: "users",
           element: <UserList />,
         },
@@ -81,25 +86,29 @@ function App() {
           path: "tasks",
           element: <TasksList />,
         },
+        {
+          path: "takeUpdate/:id?",
+          element: < TakeUpdate/>,
+        },
+        {
+          path: "TasksData",
+          element: < TasksData/>,
+        },
       ],
     },
   ]);
 
   return (
     <>
+      <TaskesListContext>
+        <BaceUrlContext>
+          {/* <DeleteModalProvider> */}
+          <ListUserAndProject>
+            <RouterProvider router={router} />
+          </ListUserAndProject>
 
-    <TaskesListContext>
-    
-    <BaceUrlContext>
-      {/* <DeleteModalProvider> */}
-<ListUserAndProject>
-
-      <RouterProvider router={router} />
-      </ListUserAndProject>
-
-      {/* </DeleteModalProvider> */}
-      </BaceUrlContext>
-      
+          {/* </DeleteModalProvider> */}
+        </BaceUrlContext>
       </TaskesListContext>
     </>
   );

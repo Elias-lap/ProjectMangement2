@@ -13,7 +13,7 @@
 .form-group {
   margin-bottom: 10px;
 }
-/* .form-group label {
+.form-group label {
   color: #ffc107;
 }
 .for-visibilty-password-container {
@@ -180,7 +180,9 @@ i {
 
 
 }
-
+.thead-userList{
+background-color: #0E382F !important;
+}
 .page-item:first-child .page-link{
   color: #2d564ecb;
 }

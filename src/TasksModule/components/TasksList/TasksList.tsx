@@ -2,37 +2,23 @@ import styleTasks from "../TasksList/TasksList.module.css";
 import Table from "react-bootstrap/Table";
 import { useContext, useEffect, useState } from "react";
 import { AuthTasksContext } from "../../../context/TaskesListContext";
-import { InfinitySpin } from "react-loader-spinner";
 import ImgNotData from "../../../SharedModule/components/ImgNotData/ImgNotData";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../context/AuthContext";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import { InfinitySpin } from "react-loader-spinner";
+import { DataTasks } from "../../../interfaces/Auth";
 
-// for loading
-interface InfinitySpinProps {
-  visible: boolean;
-  width: string;
-  color: string;
-  ariaLabel: string;
-}
-
-const props: InfinitySpinProps = {
-  visible: true,
-  width: "200",
-  color: "#315951E5",
-  ariaLabel: "infinity-spin-loading",
-};
-//
 
 export default function TasksList() {
   const { listTasks, getTasks, pagesArray } = useContext(AuthTasksContext);
   // console.log(listTasks);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { adminData } = useUser();
-  const [selectedTaskId, setSelectedTaskId] = useState(null);
+  const { adminData } = useUser ();
+  const [selectedTaskId, setSelectedTaskId] = useState<number | undefined>();
   const [selectedTaskInfo, setSelectedTaskInfo] = useState({
     title: "",
     status: "",
@@ -42,13 +28,13 @@ export default function TasksList() {
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [filteredTasks, setFilteredTasks] = useState([]);
-
+  const [filteredTasks, setFilteredTasks] = useState<DataTasks[]>([]);
+  console.log(filteredTasks)
   const [filterStatus, setFilterStatus] = useState("");
 
 
   // DeleteModal
-  const openDeleteModal = (taskId: any) => {
+  const openDeleteModal = (taskId: number) => {
     setSelectedTaskId(taskId);
     setShowDeleteModal(true);
   };
@@ -91,19 +77,14 @@ export default function TasksList() {
     navigate("/dashboard/tasksData");
   };
 
-  const navigateToEdit = (taskId: string) => {
+  const navigateToEdit = (taskId: number) => {
     navigate(`/dashboard/takeUpdate/${taskId}`);
   };
   //
 
   // ----------------------------------
 
-  useEffect(() => {
-    setLoading(true); // Set loading state to true before fetching data
-    getTasks(currentPage, 10, nameSearch)
-      .then(() => setLoading(false)) // Set loading state to false after fetching data
-      .catch(() => setLoading(false)); // Set loading state to false if there's an error
-  }, [currentPage ,nameSearch]);
+
 
   //  handle Previous button click
   const handlePreviousPage = () => {
@@ -125,17 +106,31 @@ const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 
 
 
+useEffect(() => {
+  setLoading(true); // Set loading state to true before fetching data
+  getTasks(currentPage, 10, nameSearch , '')
+    .then(() => setLoading(false)) // Set loading state to false after fetching data
+    .catch(() => setLoading(false)); // Set loading state to false if there's an error
+}, [currentPage ,nameSearch])
+
+
   useEffect(() => {
     getTasks(1, 10, "", filterStatus)
-      .then((data) => setFilteredTasks(data))
+      .then((data : DataTasks[]) => {
+        console.log("Data from getTasks:", data);
+        if (data) {
+          setFilteredTasks(data);
+          setLoading(false);
+        }
+      })
       .catch((error) => console.error("Error fetching tasks: ", error));
-  }, [filterStatus]);
+  }, [filterStatus])
 
 
 
   return (
     <>
-      <section className=" ">
+      <section >
         <div className=" container">
           <div className="d-flex justify-content-between py-4">
             <h3 className={`${styleTasks.tasksWord} `}>Tasks</h3>
@@ -224,11 +219,11 @@ const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
                 </tr>
               </thead>
               <tbody>
-                {loading ? (
+              {loading ? (
                   <tr>
                     <td colSpan={parseInt("6")}>
                       <div className="d-flex justify-content-center align-items-center">
-                        <InfinitySpin {...props} />
+                        <InfinitySpin  />
                       </div>
                     </td>
                   </tr>
@@ -365,7 +360,7 @@ const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
                     <li
                       key={index}
                       className="page-item"
-                      onClick={() => getTasks(pageNu, 10)}
+                      onClick={() => getTasks(pageNu, 10 ,'','')}
                     >
                       <a className="page-link">{pageNu}</a>
                     </li>

@@ -1,10 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { BaceUrlCon } from "../../../context/BaceUrlContext";
 import styleTasks from "../TasksList/TasksList.module.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import { AuthDataForUserAndProj } from "../../../context/ListUserAndProject";
 
 
@@ -26,10 +26,10 @@ export default function TasksData() {
   const BaceUrl = baceUrlContext as string;
   //
 
-  let {userProject, userList} =useContext(AuthDataForUserAndProj)
+  const {userProject, userList} =useContext(AuthDataForUserAndProj)
   // console.log(userList)
   
-  let goTaskList = () => {
+  const goTaskList = () => {
     navigate("/dashboard/tasks");
   };
 
@@ -46,6 +46,7 @@ export default function TasksData() {
         },
       });
       toast.success(`You Add a New Task`);
+      console.log(response)
       goTaskList();
     } catch (error) {
       console.log(error);

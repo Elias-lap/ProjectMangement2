@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useUser } from "../../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-
+import { InfinitySpin } from "react-loader-spinner";
 interface progectListType {
   id: number;
   title: string;
@@ -16,6 +16,7 @@ export default function ProjectModule() {
   // closing and opening Modal
   const [show, setShow] = useState<boolean>(false);
   const [projectId, setprojectId] = useState<number>(0);
+  const [loading, setLoading] = useState(true);
   const handleClose = () => {
     setShow(false);
   };
@@ -40,6 +41,7 @@ export default function ProjectModule() {
     title?: string
   ) => {
     try {
+      setLoading(true)
       const response = await axios.get(
         "https://upskilling-egypt.com:3003/api/v1/Project/",
         {
@@ -62,6 +64,8 @@ export default function ProjectModule() {
       console.log(response)
     } catch (error) {
       console.log(error)
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -143,47 +147,56 @@ export default function ProjectModule() {
               <table className="table  text-center">
                 <thead>
                   <tr className="thead-style">
-                    <th className="text-white" scope="col">
+                    <th className="text-white thead-userList border" scope="col">
                       Title
                     </th>
-                    <th className="text-white" scope="col">
+                    <th className="text-white thead-userList border" scope="col">
                       Num Users
                     </th>
-                    <th className="text-white" scope="col">
+                    <th className="text-white thead-userList border" scope="col">
                       Description
                     </th>
-                    <th className="text-white" scope="col">
+                    <th className="text-white thead-userList border " scope="col">
                       Date Created
                     </th>
-                    <th className="text-white" scope="col">
+                    <th className="text-white thead-userList border" scope="col">
                       Action
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {projecList.map((pro) => (
-                    <tr key={pro.id}>
-                      <th scope="row">{pro.title}</th>
-                      <td>{pro.manager?.id}</td>
-                      <td>{pro.description}</td>
-                      <td>{pro.creationDate}</td>
-                      <td>
-                        <Link to={`/dashboard/project-data/${pro.id}`}>
-                          <i
-                            title="تعديل"
-                            className="fas fa-edit text-warning mx-2 px-2 "
-                          ></i>
-                        </Link>
-                        <button
-                          onClick={() => {
-                            handleShow(), setprojectId(pro.id);
-                          }}
-                          title="Deletep"
-                          className="fas fa-trash text-danger px-2 border-0  bg-transparent"
-                        ></button>
-                      </td>
-                    </tr>
-                  ))}
+                {loading ? (
+                  <tr>
+                    <td colSpan={parseInt("6")}>
+                      <div className="d-flex justify-content-center align-items-center">
+                        <InfinitySpin  />
+                      </div>
+                    </td>
+                  </tr>
+                ) :projecList.map((pro) => (
+                  <tr key={pro.id}>
+                    <th scope="row">{pro.title}</th>
+                    <td>{pro.manager?.id}</td>
+                    <td>{pro.description}</td>
+                    <td>{pro.creationDate}</td>
+                    <td>
+                      <Link to={`/dashboard/project-data/${pro.id}`}>
+                        <i
+                          title="تعديل"
+                          className="fas fa-edit text-warning mx-2 px-2 "
+                        ></i>
+                      </Link>
+                      <button
+                        onClick={() => {
+                          handleShow(), setprojectId(pro.id);
+                        }}
+                        title="Deletep"
+                        className="fas fa-trash text-danger px-2 border-0  bg-transparent"
+                      ></button>
+                    </td>
+                  </tr>
+                ))}
+                  
                 </tbody>
               </table>
           </div>

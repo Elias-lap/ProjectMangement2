@@ -4,7 +4,8 @@ import { ReactNode, createContext, useContext, useEffect, useState } from "react
 
 interface AuthContextType {
   saveAdminData: () => void;
-  adminData?: string | null;
+  adminData?: string | null ,
+
   Token? : string | null
 }
 

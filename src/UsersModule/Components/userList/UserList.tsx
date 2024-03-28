@@ -157,7 +157,7 @@ export default function UserList() {
       </Modal>
       <div className="row m-3  thead-userList rounded-2 overflow-hidden">
         <div className="col-md-3 thead-userList ">
-          <div className="input-group mb-3 ">
+          <div className="input-group mb-3 text-black">
             <input
             
               type="text"
@@ -198,24 +198,24 @@ export default function UserList() {
         <div className=" container-fluid">
           <div className=" table-responsive ">
             <table className="table">
-              <thead >
+              <thead  className=" text-white">
                 <tr>
                   <th
-                    className="thead-userList border  text-white  border-black"
+                    className="thead-userList border  text-white  "
                     scope="col"
                   >
                     User Name
                     <i className=" ps-2 fa-solid fa-chevron-down"></i>
                   </th>
                   <th
-                    className="thead-userList border text-white  border-black "
+                    className="thead-userList border text-white   "
                     scope="col"
                   >
                     status
                     <i className=" ps-2 fa-solid fa-chevron-down"></i>
                   </th>
                   <th
-                    className="thead-userList border text-white border-black "
+                    className="thead-userList border text-white  "
                     scope="col"
                   >
                     phone Number
@@ -226,7 +226,7 @@ export default function UserList() {
                     scope="col"
                   >
                     Email
-                    <i className=" ps-2 fa-solid fa-chevron-down"></i>
+                    <i className=" ps-2 fa-solid fa-chevron-down text-white"></i>
                   </th>
 
                   <th
@@ -239,61 +239,64 @@ export default function UserList() {
                 {userlist.map((user) => {
                   return (
                     <tr key={user.id}>
-                      <td>{user.userName}</td>
-                      <td>
-                        {user.isActivated ? (
-                          <button className=" btn btn-success">Active</button>
-                        ) : (
-                          <button className=" btn btn-danger">
-                            Not Active
-                          </button>
-                        )}
-                      </td>
-                      <td>{user.phoneNumber}</td>
-                      <td>{user.email}</td>
-                      <td>
-                        <div className="dropdown">
-                          <button
-                            className="btn  dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                          ></button>
-                          <ul
-                            className="dropdown-menu"
-                            aria-labelledby="dropdownMenuButton1"
-                          >
-                            <li className="dropdown-item ">
-                              <button
-                                type="button"
-                                className="btn "
-                                data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
-                                onClick={() => {
-                                  setUserid(user.id);
-                                  setisActivated(user.isActivated);
-                                  handleShow();
-                                }}
-                              >
-                                {user.isActivated ? "Block" : "Active"}
-                              </button>
-                            </li>
-                            <li className="dropdown-item ">
-                              <button
-                                className=" btn"
-                                onClick={() => {
-                                  handleShow2(),
-                                    setlengthOfTask(user.task.length);
-                                }}
-                              >
-                                <i className="fa-solid fa-eye"></i> View
-                              </button>
-                            </li>
-                          </ul>
-                        </div>
-                      </td>
-                    </tr>
+                    <td>{user.userName}</td>
+                    <td>
+                      {user.isActivated ? (
+                        <button className=" btn btn-success">Active</button>
+                      ) : (
+                        <button className=" btn btn-danger">
+                          Not Active
+                        </button>
+                      )}
+                    </td>
+                    <td>{user.phoneNumber}</td>
+                    <td>{user.email}</td>
+                    <td>
+                      <div className="dropdown ">
+                        <button
+                          className="btn   dropdown-toggle"
+                          type="button"
+                          id="dropdownMenuButton1"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                              <i className=" ps-2 fa-solid fa-chevron-down"></i>
+
+                        </button>
+                        <ul
+                          className="dropdown-menu"
+                          aria-labelledby="dropdownMenuButton1"
+                        >
+                          <li className="dropdown-item ">
+                            <button
+                              type="button"
+                              className="btn "
+                              data-bs-toggle="modal"
+                              data-bs-target="#exampleModal"
+                              onClick={() => {
+                                setUserid(user.id);
+                                setisActivated(user.isActivated);
+                                handleShow();
+                              }}
+                            >
+                              {user.isActivated ? "Block" : "Active"}
+                            </button>
+                          </li>
+                          <li className="dropdown-item ">
+                            <button
+                              className=" btn "
+                              onClick={() => {
+                                handleShow2(),
+                                  setlengthOfTask(user.task.length);
+                              }}
+                            >
+                              <i className="fa-solid fa-eye"></i> View
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
                   );
                 })}
               </tbody>

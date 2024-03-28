@@ -1,16 +1,34 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { BaceUrlCon } from "../context/BaceUrlContext";
+// import { DataTasks } from "../interfaces/Auth";
 
+
+ interface DataTasks {
+  creationDate:string,
+  description:string,
+  employee:{
+    creationDate:string,
+    userName:string
+  }
+  project :{
+    creationDate:string,
+    title:string,
+  }
+
+  id :number,
+  title:string,
+  status:string,
+}
 interface AuthTasksContextValue {
-  listTasks: any[];
-  getTasks: (pageNu: number, pageSi: number, title: string, status: string) => Promise<void>;
+  listTasks: DataTasks[];
+  getTasks: (pageNu: number, pageSi: number, title: string, status: string) => Promise<DataTasks[]>;
   pagesArray: number[];
 }
 
 export const AuthTasksContext = createContext<AuthTasksContextValue>({
   listTasks: [],
-  getTasks: async () => {},
+  getTasks: async () => [],
   pagesArray: [],
 });
 
@@ -20,7 +38,7 @@ export default function TaskesListContext({ children }: { children: ReactNode })
   const baceUrlContext = useContext(BaceUrlCon);
   const BaceUrl = baceUrlContext as string;
 
-  const [listTasks, setListTasks] = useState<any[]>([]);
+  const [listTasks, setListTasks] = useState<DataTasks[]>([]);
   const [pagesArray, setPagesArray] = useState<number[]>([]);
 
 
@@ -40,23 +58,23 @@ export default function TaskesListContext({ children }: { children: ReactNode })
         },
       });
 
-
+      const responseData: DataTasks[] = response.data.data;
       const totalPages = response.data.totalNumberOfPages;
       const pagesArray = Array.from(Array(totalPages).keys()).map((num) => num + 1);
 
       setPagesArray(pagesArray);
-      setListTasks(response.data.data); 
+      setListTasks(responseData); 
       console.log(response.data.data)
-
+      return responseData;
     } catch (error) {
       // console.error(error);
-
+      return []
     }
   };
 
   useEffect(() => {
     getTasks(1, 10, "", "");
-    // console.log(listTasks)
+    console.log(listTasks)
 
 
   }, []);

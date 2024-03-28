@@ -36,3 +36,19 @@ export  interface FormValues {
   newPassword: string;
   confirmNewPassword: string;
 }
+ export interface DataTasks {
+  creationDate:string,
+  description:string,
+  employee:{
+    creationDate:string,
+    userName:string
+  }
+  project :{
+    creationDate:string,
+    title:string,
+  }
+
+  id :number,
+  title:string,
+  status:string,
+}
