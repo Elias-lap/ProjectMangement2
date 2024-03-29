@@ -17,7 +17,7 @@ export default function TasksList() {
   // console.log(listTasks);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { adminData } = useUser ();
+  const { userRole } = useUser ();
   const [selectedTaskId, setSelectedTaskId] = useState<number | undefined>();
   const [selectedTaskInfo, setSelectedTaskInfo] = useState({
     title: "",
@@ -266,7 +266,7 @@ useEffect(() => {
                         </td>
                         {/* Actions column */}
                         <td>
-                          {adminData?.userGroup === "Manager" && (
+                          {userRole === "Manager" && (
                             <div className="btn-group">
                               <a
                                 className=" dropdown-toggle"
