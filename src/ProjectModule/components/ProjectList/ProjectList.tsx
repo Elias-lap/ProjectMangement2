@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useUser } from "../../../context/AuthContext";
@@ -40,29 +41,67 @@ export default function ProjectModule() {
     pageSize: number,
     title?: string
   ) => {
+    console.log(userRole);
     try {
-      const response = await axios.get(
-        "https://upskilling-egypt.com:3003/api/v1/Project/",
-        {
-          headers: { Authorization: `Bearer ${Token}` },
-          params: {
-            pageNumber: pageNo,
-            pageSize: pageSize,
-            title: title,
-          },
-        }
-      );
-      // console.log(rsponse.data.totalNumberOfPages);
-      setpagesArray(
-        Array(response.data.totalNumberOfPages)
-          .fill([])
-          .map((_, i) => i + 1)
-      );
-
-      setprojecList(response.data.data);
-      console.log(response)
+      if (userRole == "undefined") {
+        const response = await axios.get(
+          "https://upskilling-egypt.com:3003/api/v1/Project/",
+          {
+            headers: { Authorization: `Bearer ${Token}` },
+            params: {
+              pageNumber: pageNo,
+              pageSize: pageSize,
+              title: title,
+            },
+          }
+        );
+        // console.log(rsponse.data.totalNumberOfPages);
+        setpagesArray(
+          Array(response.data.totalNumberOfPages)
+            .fill([])
+            .map((_, i) => i + 1)
+        );
+        setprojecList(response.data.data);
+        console.log(response);
+      } else if (userRole == "Manager") {
+        const response = await axios.get(
+          `https://upskilling-egypt.com:3003/api/v1/Project/manager?pageSize=${pageSize}&pageNumber=${pageNo}`,
+          {
+            headers: { Authorization: `Bearer ${Token}` },
+            params: {
+              title: title,
+            },
+          }
+        );
+        // console.log(rsponse.data.totalNumberOfPages);
+        setpagesArray(
+          Array(response.data.totalNumberOfPages)
+            .fill([])
+            .map((_, i) => i + 1)
+        );
+        setprojecList(response.data.data);
+        console.log(response);
+      } else {
+        const response = await axios.get(
+          `https://upskilling-egypt.com:3003/api/v1/Project/employee?pageSize=${pageSize}&pageNumber=${pageNo}`,
+          {
+            headers: { Authorization: `Bearer ${Token}` },
+            params: {
+              title: title,
+            },
+          }
+        );
+        // console.log(rsponse.data.totalNumberOfPages);
+        setpagesArray(
+          Array(response.data.totalNumberOfPages)
+            .fill([])
+            .map((_, i) => i + 1)
+        );
+        setprojecList(response.data.data);
+        console.log(response);
+      }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -112,13 +151,16 @@ export default function ProjectModule() {
       <div className="title mb-3 mt-1 bg-white">
         <div className="container-fluid  py-3 d-flex justify-content-between">
           <h3>Projects</h3>
-          <button
-            onClick={navigateToProjectData}
-            className="btn p-2 text-white btn-warning rounded-5"
-          >
-            <i className="fa fa-plus " aria-hidden="true"></i> Add New
-            Project
-          </button>
+          {userRole == "Manager" ? (
+            <button
+              onClick={navigateToProjectData}
+              className="btn p-2 text-white btn-warning rounded-5"
+            >
+              <i className="fa fa-plus " aria-hidden="true"></i> Add New Project
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="container-fluid">
@@ -135,59 +177,81 @@ export default function ProjectModule() {
 
         <div className="container-fluid">
           {projecList.length > 0 ? (
-          <div className="table-responsive">
+            <div className="table-responsive">
               <table className="table  text-center">
                 <thead>
                   <tr className="thead-style">
-                    <th className="text-white thead-userList border" scope="col">
+                    <th
+                      className="text-white thead-userList border"
+                      scope="col"
+                    >
                       Title
                     </th>
-                    <th className="text-white thead-userList border" scope="col">
+                    <th
+                      className="text-white thead-userList border"
+                      scope="col"
+                    >
                       Num Users
                     </th>
-                    <th className="text-white thead-userList border" scope="col">
+                    <th
+                      className="text-white thead-userList border"
+                      scope="col"
+                    >
                       Description
                     </th>
-                    <th className="text-white thead-userList border " scope="col">
+                    <th
+                      className="text-white thead-userList border "
+                      scope="col"
+                    >
                       Date Created
                     </th>
-                    <th className="text-white thead-userList border" scope="col">
-                      Action
-                    </th>
+                    {userRole == "Manager" ? (
+                      <th
+                        className="text-white thead-userList border"
+                        scope="col"
+                      >
+                        Action
+                      </th>
+                    ) : (
+                      ""
+                    )}
                   </tr>
                 </thead>
                 <tbody>
-                  
                   {projecList.map((pro) => (
                     <tr key={pro.id}>
                       <th scope="row">{pro.title}</th>
                       <td>{pro.manager?.id}</td>
                       <td>{pro.description}</td>
                       <td>{pro.creationDate}</td>
-                      <td>
-                        <Link to={`/dashboard/project-data/${pro.id}`}>
-                          <i
-                            title="تعديل"
-                            className="fas fa-edit text-warning mx-2 px-2 "
-                          ></i>
-                        </Link>
-                        <button
-                          onClick={() => {
-                            handleShow(), setprojectId(pro.id);
-                          }}
-                          title="Deletep"
-                          className="fas fa-trash text-danger px-2 border-0  bg-transparent"
-                        ></button>
-                      </td>
+                      {userRole == "Manager" ? (
+                        <td>
+                          <Link to={`/dashboard/project-data/${pro.id}`}>
+                            <i
+                              title="تعديل"
+                              className="fas fa-edit text-warning mx-2 px-2 "
+                            ></i>
+                          </Link>
+                          <button
+                            onClick={() => {
+                              handleShow(), setprojectId(pro.id);
+                            }}
+                            title="Deletep"
+                            className="fas fa-trash text-danger px-2 border-0  bg-transparent"
+                          ></button>
+                        </td>
+                      ) : (
+                        ""
+                      )}
                     </tr>
                   ))}
                 </tbody>
               </table>
-          </div>
+            </div>
           ) : (
             <div className="d-flex justify-content-center align-items-center">
-            <InfinitySpin  />
-          </div>
+              <InfinitySpin />
+            </div>
           )}
         </div>
       </div>
