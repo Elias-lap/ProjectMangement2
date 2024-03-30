@@ -40,12 +40,12 @@ export default function NavBar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className={`navbar-nav ms-auto mb-2 mb-lg-0  ${isDarkMode ? 'dark-mode' : 'light-mode'}` }>
+          <ul className={`navbar-nav ms-auto mb-2 mb-lg-0 ` }>
             <li className="nav-item d-flex align-items-center mx-2">
               <i className="fa fa-bell" aria-hidden="true"></i>
             </li>
             <li className="nav-item">
-            <a className={`nav-link ${isDarkMode ? 'dark-mode' : 'light-mode'}` } href="#">
+            <a className={`nav-link` } href="#">
                 Link
               </a>
             </li>
