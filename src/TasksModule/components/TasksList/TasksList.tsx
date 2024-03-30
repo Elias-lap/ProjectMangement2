@@ -157,13 +157,16 @@ export default function TasksList() {
         <div className=" container">
           <div className="d-flex justify-content-between py-4">
             <h3 className={`${styleTasks.tasksWord} `}>Tasks</h3>
+
+            {adminData?.userGroup === "Manager" ? (
+
             <button
               onClick={goNewTask}
               className={`${styleTasks.btnAdd}  btn text-white rounded-5 px-5`}
             >
               {" "}
               + Add New Task
-            </button>
+            </button>):("")}
           </div>
         </div>
 
@@ -290,7 +293,7 @@ export default function TasksList() {
                       </td>
                       {/* Actions column */}
                       <td>
-                        {adminData?.userGroup === "Manager" && (
+                        {adminData?.userGroup === "Manager" ? (
                           <div className="btn-group">
                             <a
                               className=" dropdown-toggle"
@@ -355,7 +358,25 @@ export default function TasksList() {
                               </li>
                             </ul>
                           </div>
-                        )}
+                        ):(<div>
+                          <span
+                                  onClick={() =>
+                                    openViewModal(tasks.title, tasks.status)
+                                  }
+                                  className="dropdown-item"
+                                >
+                                  <span
+                                    className={`${styleTasks.btnCursor} border-0 px-2`}
+                                  >
+                                    <i
+                                      className={`${styleTasks.iconTasks} fa-solid fa-street-view me-1`}
+                                    ></i>
+                                    View
+                                  </span>{" "}
+                                  </span>
+
+
+                        </div>)}
                       </td>
                     </tr>
                   ))
