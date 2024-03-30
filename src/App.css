@@ -188,21 +188,35 @@ background-color: #0E382F !important;
 }
 .page-item:not(:first-child) .page-link{
   color: #2d564ecb;
-
+  
+}
+.tasks i, .user i{
+  background-color: #CFD1EC;
 }
 .tasks , .user{
   background-color: #E5E6F4;
-   }
-   .tasks1,.user1{
-  background-color: #F4F4E5;
-   }
-   .tasks2{
+}
+.tasks1 i,.user1 i{
+  background-color: #E4E4BC;
+}
+.tasks1,.user1{
+background-color: #e9e9df;
+}
+.tasks2{
   background-color: #F4E5ED;
+   }
+.tasks2 i{
+  background-color: #E7C3D7;
+  
    }
    
    .dashboaed-charts i{
     /* background-color: #ffffff; */
-    width: %;
+    text-align: center;
+    width:60px;
     padding: 10px;
     border-radius: 15px;
+   }
+   .tasks-charts{
+    /* padding-top: 80px; */
    }

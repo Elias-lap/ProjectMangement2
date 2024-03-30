@@ -57,29 +57,29 @@ export default function Dasxboard() {
                 <div className="col-md-4 ">
                   <div className="tasks d-flex flex-column  p-3  rounded-4">
                     <i className="fa fa-tasks my-3"> </i>
-                    <span className="py-3 text-dark-light">To do</span>
-                    <h3 className="text-dark-light">{todoCount}</h3>
+                    <span className="py-1 ps-1 text-dark-light">To do</span>
+                    <h3 className="ps-1 text-dark-light">{todoCount}</h3>
                   </div>
                 </div>
                 <div className="col-md-4 ">
                   <div className="tasks1 d-flex flex-column  p-3 rounded-4">
                     <i className="fa-solid fa-group-arrows-rotate  my-3"></i>
-                    <span className="py-3 text-dark-light">In-progress</span>
-                    <h3 className="text-dark-light">{progressCount}</h3>
+                    <span className="py-1 ps-1 text-dark-light">In-progress</span>
+                    <h3 className="ps-1 text-dark-light">{progressCount}</h3>
                   </div>
                 </div>
                 <div className="col-md-4">
                   <div className="tasks2 d-flex flex-column   p-3  rounded-4">
                     <i className="fa-solid fa-calendar-check my-3"></i>
-                    <span className="py-3 text-dark-light">Done</span>
-                    <h3 className="text-dark-light">{doneCount}</h3>
+                    <span className="py-1 ps-1 text-dark-light">Done</span>
+                    <h3 className="ps-1 text-dark-light">{doneCount}</h3>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="col-md-5 bg-white rounded-4">
-              <div className=" tasks-charts d-flex justify-content-center pt-5 align-items-center">      
+              <div className=" tasks-charts pt-5 d-flex justify-content-center  align-items-center">      
             <DonutChart
                 data={[
                   { label: "To Do", value: todoCount },
@@ -108,16 +108,16 @@ export default function Dasxboard() {
               <div className="row users-count my-5 ">
                 <div className="col-md-4 ">
                   <div className="  user  d-flex flex-column  rounded-4 p-3">
-                    <i className="fa-solid fa-user-large my-3"></i>
-                    <span className="py-3 text-dark-light">Active users</span>
-                    <h3 className="text-dark-light ">{activatedEmployeeCount}</h3>
+                    <i className="fa-solid fa-user-large my-2"></i>
+                    <span className="py-1 ps-1 text-dark-light">Active users</span>
+                    <h3 className="ps-1 text-dark-light ">{activatedEmployeeCount}</h3>
                   </div>
                 </div>
                  <div className="col-md-4">
                   <div className="  user1 d-flex flex-column  rounded-4 p-3">
-                    <i className="fa-solid fa-user-large my-3"></i>
-                    <span className="py-3 text-dark-light"> De-active users</span>
-                    <h3 className="text-dark-light">{deactivatedEmployeeCount}</h3>
+                    <i className="fa-solid fa-user-slash my-2"></i>
+                    <span className="py-1 ps-1 text-dark-light"> De-active users</span>
+                    <h3 className="ps-1 text-dark-light">{deactivatedEmployeeCount}</h3>
                   </div>
                 </div>
              
@@ -125,7 +125,7 @@ export default function Dasxboard() {
             </div>
 
             <div className="col-md-5 bg-white rounded-4">
-              <div className=" tasks-charts d-flex justify-content-center pt-5 align-items-center">      
+              <div className=" tasks-charts pt-5 d-flex justify-content-center  align-items-center">      
             <DonutChart
                 data={[
                   { label: "Active ", value: activatedEmployeeCount },
