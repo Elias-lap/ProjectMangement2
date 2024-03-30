@@ -5,6 +5,8 @@ import { useUser } from "../../../context/AuthContext";
 import { useToast } from "../../../context/TostifyContext";
 import { Button, Modal } from "react-bootstrap";
 import { InfinitySpin } from "react-loader-spinner";
+import { useDarkMode } from "../../../context/DarkLightModa";
+
 interface UserListTypes {
   country: string;
   phoneNumber: string;
@@ -23,6 +25,17 @@ export default function UserList() {
   const [Pagination, setPagination] = useState<number[]>([]);
   const [searchName , setsearchName] = useState<string | undefined>('')
   const [searcByGroup , setsearcByGroup] = useState<number >(1)
+
+   // dark Light moda
+   const darkModeContext = useDarkMode();
+
+   if (!darkModeContext) {
+     return null;
+   }
+ 
+   const { isDarkMode, toggleDarkMode } = darkModeContext;
+ // 
+ 
 
   // state for handel close modal Block/
   const [show, setShow] = useState<boolean>(false);
@@ -116,8 +129,8 @@ export default function UserList() {
   return (
     <div className="container-userList  w-100 ">
       <div className=" box-header pt-1">
-        <div className="  bg-white ">
-          <p className="header  text-muted py-3 ps-4 fs-2 ">Users</p>
+      <div className={` ${isDarkMode ? "dark-mode" : "light-mode"}   `}>
+          <p className={` ${isDarkMode ? "text-white" : " text-muted "}  header  py-3 ps-4 fs-2  `} >Users</p>
         </div>
       </div>
       {/* Modal for Active ANd deActive */}
@@ -176,6 +189,7 @@ export default function UserList() {
             <select
               className="form-control"
               onChange={handleSelectChange}
+              title=" select user"
             >
               <option className="thead-userList text-white " value="1"  selected>Select a Role</option>
               <option className="thead-userList text-white "  value="1">
@@ -257,6 +271,7 @@ export default function UserList() {
                           id="dropdownMenuButton1"
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
+                          title=" btn "
                         >
                               <i className=" ps-2 fa-solid fa-chevron-down"></i>
 

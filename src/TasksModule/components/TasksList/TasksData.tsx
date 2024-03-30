@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import {  toast } from "react-toastify";
 import { AuthDataForUserAndProj } from "../../../context/ListUserAndProject";
+import { useDarkMode } from "../../../context/DarkLightModa";
 
 
 
@@ -19,6 +20,17 @@ interface FormData {
 
 
 export default function TasksData() {
+
+   // dark Light moda
+   const darkModeContext = useDarkMode();
+
+   if (!darkModeContext) {
+     return null;
+   }
+ 
+   const { isDarkMode, toggleDarkMode } = darkModeContext;
+ // 
+
   const navigate = useNavigate();
 
   // context
@@ -65,15 +77,17 @@ export default function TasksData() {
     <>
       <div className=" container">
         <div className="  py-4 ">
-          <h6 onClick={goTaskList} className=" text-muted custom-cursor">
-            <i className="fa-solid fa-angle-left text-muted me-3  "></i>
+        {/* <div className={` ${isDarkMode ? "dark-mode" : "light-mode"}  title mb-3 mt-1 `}> */}
+
+          <h6 onClick={goTaskList} className={` ${isDarkMode ? "text-white" : "text-muted"}  title mb-3 mt-1 `} >
+            <i className={` ${isDarkMode ? "text-white" : "text-muted"}  fa-solid fa-angle-left me-3 `} ></i>
             View All Tasks
           </h6>
           <h3 className=" ">Add a New Task</h3>
         </div>
       </div>
 
-      <div className={`${styleTasks.bgGray} my-3 py-4 `}>
+      <div className={`${styleTasks.bgGray} my-3 py-4 bgGray `}>
         <div
           className={`${styleTasks.conForm}  container bg-white py-3   rounded-3 `}
         >

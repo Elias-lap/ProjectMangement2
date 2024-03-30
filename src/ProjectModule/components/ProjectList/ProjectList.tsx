@@ -4,6 +4,8 @@ import { useUser } from "../../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { InfinitySpin } from "react-loader-spinner";
+import { useDarkMode } from "../../../context/DarkLightModa";
+
 interface progectListType {
   id: number;
   title: string;
@@ -13,6 +15,17 @@ interface progectListType {
 }
 
 export default function ProjectModule() {
+
+    // dark Light moda
+    const darkModeContext = useDarkMode();
+
+    if (!darkModeContext) {
+      return null;
+    }
+  
+    const { isDarkMode, toggleDarkMode } = darkModeContext;
+  // 
+  
   // closing and opening Modal
   const [show, setShow] = useState<boolean>(false);
   const [projectId, setprojectId] = useState<number>(0);
@@ -108,7 +121,7 @@ export default function ProjectModule() {
           </button>
         </div>
       </Modal>
-      <div className="title mb-3 mt-1 bg-white">
+      <div className={` ${isDarkMode ? "dark-mode" : "light-mode"}  title mb-3 mt-1 `}>
         <div className="container-fluid  py-3 d-flex justify-content-between">
           <h3>Projects</h3>
           <button

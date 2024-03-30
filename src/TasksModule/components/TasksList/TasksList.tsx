@@ -9,6 +9,7 @@ import { useUser } from "../../../context/AuthContext";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import { useDarkMode } from "../../../context/DarkLightModa";
 
 // for loading
 interface InfinitySpinProps {
@@ -45,6 +46,11 @@ export default function TasksList() {
   const [filteredTasks, setFilteredTasks] = useState([]);
 
   const [filterStatus, setFilterStatus] = useState("");
+
+   // dark Light moda
+   const darkModeContext = useDarkMode();
+
+ 
 
   // DeleteModal
   const openDeleteModal = (taskId: any) => {
@@ -146,6 +152,7 @@ export default function TasksList() {
 
   return (
     <>
+
       <section className=" ">
         <div className=" container">
           <div className="d-flex justify-content-between py-4">
@@ -160,7 +167,7 @@ export default function TasksList() {
           </div>
         </div>
 
-        <div className={`${styleTasks.bgColorGray} p-4`}>
+        <div className={`${styleTasks.bgColorGray} p-4 bgColorGray`}>
           <div className="container  bg-white p-4 rounded-2">
             <form className=" row ">
               <div className={`${styleTasks.ConInput}  col-md-3`}>

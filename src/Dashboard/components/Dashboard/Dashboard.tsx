@@ -1,6 +1,16 @@
+import { useDarkMode } from "../../../context/DarkLightModa";
 import Header from "../Header/Header";
 
 export default function Dasxboard() {
+  const darkModeContext = useDarkMode();
+
+  if (!darkModeContext) {
+    return null;
+  }
+
+  const { isDarkMode, toggleDarkMode } = darkModeContext;
+
+
   return (
     <>
       <div className="main-content ">
@@ -39,8 +49,8 @@ export default function Dasxboard() {
        
       </div> */}
 
-        <div className="container-fluid py-5">
-          <div className=" dashboaed-charts justify-content-around d-flex ">
+<div className={`container-fluid py-5 ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+<div className="dashboaed-charts justify-content-around d-flex">
             <div className=" px-5  w-50  bg-white rounded-4">
               <div className="titles ">
                 <h3 className="">Tasks</h3>

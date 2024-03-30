@@ -151,6 +151,7 @@ i {
 
 .header-container {
   background-image: url(./assets/images/bgHeader.jpg);
+  border-radius: 2rem;
   background-size: cover;
   width: 100%;
   color: white;
@@ -158,6 +159,14 @@ i {
 
 }
 
+/* style for project */
+
+.formControlProject{
+  color: #000 !important;
+}
+.formControlProject::placeholder{
+  color: gray !important;
+}
 
 /* style for takes data */
  .formControlTasksData{
@@ -191,3 +200,105 @@ background-color: #0E382F !important;
   color: #2d564ecb;
 
 }
+
+/* Dark Mode and Light Mode */
+
+/* Dark Mode */
+.dark-mode {
+  background-color: #060E22;
+  color: white;
+}
+
+/* Light Mode */
+.light-mode {
+  background-color: #F5F5F5;
+  color: black;
+}
+
+/* Header */
+
+
+.light-mode .header-container {
+  color: white;
+}
+
+.dark-mode .header-container {
+  color: white;
+}
+
+
+/* Dashboard */
+
+
+
+.dashboaed-charts .bg-white {
+  background-color: white; 
+  color: black; 
+}
+
+.dark-mode .dashboaed-charts .bg-white {
+  background-color: #111827 !important; 
+  color: white; 
+}
+
+
+/* sideBar */
+.dark-mode .css-dip3t8 {
+
+  background-color:  #27554b !important;
+}
+
+
+
+
+/* navbar */
+.navbar-light {
+  background-color: #fff; 
+  color: #fff; 
+}
+.dark-mode .navbar-light {
+  background-color: #333; 
+  color: #fff; 
+}
+.dark-mode .navbar-nav {
+  color: #fff; 
+  background-color: transparent;
+
+}
+.light-mode .navbar-nav {
+  color: black; 
+
+}
+
+
+.dark-mode .nav-link {
+  color: #fff !important; 
+}
+/* ProjectData */
+
+.bgProjectLightModa{
+  background-color: #FFFFFF;
+
+}
+
+.dark-mode .bgProjectLightModa{
+  background-color: #060E22;
+  color: #000; 
+} 
+
+.dark-mode .form-label{
+  color: #000;
+}
+
+/* TasksList */
+
+.dark-mode .bgColorGray{
+  background-color: #060E22;
+  color: #000; 
+} 
+
+/* TasksData */
+.dark-mode .bgGray{
+  background-color: #060E22 !important;
+} 
+
