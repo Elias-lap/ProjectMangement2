@@ -62,7 +62,7 @@ export default function ProjectModule() {
             .map((_, i) => i + 1)
         );
         setprojecList(response.data.data);
-        console.log(response);
+        
       } else if (userRole == "Manager") {
         const response = await axios.get(
           `https://upskilling-egypt.com:3003/api/v1/Project/manager?pageSize=${pageSize}&pageNumber=${pageNo}`,
@@ -80,7 +80,7 @@ export default function ProjectModule() {
             .map((_, i) => i + 1)
         );
         setprojecList(response.data.data);
-        console.log(response);
+    
       } else {
         const response = await axios.get(
           `https://upskilling-egypt.com:3003/api/v1/Project/employee?pageSize=${pageSize}&pageNumber=${pageNo}`,
@@ -98,7 +98,6 @@ export default function ProjectModule() {
             .map((_, i) => i + 1)
         );
         setprojecList(response.data.data);
-        console.log(response);
       }
     } catch (error) {
       console.log(error);

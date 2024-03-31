@@ -13,7 +13,7 @@ interface Project {
 }
 
 
-export let AuthDataForUserAndProj = createContext<{ getUserList: () => void; userList: User[]; userProject: Project[] }>({ getUserList: () => {}, userList: [], userProject: [] });
+export const AuthDataForUserAndProj = createContext<{ getUserList: () => void; userList: User[]; userProject: Project[] }>({ getUserList: () => {}, userList: [], userProject: [] });
 
 export function ListUserAndProject ({ children }: { children: ReactNode }){
 

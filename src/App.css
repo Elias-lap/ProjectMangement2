@@ -92,6 +92,9 @@
 .custom-cursor {
   cursor: pointer;
 }
+.dragging {
+  cursor: grabbing; /* Change cursor to grabbing while dragging */
+}
 
 .sidbar-icon .chevron-right {
   color: white;
@@ -185,4 +188,20 @@ background-color: #0E382F !important;
 .page-item:not(:first-child) .page-link{
   color: #2d564ecb;
 
+}
+
+/*  style for TaksBoard */
+
+.color-box-Taks {
+  background-color: #456961;
+}
+.bg-yellow {
+  background-color: #EF9B28;
+} 
+
+.w-90 {
+  width:  90% !important;
+}
+.custom-box-shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6); /* Example shadow */
 }
