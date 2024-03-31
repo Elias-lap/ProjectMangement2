@@ -16,16 +16,23 @@ interface progectListType {
 
 export default function ProjectModule() {
 
-    // dark Light moda
-    const darkModeContext = useDarkMode();
+      // dark Light moda
+      const darkModeContext = useDarkMode();
 
-    if (!darkModeContext) {
-      return null;
-    }
-  
-    const { isDarkMode, toggleDarkMode } = darkModeContext;
-  // 
-  
+      //  if (!darkModeContext) {
+      //    return null;
+      //  }
+    
+      if (!darkModeContext) {
+        return (
+          <div className="d-flex justify-content-center align-items-center">
+          <InfinitySpin  />
+        </div>)
+        }
+     
+       const { isDarkMode, toggleDarkMode } = darkModeContext;
+     // 
+     
   // closing and opening Modal
   const [show, setShow] = useState<boolean>(false);
   const [projectId, setprojectId] = useState<number>(0);

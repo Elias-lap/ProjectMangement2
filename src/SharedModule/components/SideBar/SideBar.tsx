@@ -4,18 +4,21 @@ import { Link, useNavigate } from "react-router-dom";
 import ChangPass from "../../../AuthModule/components/ChangPass/ChangPass";
 import { Modal } from "react-bootstrap";
 import { useDarkMode } from "../../../context/DarkLightModa";
+import { InfinitySpin } from "react-loader-spinner";
 
 export default function SideBar() {
   const navigate = useNavigate();
   const [isCollapsed, setIsCollapsed] = useState(true);
 
-  // const { isDarkMode, toggleDarkMode } = useDarkMode();
   // dark Light moda
   const darkModeContext = useDarkMode();
 
   if (!darkModeContext) {
-    return null;
-  }
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+      <InfinitySpin  />
+    </div>)
+    }
 
   const { isDarkMode, toggleDarkMode } = darkModeContext;
 // 

@@ -29,9 +29,16 @@ export default function UserList() {
    // dark Light moda
    const darkModeContext = useDarkMode();
 
-   if (!darkModeContext) {
-     return null;
-   }
+  //  if (!darkModeContext) {
+  //    return null;
+  //  }
+
+  if (!darkModeContext) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+      <InfinitySpin  />
+    </div>)
+    }
  
    const { isDarkMode, toggleDarkMode } = darkModeContext;
  // 

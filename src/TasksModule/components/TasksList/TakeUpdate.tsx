@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { BaceUrlCon } from "../../../context/BaceUrlContext";
 import styleTasks from "../TasksList/TasksList.module.css";
 import { toast } from "react-toastify";
+import { useDarkMode } from "../../../context/DarkLightModa";
+import { InfinitySpin } from "react-loader-spinner";
 
 interface FormData {
   title: string;
@@ -51,7 +53,21 @@ export default function TakeUpdate() {
 
   const [userList, setUserList] = useState<User[]>([]);
   const [userProject, setUserProject] = useState<Project[]>([]);
-  console.log(userProject)
+  // console.log(userProject)
+
+     // dark Light moda
+     const darkModeContext = useDarkMode();
+
+     if (!darkModeContext) {
+       return (
+         <div className="d-flex justify-content-center align-items-center">
+         <InfinitySpin  />
+       </div>)
+       }
+    
+      const { isDarkMode, toggleDarkMode } = darkModeContext;
+    // 
+    
 
   const getUserList = async () => {
     try {
@@ -111,15 +127,15 @@ export default function TakeUpdate() {
     <>
       <div className="container">
         <div className="py-4">
-          <h6 onClick={() => navigate("/dashboard/tasks")} className="text-muted custom-cursor">
-            <i className="fa-solid fa-angle-left text-muted me-3"></i>
+          <h6 onClick={() => navigate("/dashboard/tasks")} className={` ${isDarkMode ? "text-white" : " text-muted "} custom-cursor  `}>
+            <i  className={` ${isDarkMode ? "text-white" : " text-muted "} fa-solid fa-angle-left  me-3 `}></i>
             View All Tasks
           </h6>
           <h3>Edit Task</h3>
         </div>
       </div>
 
-      <div className={`${styleTasks.bgGray} my-3 py-4 `}>
+      <div className={`${styleTasks.bgGray} my-3 py-4 bgGray`}>
         <div className={`${styleTasks.conForm}  container bg-white py-3   rounded-3 `}>
           <form className="p-3" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group">
@@ -184,28 +200,7 @@ export default function TakeUpdate() {
                   )}
                 </div>
               </div>
-              {/* Project */}
-              {/* <div className="col-4 col-md-6">
-                <div className="input-group mb-3">
-                  <label className={`${styleTasks.colorInputTaskesData} d-block w-100`} htmlFor="Project">
-                    Project
-                  </label>
-                  <select
-                    className={`${styleTasks.inputs} form-select d-block rounded-3`}
-                    {...register("projectId", { required: true })}
-                  >
-                    <option value=""> Choose Project</option>
-                    {userProject.map((project, index) => (
-                      <option value={project.id} key={index}>
-                        {project.title}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.projectId && errors.projectId.type === "required" && (
-                    <div className="alert alert-danger  d-inline-block w-100 mt-1">Project is required</div>
-                  )}
-                </div>
-              </div> */}
+             
             </div>
 
             <div className={`${styleTasks.line}`}></div>

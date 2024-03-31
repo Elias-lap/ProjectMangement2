@@ -3,7 +3,8 @@ import navLogoDark from "../../../assets/images/PMS 3Dark.png";
 import { useDarkMode } from "../../../context/DarkLightModa";
 import styleNav from "./NavBar.module.css"
 export default function NavBar() {
-  // const { isDarkMode, toggleDarkMode } = useDarkMode();
+     // dark Light moda
+
   const darkModeContext = useDarkMode();
 
   if (!darkModeContext) {

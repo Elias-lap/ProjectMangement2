@@ -4,17 +4,24 @@ import { useUser } from "../../../context/AuthContext";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useEffect } from "react";
 import { useDarkMode } from "../../../context/DarkLightModa";
+import { InfinitySpin } from "react-loader-spinner";
 
 export default function ProjectsData() {
   // dark Light moda
   const darkModeContext = useDarkMode();
 
-  if (!darkModeContext) {
-    return null;
-  }
 
-  const { isDarkMode, toggleDarkMode } = darkModeContext;
-  //
+  if (!darkModeContext) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+      <InfinitySpin  />
+    </div>)
+    }
+ 
+   const { isDarkMode, toggleDarkMode } = darkModeContext;
+ // 
+
+
   const navigate = useNavigate();
   const { Token } = useUser();
   const param = useParams();

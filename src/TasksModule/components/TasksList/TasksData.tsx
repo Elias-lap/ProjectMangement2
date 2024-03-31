@@ -7,6 +7,7 @@ import axios from "axios";
 import {  toast } from "react-toastify";
 import { AuthDataForUserAndProj } from "../../../context/ListUserAndProject";
 import { useDarkMode } from "../../../context/DarkLightModa";
+import { InfinitySpin } from "react-loader-spinner";
 
 
 
@@ -24,9 +25,15 @@ export default function TasksData() {
    // dark Light moda
    const darkModeContext = useDarkMode();
 
-   if (!darkModeContext) {
-     return null;
-   }
+  //  if (!darkModeContext) {
+  //    return null;
+  //  }
+  if (!darkModeContext) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+      <InfinitySpin  />
+    </div>)
+    }
  
    const { isDarkMode, toggleDarkMode } = darkModeContext;
  // 

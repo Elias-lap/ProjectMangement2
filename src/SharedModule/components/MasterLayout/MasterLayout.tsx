@@ -3,10 +3,26 @@ import SideBar from '../SideBar/SideBar'
 import { Outlet } from 'react-router-dom'
 import NavBar from '../NavBar/NavBar'
 import { useDarkMode } from "../../../context/DarkLightModa";
+import { InfinitySpin } from "react-loader-spinner";
 
 export default function MasterLayout() {
-  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
+     // dark Light moda
+
+   const darkModeContext = useDarkMode();
+
+  
+
+  if (!darkModeContext) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+      <InfinitySpin  />
+    </div>)
+    }
+ 
+   const { isDarkMode, toggleDarkMode } = darkModeContext;
+ // 
+ 
   return (
   <> 
    <NavBar />

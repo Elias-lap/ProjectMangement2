@@ -47,11 +47,7 @@ export default function TasksList() {
 
   const [filterStatus, setFilterStatus] = useState("");
 
-   // dark Light moda
-   const darkModeContext = useDarkMode();
-
- 
-
+  
   // DeleteModal
   const openDeleteModal = (taskId: any) => {
     setSelectedTaskId(taskId);
@@ -238,7 +234,6 @@ export default function TasksList() {
                       className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                     ></i>
                   </th>
-                  {/* Add an empty th for the actions column */}
                   <th></th>
                 </tr>
               </thead>
