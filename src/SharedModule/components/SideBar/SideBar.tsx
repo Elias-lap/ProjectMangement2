@@ -1,15 +1,22 @@
-import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import  { useEffect, useState} from "react";
+import { Sidebar, Menu, MenuItem  } from "react-pro-sidebar";
 import { Link, useNavigate } from "react-router-dom";
-import ChangPass from "../../../AuthModule/components/ChangPass/ChangPass";
-import { Modal } from "react-bootstrap";
+import ChangPass from '../../../AuthModule/components/ChangPass/ChangPass';
+import  {Modal}  from "react-bootstrap";
 import { useUser } from "../../../context/AuthContext";
-
+import { useDarkMode } from "../../../context/DarkLightModa";
+import { InfinitySpin } from "react-loader-spinner";
 export default function SideBar() {
   const { userRole  } = useUser();
-
+  console.log(userRole)
   const navigate = useNavigate();
   const [isCollapsed, setIsCollapsed] = useState(true);
+  // dark Light moda
+  const darkModeContext = useDarkMode();
+  const isDarkMode = darkModeContext ? darkModeContext.isDarkMode : false;
+  const toggleDarkMode = darkModeContext ? darkModeContext.toggleDarkMode : () => {};
+// 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
@@ -19,12 +26,27 @@ export default function SideBar() {
     setShow(false);
   };
   const handleShow = () => setShow(true);
-  // function Logout
+  // function Logout 
   const logOut = () => {
     localStorage.removeItem("adminToken");
     localStorage.removeItem("token");
-    navigate("/login");
-  };
+    navigate("/login")
+  }
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [isDarkMode]);
+
+  if (!darkModeContext) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+      <InfinitySpin  />
+    </div>)
+    }
+    
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -34,21 +56,19 @@ export default function SideBar() {
         </Modal.Body>
       </Modal>
       <div className="sidbar-icon  ">
-        <Sidebar className="vh-100  sidebar-style" collapsed={isCollapsed}>
-          <Menu>
-          <MenuItem className="frist " onClick={toggleCollapse}>
-            {isCollapsed  ? <i className="py-3 fa-solid fa-chevron-right chevron-right"></i>:
+      <Sidebar className="vh-100  sidebar-style " collapsed={isCollapsed}>
+        <Menu>
+          <MenuItem className="frist" onClick={toggleCollapse}>
+            {isCollapsed===true? <i className="py-3 fa-solid fa-chevron-right chevron-right"></i>:
             <i className="py-3 fa-solid fa-chevron-left chevron-left"></i>}     
           </MenuItem>
+          
+        
+          <MenuItem icon={<i className=" fa fa-home" ></i>} component={<Link to="/dashboard" />}> Home</MenuItem>
 
-            <MenuItem
-              icon={<i className=" fa fa-home"></i>}
-              component={<Link to="/dashboard" />}
-            >
-              {" "}
-              Home
-            </MenuItem>
-            { userRole === "Manager" ? (
+
+
+              { userRole === "Manager" ? (
               <MenuItem
                 icon={<i className=" fa fa-user"></i>}
                 component={<Link to="/dashboard/users" />}
@@ -59,36 +79,28 @@ export default function SideBar() {
             ) : (
               ""
             )}
-
+          <MenuItem icon={<i className="fa-solid fa-rectangle-list"></i>} component={<Link to="/dashboard/project" />}> Projects</MenuItem>
+          <MenuItem icon={<i className="fa-solid fa-list"></i>} component={<Link to="/dashboard/tasks" />}> Tasks</MenuItem>
+          <MenuItem icon={<i className="fa-solid fa-lock"></i>} onClick={handleShow}>
+            Change Password
+          </MenuItem>
+          <MenuItem onClick={logOut} icon={<i className="fa-solid fa-right-from-bracket"></i>} > LogOut</MenuItem>
             <MenuItem
-              icon={<i className="fa-solid fa-rectangle-list"></i>}
-              component={<Link to="/dashboard/project" />}
+              icon={
+                <i >
+                  {isDarkMode ? (
+                    <i className="fa-solid fa-toggle-on"></i>
+                  ) : (
+                    <i className="fa-solid fa-toggle-off"></i>
+                  )}
+                </i>
+              }
+              onClick={toggleDarkMode}
             >
-              {" "}
-              Projects
+              {isDarkMode ? "dark-mode" : "light-mode"}{" "}
             </MenuItem>
-            <MenuItem
-              icon={<i className="fa-solid fa-list"></i>}
-              component={<Link to="/dashboard/tasks" />}
-            >
-              {" "}
-              Tasks
-            </MenuItem>
-            <MenuItem
-              icon={<i className="fa-solid fa-lock"></i>}
-              onClick={handleShow}
-            >
-              Change Password
-            </MenuItem>
-            <MenuItem
-              onClick={logOut}
-              icon={<i className="fa-solid fa-right-from-bracket"></i>}
-            >
-              {" "}
-              LogOut
-            </MenuItem>
-          </Menu>
-        </Sidebar>
+        </Menu>
+      </Sidebar>
       </div>
     </>
   );

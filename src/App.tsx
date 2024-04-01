@@ -19,9 +19,9 @@ import TaskesListContext from "./context/TaskesListContext";
 import TasksData from "./TasksModule/components/TasksList/TasksData";
 import { ListUserAndProject } from "./context/ListUserAndProject";
 import TasksList from "./TasksModule/components/TasksList/TasksList";
-import TakeUpdate from "./TasksModule/TakeUpdate";
+import TakeUpdate from "./TasksModule/components/TasksList/TakeUpdate";
 import ProjectsData from "./ProjectModule/components/ProjectsData/ProjectsData";
-// import { DeleteModalProvider } from "./context/DeleteModalContext";
+import { DarkModeProvider } from "./context/DarkLightModa";
 
 function App() {
   const router = createBrowserRouter([
@@ -100,14 +100,17 @@ function App() {
 
   return (
     <>
+
       <TaskesListContext>
         <BaceUrlContext>
-          {/* <DeleteModalProvider> */}
           <ListUserAndProject>
-            <RouterProvider router={router} />
-          </ListUserAndProject>
+          <DarkModeProvider>
 
-          {/* </DeleteModalProvider> */}
+            <RouterProvider router={router} />
+            </DarkModeProvider>
+            </ListUserAndProject>
+
+
         </BaceUrlContext>
       </TaskesListContext>
     </>

@@ -5,12 +5,15 @@ import { useUser } from "../../../context/AuthContext";
 import { Modal } from "react-bootstrap";
 import ChangePassword from "../../../AuthModule/components/ChangPass/ChangPass";
 import { useState } from "react";
-
+import { useDarkMode } from "../../../context/DarkLightModa";
+import styleNav from "./NavBar.module.css";
+import navLogoDark from "../../../assets/images/PMS 3Dark.png";
 
 export default function NavBar() {
+  const darkModeContext = useDarkMode();
   const { userRole } = useUser();
-  // const User: string | undefined = adminData?.userName
-
+  const isDarkMode = darkModeContext ? darkModeContext.isDarkMode : false;
+  const toggleDarkMode = darkModeContext ? darkModeContext.toggleDarkMode : () => {};
   const navigate = useNavigate();
 
   // closing and opening Modal
@@ -19,32 +22,44 @@ export default function NavBar() {
     setShow(false);
   };
   const handleShow = () => setShow(true);
+
   // function Logout
   const logOut = () => {
     localStorage.removeItem("adminToken");
     localStorage.removeItem("token");
     navigate("/login");
   };
+
+  if (!darkModeContext) {
+    return null; // You might want to handle this case differently
+  }
+
   return (
     <>
-        <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <ChangePassword handleClose={handleClose} />
         </Modal.Body>
       </Modal>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav
+        className={`navbar navbar-expand-lg navbar-light ${
+          isDarkMode ? "dark-mode" : "light-mode"
+        }`}
+      >
         <div className="container-fluid ">
-      <div className="  ">
-            <a className="navbar-brand" href="#">
-              <img src={navLogo} alt="logo" />
-            </a>
-          
-              {/* <div  className="   display-none-2 ">
-                 <p>{User}</p>
-              </div> */}
-      </div>
-          
+          <div className="  ">
+            {isDarkMode ? (
+              <img
+                src={navLogoDark}
+                alt="Dark Logo"
+                className={`${styleNav.logoDark}`}
+              />
+            ) : (
+              <img src={navLogo} alt="Light Logo" className="logo  " />
+            )}
+          </div>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -93,18 +108,32 @@ export default function NavBar() {
                   Tasks
                 </MenuItem>
                 <MenuItem
-              icon={<i className="fa-solid fa-lock"></i>}
-              onClick={handleShow}
+                  icon={<i className="fa-solid fa-lock"></i>}
+                  onClick={handleShow}
+                >
+                  Change Password
+                </MenuItem>
+                <MenuItem
+              icon={
+                <i >
+                  {isDarkMode ? (
+                    <i className="fa-solid fa-toggle-on"></i>
+                  ) : (
+                    <i className="fa-solid fa-toggle-off"></i>
+                  )}
+                </i>
+              }
+              onClick={toggleDarkMode}
             >
-              Change Password
+              {isDarkMode ? "dark-mode" : "light-mode"}{" "}
             </MenuItem>
-            <MenuItem
-              onClick={logOut}
-              icon={<i className="fa-solid fa-right-from-bracket"></i>}
-            >
-              {" "}
-              LogOut
-            </MenuItem>
+                <MenuItem
+                  onClick={logOut}
+                  icon={<i className="fa-solid fa-right-from-bracket"></i>}
+                >
+                  {" "}
+                  LogOut
+                </MenuItem>
               </Menu>
             </ul>
           </div>

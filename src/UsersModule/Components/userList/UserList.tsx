@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from "axios";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../../../context/AuthContext";
 import { useToast } from "../../../context/TostifyContext";
 import { Button, Modal } from "react-bootstrap";
 import { InfinitySpin } from "react-loader-spinner";
+import { useDarkMode } from "../../../context/DarkLightModa";
+
 interface UserListTypes {
   country: string;
   phoneNumber: string;
@@ -21,8 +23,13 @@ export default function UserList() {
   const [userid, setUserid] = useState<number | undefined>();
   const [isActivated, setisActivated] = useState<boolean | undefined>();
   const [Pagination, setPagination] = useState<number[]>([]);
-  const [searchName , setsearchName] = useState<string | undefined>('')
-  const [searcByGroup , setsearcByGroup] = useState<number >(1)
+  const [searchName, setsearchName] = useState<string | undefined>("");
+  const [searcByGroup, setsearcByGroup] = useState<number>(1);
+
+  // dark Light moda
+  const darkModeContext = useDarkMode();
+  const isDarkMode = darkModeContext ? darkModeContext.isDarkMode : false;
+  //
 
   // state for handel close modal Block/
   const [show, setShow] = useState<boolean>(false);
@@ -33,7 +40,7 @@ export default function UserList() {
   const handleClose2 = (): void => setShow2(false);
   const handleShow2 = (): void => setShow2(true);
   const [lengthOfTask, setlengthOfTask] = useState<number>(0);
-  const { showSuccessToast  ,showErrorToast,} = useToast();
+  const { showSuccessToast, showErrorToast } = useToast();
   // state for spinner
   const [spinner, setSpinner] = useState<boolean>(false);
 
@@ -41,7 +48,7 @@ export default function UserList() {
   const { Token } = useUser();
   const getuserlist = async (
     pageNumber: number,
-    searchName : string | undefined,
+    searchName: string | undefined,
     group: number
   ) => {
     try {
@@ -67,7 +74,7 @@ export default function UserList() {
       setUserList(response.data?.data);
     } catch (error) {
       console.log(error);
-      showErrorToast('An error occurred while processing your request.')
+      showErrorToast("An error occurred while processing your request.");
     } finally {
       setSpinner(false);
     }
@@ -89,10 +96,10 @@ export default function UserList() {
 
       // Close the modal
       showSuccessToast("The process was successful");
-      getuserlist(1,"", 1);
+      getuserlist(1, "", 1);
     } catch (error) {
       console.log(error);
-      showErrorToast('An error occurred while processing your request.')
+      showErrorToast("An error occurred while processing your request.");
     } finally {
       setSpinner(false);
     }
@@ -100,24 +107,38 @@ export default function UserList() {
   // Search By Name =>
   const SearchByName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setsearchName(e.target.value);
-    getuserlist (1 ,searchName , 1 )
+    getuserlist(1, searchName, 1);
   };
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     // Your select change handling logic here
     setsearcByGroup(+e.target.value);
-    getuserlist (1 ,searchName , +e.target.value )
+    getuserlist(1, searchName, +e.target.value);
   };
 
   useEffect(() => {
     getuserlist(1, "", 1);
   }, []);
 
+  if (!darkModeContext) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+        <InfinitySpin />
+      </div>
+    );
+  }
+
   return (
     <div className="container-userList  w-100 ">
       <div className=" box-header pt-1">
-        <div className="  bg-white ">
-          <p className="header  text-muted py-3 ps-4 fs-2 ">Users</p>
+        <div className={` ${isDarkMode ? "dark-mode" : "light-mode"}   `}>
+          <p
+            className={` ${
+              isDarkMode ? "text-white" : " text-muted "
+            }  header  py-3 ps-4 fs-2  `}
+          >
+            Users
+          </p>
         </div>
       </div>
       {/* Modal for Active ANd deActive */}
@@ -160,7 +181,6 @@ export default function UserList() {
         <div className="col-md-3 thead-userList ">
           <div className="input-group mb-3 text-black">
             <input
-            
               type="text"
               className="form-control "
               placeholder="Search By Name"
@@ -176,12 +196,17 @@ export default function UserList() {
             <select
               className="form-control"
               onChange={handleSelectChange}
+              title=" select user"
             >
-              <option className="thead-userList text-white " value="1"  selected>Select a Role</option>
-              <option className="thead-userList text-white "  value="1">
+              <option className="thead-userList text-white " value="1" selected>
+                Select a Role
+              </option>
+              <option className="thead-userList text-white " value="1">
                 manager
               </option>
-              <option className="thead-userList text-white " value="2">employee</option>
+              <option className="thead-userList text-white " value="2">
+                employee
+              </option>
             </select>
           </div>
         </div>
@@ -189,14 +214,14 @@ export default function UserList() {
 
       {/* start Tabel  */}
       {spinner ? (
-          <div className="d-flex justify-content-center align-items-center">
-          <InfinitySpin  />
+        <div className="d-flex justify-content-center align-items-center">
+          <InfinitySpin />
         </div>
       ) : (
         <div className=" container-fluid">
           <div className=" table-responsive ">
             <table className="table">
-              <thead  className=" text-white">
+              <thead className=" text-white">
                 <tr>
                   <th
                     className="thead-userList border  text-white  "
@@ -237,64 +262,64 @@ export default function UserList() {
                 {userlist.map((user) => {
                   return (
                     <tr key={user.id}>
-                    <td>{user.userName}</td>
-                    <td>
-                      {user.isActivated ? (
-                        <button className=" btn btn-success">Active</button>
-                      ) : (
-                        <button className=" btn btn-danger">
-                          Not Active
-                        </button>
-                      )}
-                    </td>
-                    <td>{user.phoneNumber}</td>
-                    <td>{user.email}</td>
-                    <td>
-                      <div className="dropdown ">
-                        <button
-                          className="btn   dropdown-toggle"
-                          type="button"
-                          id="dropdownMenuButton1"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                              <i className=" ps-2 fa-solid fa-chevron-down"></i>
-
-                        </button>
-                        <ul
-                          className="dropdown-menu"
-                          aria-labelledby="dropdownMenuButton1"
-                        >
-                          <li className="dropdown-item ">
-                            <button
-                              type="button"
-                              className="btn "
-                              data-bs-toggle="modal"
-                              data-bs-target="#exampleModal"
-                              onClick={() => {
-                                setUserid(user.id);
-                                setisActivated(user.isActivated);
-                                handleShow();
-                              }}
-                            >
-                              {user.isActivated ? "Block" : "Active"}
-                            </button>
-                          </li>
-                          <li className="dropdown-item ">
-                            <button
-                              className=" btn "
-                              onClick={() => {
-                                handleShow2(),
-                                  setlengthOfTask(user.task.length);
-                              }}
-                            >
-                              <i className="fa-solid fa-eye"></i> View
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
+                      <td>{user.userName}</td>
+                      <td>
+                        {user.isActivated ? (
+                          <button className=" btn btn-success">Active</button>
+                        ) : (
+                          <button className=" btn btn-danger">
+                            Not Active
+                          </button>
+                        )}
+                      </td>
+                      <td>{user.phoneNumber}</td>
+                      <td>{user.email}</td>
+                      <td>
+                        <div className="dropdown ">
+                          <button
+                            className="btn   dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            title=" btn "
+                          >
+                            <i className=" ps-2 fa-solid fa-chevron-down"></i>
+                          </button>
+                          <ul
+                            className="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton1"
+                          >
+                            <li className="dropdown-item ">
+                              <button
+                                type="button"
+                                className="btn "
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                onClick={() => {
+                                  setUserid(user.id);
+                                  setisActivated(user.isActivated);
+                                  handleShow();
+                                }}
+                              >
+                                {user.isActivated ? "Block" : "Active"}
+                              </button>
+                            </li>
+                            <li className="dropdown-item ">
+                              <button
+                                className=" btn "
+                                onClick={() => {
+                                  handleShow2(),
+                                    setlengthOfTask(user.task.length);
+                                }}
+                              >
+                                <i className="fa-solid fa-eye"></i> View
+                              </button>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
                   );
                 })}
               </tbody>

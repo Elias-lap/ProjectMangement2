@@ -152,9 +152,7 @@
     display: none !important;
   }
 }
-
 /* sidbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaar */
-
 .sidebar-style {
   background-color: #0E382F !important;
 }
@@ -186,6 +184,7 @@ i {
 
 .header-container {
   background-image: url(./assets/images/bgHeader.jpg);
+  border-radius: 2rem;
   background-size: cover;
   width: 100%;
   color: white;
@@ -193,6 +192,14 @@ i {
 
 }
 
+/* style for project */
+
+.formControlProject{
+  color: #000 !important;
+}
+.formControlProject::placeholder{
+  color: gray !important;
+}
 
 /* style for takes data */
  .formControlTasksData{
@@ -200,13 +207,14 @@ i {
   color: #212529 !important;
   background-color: #fff !important;
 
+  padding: 0.375rem 0.75rem !important;
 
 
 }
 
 .formControlTasksData::placeholder{
   color: grey !important;
-  padding-left: 1rem !important;
+  padding-left: 0.5rem !important;
 
 }
 
@@ -268,6 +276,83 @@ background-color: #e9e9df;
     padding: 10px;
     border-radius: 15px;
    }
-   .tasks-charts{
-    /* padding-top: 80px; */
-   }
+  
+
+/* Dark Mode and Light Mode */
+
+/* Dark Mode */
+.dark-mode {
+  background-color: #9a9ca136;
+  color: rgba(65, 50, 50, 0.671);
+}
+
+/* Light Mode */
+.light-mode {
+  background-color: #f5f5f5;
+  color: rgba(0, 0, 0, 0.658);
+}
+/* Header */
+.light-mode .header-container {
+  color: white;
+}
+
+.dark-mode .header-container {
+  color: white;
+}
+
+
+
+
+
+
+/* navbar */
+.navbar-light {
+  background-color: #fff; 
+  color: #fff; 
+}
+.dark-mode .navbar-light {
+  background-color: #333; 
+  color: #fff; 
+}
+.dark-mode .navbar-nav {
+  color: #fff; 
+  background-color: transparent;
+
+}
+.light-mode .navbar-nav {
+  color: black; 
+
+}
+
+
+.dark-mode .nav-link {
+  color: #fff !important; 
+}
+/* ProjectData */
+
+.bgProjectLightModa{
+  background-color: #FFFFFF;
+
+}
+
+.dark-mode .bgProjectLightModa{
+  background-color: #060E22;
+  color: #000; 
+} 
+
+.dark-mode .form-label{
+  color: #000;
+}
+
+/* TasksList */
+
+.dark-mode .bgColorGray{
+  background-color: #060E22;
+  color: #000; 
+} 
+
+/* TasksData */
+.dark-mode .bgGray{
+  background-color: #060E22 !important;
+} 
+

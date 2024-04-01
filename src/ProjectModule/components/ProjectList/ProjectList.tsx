@@ -5,6 +5,8 @@ import { useUser } from "../../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { InfinitySpin } from "react-loader-spinner";
+import { useDarkMode } from "../../../context/DarkLightModa";
+
 interface progectListType {
   id: number;
   title: string;
@@ -15,6 +17,11 @@ interface progectListType {
 
 export default function ProjectModule() {
   const { userRole } = useUser();
+
+  // dark Light moda
+  const darkModeContext = useDarkMode();
+  const isDarkMode = darkModeContext ? darkModeContext.isDarkMode : false;
+
   // closing and opening Modal
   const [show, setShow] = useState<boolean>(false);
   const [projectId, setprojectId] = useState<number>(0);
@@ -62,7 +69,6 @@ export default function ProjectModule() {
             .map((_, i) => i + 1)
         );
         setprojecList(response.data.data);
-        
       } else if (userRole == "Manager") {
         const response = await axios.get(
           `https://upskilling-egypt.com:3003/api/v1/Project/manager?pageSize=${pageSize}&pageNumber=${pageNo}`,
@@ -80,7 +86,6 @@ export default function ProjectModule() {
             .map((_, i) => i + 1)
         );
         setprojecList(response.data.data);
-    
       } else {
         const response = await axios.get(
           `https://upskilling-egypt.com:3003/api/v1/Project/employee?pageSize=${pageSize}&pageNumber=${pageNo}`,
@@ -127,6 +132,14 @@ export default function ProjectModule() {
     getProjects(1, 10);
   }, []);
 
+  if (!darkModeContext) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+        <InfinitySpin />
+      </div>
+    );
+  }
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -147,7 +160,11 @@ export default function ProjectModule() {
           </button>
         </div>
       </Modal>
-      <div className="title mb-3 mt-1 bg-white">
+      <div
+        className={` ${
+          isDarkMode ? "dark-mode" : "light-mode"
+        }  title mb-3 mt-1 `}
+      >
         <div className="container-fluid  py-3 d-flex justify-content-between">
           <h3>Projects</h3>
           {userRole == "Manager" ? (

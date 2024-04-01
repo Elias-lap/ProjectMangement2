@@ -8,9 +8,9 @@
 }
 
 
-.bgColorGray{
+/* .bgColorGray{
     background-color: #F5F5F5;
-}
+} */
 
 .ConInput{
     position: relative;
@@ -34,12 +34,14 @@
     background-image: url('searchicon.png');
     background-position: 10px 10px; 
     background-repeat: no-repeat;
+    padding: 0rem 0.7rem !important;
+
 
   }
 
 .inputSearch::placeholder{
-    padding-left:0.7rem;
-  }
+  padding-left:0.5rem;
+}
 
 
   /* table */
@@ -86,3 +88,7 @@
   margin-top:0.4rem ;
 
 }
+
+
+
+

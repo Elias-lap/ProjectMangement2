@@ -4,11 +4,10 @@ import { BaceUrlCon } from "../../../context/BaceUrlContext";
 import styleTasks from "../TasksList/TasksList.module.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { AuthDataForUserAndProj } from "../../../context/ListUserAndProject";
-
-
-
+import { useDarkMode } from "../../../context/DarkLightModa";
+import { InfinitySpin } from "react-loader-spinner";
 
 interface FormData {
   title: string;
@@ -17,8 +16,12 @@ interface FormData {
   projectId: string;
 }
 
-
 export default function TasksData() {
+  // dark Light moda
+  const darkModeContext = useDarkMode();
+  const isDarkMode = darkModeContext ? darkModeContext.isDarkMode : false;
+  //
+
   const navigate = useNavigate();
 
   // context
@@ -26,17 +29,18 @@ export default function TasksData() {
   const BaceUrl = baceUrlContext as string;
   //
 
-  const {userProject, userList} =useContext(AuthDataForUserAndProj)
+  const { userProject, userList } = useContext(AuthDataForUserAndProj);
   // console.log(userList)
-  
+
   const goTaskList = () => {
     navigate("/dashboard/tasks");
   };
 
-
-
-
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -46,7 +50,7 @@ export default function TasksData() {
         },
       });
       toast.success(`You Add a New Task`);
-      console.log(response)
+      console.log(response);
       goTaskList();
     } catch (error) {
       console.log(error);
@@ -54,26 +58,38 @@ export default function TasksData() {
     }
   };
 
+  if (!darkModeContext) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+        <InfinitySpin />
+      </div>
+    );
+  }
 
-  // useEffect(() => {
-    // getProjectList();
-    // getUserList();
-  // }, []);
-
-  
   return (
     <>
       <div className=" container">
         <div className="  py-4 ">
-          <h6 onClick={goTaskList} className=" text-muted custom-cursor">
-            <i className="fa-solid fa-angle-left text-muted me-3  "></i>
+          {/* <div className={` ${isDarkMode ? "dark-mode" : "light-mode"}  title mb-3 mt-1 `}> */}
+
+          <h6
+            onClick={goTaskList}
+            className={` ${
+              isDarkMode ? "text-white" : "text-muted"
+            }  title mb-3 mt-1 `}
+          >
+            <i
+              className={` ${
+                isDarkMode ? "text-white" : "text-muted"
+              }  fa-solid fa-angle-left me-3 `}
+            ></i>
             View All Tasks
           </h6>
           <h3 className=" ">Add a New Task</h3>
         </div>
       </div>
 
-      <div className={`${styleTasks.bgGray} my-3 py-4 `}>
+      <div className={`${styleTasks.bgGray} my-3 py-4 bgGray `}>
         <div
           className={`${styleTasks.conForm}  container bg-white py-3   rounded-3 `}
         >
@@ -148,11 +164,12 @@ export default function TasksData() {
                       </option>
                     ))}
                   </select>
-                  {errors.employeeId && errors.employeeId.type === "required" && (
-                <div className="alert alert-danger  d-inline-block w-100 mt-1">
-                  User is required
-                </div>
-              )}
+                  {errors.employeeId &&
+                    errors.employeeId.type === "required" && (
+                      <div className="alert alert-danger  d-inline-block w-100 mt-1">
+                        User is required
+                      </div>
+                    )}
                 </div>
               </div>
               {/*  */}
@@ -181,10 +198,10 @@ export default function TasksData() {
                     ))}
                   </select>
                   {errors.projectId && errors.projectId.type === "required" && (
-                <div className="alert alert-danger  d-inline-block w-100 mt-1">
-                  Project is required
-                </div>
-              )}
+                    <div className="alert alert-danger  d-inline-block w-100 mt-1">
+                      Project is required
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -194,7 +211,7 @@ export default function TasksData() {
             <div className=" row">
               <div className=" col-md-6">
                 <button
-                onClick={goTaskList}
+                  onClick={goTaskList}
                   className="btn  btn-outline-secondary rounded-4 py-2 px-4"
                   title=" btn close"
                 >

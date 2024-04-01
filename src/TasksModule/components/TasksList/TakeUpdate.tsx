@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { BaceUrlCon } from "../context/BaceUrlContext";
-import styleTasks from "../TasksModule/components/TasksList/TasksList.module.css";
+import { BaceUrlCon } from "../../../context/BaceUrlContext";
+import styleTasks from "../TasksList/TasksList.module.css";
 import { toast } from "react-toastify";
+import { useDarkMode } from "../../../context/DarkLightModa";
+import { InfinitySpin } from "react-loader-spinner";
 
 interface FormData {
   title: string;
@@ -31,7 +34,12 @@ export default function TakeUpdate() {
   const baceUrlContext = useContext(BaceUrlCon);
   const BaceUrl = baceUrlContext as string;
 
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -40,7 +48,7 @@ export default function TakeUpdate() {
           Authorization: localStorage.getItem("adminToken"),
         },
       });
-      console.log(response)
+      console.log(response);
       toast.success(`Task Updated Successfully`);
       navigate("/dashboard/tasks");
     } catch (error) {
@@ -51,15 +59,23 @@ export default function TakeUpdate() {
 
   const [userList, setUserList] = useState<User[]>([]);
   const [userProject, setUserProject] = useState<Project[]>([]);
-  console.log(userProject)
+
+  // dark Light moda
+  const darkModeContext = useDarkMode();
+  const isDarkMode = darkModeContext ? darkModeContext.isDarkMode : false;
+
+  //
 
   const getUserList = async () => {
     try {
-      const response = await axios.get(`${BaceUrl}/Users/Manager?pageSize=10&pageNumber=1`, {
-        headers: {
-          Authorization: localStorage.getItem("adminToken"),
-        },
-      });
+      const response = await axios.get(
+        `${BaceUrl}/Users/Manager?pageSize=10&pageNumber=1`,
+        {
+          headers: {
+            Authorization: localStorage.getItem("adminToken"),
+          },
+        }
+      );
       setUserList(response.data.data);
     } catch (error) {
       console.log(error);
@@ -68,11 +84,14 @@ export default function TakeUpdate() {
 
   const getProjectList = async () => {
     try {
-      const response = await axios.get(`${BaceUrl}/Project/manager?pageSize=10&pageNumber=1`, {
-        headers: {
-          Authorization: localStorage.getItem("adminToken"),
-        },
-      });
+      const response = await axios.get(
+        `${BaceUrl}/Project/manager?pageSize=10&pageNumber=1`,
+        {
+          headers: {
+            Authorization: localStorage.getItem("adminToken"),
+          },
+        }
+      );
       setUserProject(response.data.data);
     } catch (error) {
       console.log(error);
@@ -86,13 +105,13 @@ export default function TakeUpdate() {
           Authorization: localStorage.getItem("adminToken"),
         },
       });
-  
+
       if (response.status === 200 && response.data && response.data.title) {
         const task = response.data;
         setValue("title", task.title);
         setValue("description", task.description);
-        setValue("employeeId", task.employee?.id.toString()); 
-        setValue("projectId", task.projectId); 
+        setValue("employeeId", task.employee?.id.toString());
+        setValue("projectId", task.projectId);
       } else {
         console.error("Error retrieving task details:", response.data);
       }
@@ -107,23 +126,45 @@ export default function TakeUpdate() {
     getProjectList();
   }, []);
 
+  if (!darkModeContext) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+        <InfinitySpin />
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="container">
         <div className="py-4">
-          <h6 onClick={() => navigate("/dashboard/tasks")} className="text-muted custom-cursor">
-            <i className="fa-solid fa-angle-left text-muted me-3"></i>
+          <h6
+            onClick={() => navigate("/dashboard/tasks")}
+            className={` ${
+              isDarkMode ? "text-white" : " text-muted "
+            } custom-cursor  `}
+          >
+            <i
+              className={` ${
+                isDarkMode ? "text-white" : " text-muted "
+              } fa-solid fa-angle-left  me-3 `}
+            ></i>
             View All Tasks
           </h6>
           <h3>Edit Task</h3>
         </div>
       </div>
 
-      <div className={`${styleTasks.bgGray} my-3 py-4 `}>
-        <div className={`${styleTasks.conForm}  container bg-white py-3   rounded-3 `}>
+      <div className={`${styleTasks.bgGray} my-3 py-4 bgGray`}>
+        <div
+          className={`${styleTasks.conForm}  container bg-white py-3   rounded-3 `}
+        >
           <form className="p-3" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group">
-              <label className={`${styleTasks.colorInputTaskesData}`} htmlFor="Title">
+              <label
+                className={`${styleTasks.colorInputTaskesData}`}
+                htmlFor="Title"
+              >
                 Title
               </label>
               <input
@@ -143,7 +184,10 @@ export default function TakeUpdate() {
             )}
 
             <div className="form-group mt-2">
-              <label className={`${styleTasks.colorInputTaskesData}`} htmlFor="Description">
+              <label
+                className={`${styleTasks.colorInputTaskesData}`}
+                htmlFor="Description"
+              >
                 Description
               </label>
               <textarea
@@ -165,7 +209,10 @@ export default function TakeUpdate() {
               {/* user */}
               <div className="col-4 col-md-6">
                 <div className="input-group mb-3">
-                  <label className={`${styleTasks.colorInputTaskesData} d-block w-100`} htmlFor="User">
+                  <label
+                    className={`${styleTasks.colorInputTaskesData} d-block w-100`}
+                    htmlFor="User"
+                  >
                     User
                   </label>
                   <select
@@ -179,46 +226,34 @@ export default function TakeUpdate() {
                       </option>
                     ))}
                   </select>
-                  {errors.employeeId && errors.employeeId.type === "required" && (
-                    <div className="alert alert-danger  d-inline-block w-100 mt-1">User is required</div>
-                  )}
+                  {errors.employeeId &&
+                    errors.employeeId.type === "required" && (
+                      <div className="alert alert-danger  d-inline-block w-100 mt-1">
+                        User is required
+                      </div>
+                    )}
                 </div>
               </div>
-              {/* Project */}
-              {/* <div className="col-4 col-md-6">
-                <div className="input-group mb-3">
-                  <label className={`${styleTasks.colorInputTaskesData} d-block w-100`} htmlFor="Project">
-                    Project
-                  </label>
-                  <select
-                    className={`${styleTasks.inputs} form-select d-block rounded-3`}
-                    {...register("projectId", { required: true })}
-                  >
-                    <option value=""> Choose Project</option>
-                    {userProject.map((project, index) => (
-                      <option value={project.id} key={index}>
-                        {project.title}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.projectId && errors.projectId.type === "required" && (
-                    <div className="alert alert-danger  d-inline-block w-100 mt-1">Project is required</div>
-                  )}
-                </div>
-              </div> */}
             </div>
 
             <div className={`${styleTasks.line}`}></div>
 
             <div className="row">
               <div className="col-md-6">
-                <button onClick={() => navigate("/dashboard/tasks")} className="btn btn-outline-secondary rounded-4 py-2 px-4" title=" btn close">
+                <button
+                  onClick={() => navigate("/dashboard/tasks")}
+                  className="btn btn-outline-secondary rounded-4 py-2 px-4"
+                  title=" btn close"
+                >
                   Close
                 </button>
               </div>
 
               <div className="col-md-6 text-end">
-                <button type="submit" className="btn btn-outline-warning rounded-4 py-2 px-4">
+                <button
+                  type="submit"
+                  className="btn btn-outline-warning rounded-4 py-2 px-4"
+                >
                   Edit
                 </button>
               </div>
