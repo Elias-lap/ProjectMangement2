@@ -108,6 +108,8 @@ export default function TaskesListContext({
       getTasks(1, 10, "", "");
     }
     getTasks(1, 10, "", "");
+    console.log(listTasks)
+
 
   }, []);
 
