@@ -6,7 +6,7 @@ import { Modal } from "react-bootstrap";
 import { useUser } from "../../../context/AuthContext";
 
 export default function SideBar() {
-  const { userRole } = useUser();
+  const { userRole  } = useUser();
 
   const navigate = useNavigate();
   const [isCollapsed, setIsCollapsed] = useState(true);

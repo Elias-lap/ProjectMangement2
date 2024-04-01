@@ -5,6 +5,8 @@ import {
   useEffect,
   useState,
   ReactNode,
+  Dispatch,
+  SetStateAction,
 } from "react";
 import { BaceUrlCon } from "../context/BaceUrlContext";
 import { useUser } from "./AuthContext";
@@ -35,7 +37,7 @@ interface AuthTasksContextValue {
     title: string,
     status: string
   ) => Promise<DataTasks[]| undefined>;
-
+  setListTasks: Dispatch<SetStateAction<DataTasks[]>>;
   pagesArray: number[];
 }
 
@@ -43,7 +45,7 @@ export const AuthTasksContext = createContext<AuthTasksContextValue>({
   listTasks: [],
 
   getTasks: async () => [],
-
+  setListTasks: () => {},
   
   pagesArray: [],
 });
@@ -115,6 +117,7 @@ export default function TaskesListContext({
   
         listTasks,
         getTasks,
+        setListTasks,
         pagesArray,
       }}
     >

@@ -114,7 +114,43 @@
   border-bottom-left-radius: 15px;
   position: absolute;
   top: 0;
-  left: 74.5%;
+  left: 74.5% !important;
+}
+@media only screen and (max-width: 1130px) {
+  .sidbar-icon .chevron-left {
+    left: 72% !important;
+  }
+}
+@media only screen and (max-width: 1030px) {
+  .sidbar-icon .chevron-left {
+    left: 70% !important;
+  }
+}
+
+@media only screen and (max-width: 1045px) {
+  .sidbar-icon .chevron-left {
+    left: 69% !important;
+  }
+}
+@media only screen and (max-width: 876px) {
+  .sidbar-icon .chevron-left {
+    left: 67% !important;
+  }
+  .sidbar-icon{
+    display: none !important;
+  }
+}
+@media only screen and (min-width: 876px) {
+  
+  .display-none{
+    display: none !important;
+  }
+}
+@media only screen and (max-width: 994px) {
+  
+  .display-none-2{
+    display: none !important;
+  }
 }
 
 /* sidbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaar */
