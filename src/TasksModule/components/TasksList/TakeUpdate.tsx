@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -59,7 +60,7 @@ export default function TakeUpdate() {
 
   const [userList, setUserList] = useState<User[]>([]);
   const [userProject, setUserProject] = useState<Project[]>([]);
-
+  console.log(userProject)
   // dark Light moda
   const darkModeContext = useDarkMode();
   const isDarkMode = darkModeContext ? darkModeContext.isDarkMode : false;

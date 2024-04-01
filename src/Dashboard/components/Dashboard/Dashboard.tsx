@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useDarkMode } from "../../../context/DarkLightModa";
 import { useEffect, useState } from "react";
 import Header from "../Header/Header";
@@ -63,21 +64,21 @@ export default function Dasxboard() {
         <Header />
 
         <div className= {` ${isDarkMode ? " dark-mode" : "light-mode"} container-fluid  py-5 `}>
-          <div className={` justify-content-around d-flex gap-1 ` } >
-            <div className={` px-5  w-50   rounded-4 ${isDarkMode ? " dark-mode" : "bg-white"} ` }>
+          <div className={` justify-content-around d-flex gap-1  row ` } >
+            <div className={` px-5    col-sm-10  col-md-5 rounded-4 ${isDarkMode ? " dark-mode" : "bg-white"} ` }>
               <div className="titles ">
                 <h3 className="">Tasks</h3>
                 <p>List of all tasks</p>
               </div>
-              <div className="row tasks-count my-5 ">
-                <div className="col-md-4  ">
+              <div className="row tasks-count my-5  ">
+                <div className="col-md-4 mb-1 ">
                   <div className="tasks d-flex flex-column  p-3  rounded-4">
                     <i className="fa fa-tasks my-3"> </i>
                     <span className="py-1 ps-1 text-dark-light">To do</span>
                     <h3 className="ps-1 text-dark-light">{todoCount}</h3>
                   </div>
                 </div>
-                <div className="col-md-4 ">
+                <div className="col-md-4 mb-1 ">
                   <div className="tasks1 d-flex flex-column  p-3 rounded-4">
                     <i className="fa-solid fa-group-arrows-rotate  my-3"></i>
                     <span className="py-1 ps-1 text-dark-light">In-progress</span>
@@ -94,7 +95,7 @@ export default function Dasxboard() {
               </div>
             </div>
 
-            <div className={` px-5  w-50   rounded-4 ${isDarkMode ? " dark-mode" : "bg-white"} ` }>
+            <div className={` px-5  col-sm-10  col-md-5 rounded-4 ${isDarkMode ? " dark-mode" : "bg-white"} ` }>
               <div className=" tasks-charts pt-5 d-flex justify-content-center  align-items-center">      
             <DonutChart
                 data={[
@@ -123,7 +124,7 @@ export default function Dasxboard() {
              <p>List of all users</p>
            </div>
            <div className="row users-count my-5 ">
-             <div className="col-md-5  ">
+             <div className="col-md-5  mb-1">
                <div className="  user  d-flex flex-column  rounded-4 p-3">
                  <i className="fa-solid fa-user-large my-2"></i>
                  <span className="py-1 ps-1 text-dark-light">Active users</span>

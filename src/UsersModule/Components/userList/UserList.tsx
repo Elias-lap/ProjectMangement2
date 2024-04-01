@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -25,7 +26,7 @@ export default function UserList() {
   const [Pagination, setPagination] = useState<number[]>([]);
   const [searchName, setsearchName] = useState<string | undefined>("");
   const [searcByGroup, setsearcByGroup] = useState<number>(1);
-
+   console.log(searcByGroup)
   // dark Light moda
   const darkModeContext = useDarkMode();
   const isDarkMode = darkModeContext ? darkModeContext.isDarkMode : false;
