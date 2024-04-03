@@ -26,7 +26,7 @@ export default function UserList() {
   const [Pagination, setPagination] = useState<number[]>([]);
   const [searchName, setsearchName] = useState<string | undefined>("");
   const [searcByGroup, setsearcByGroup] = useState<number>(1);
-   console.log(searcByGroup)
+  console.log(searcByGroup);
   // dark Light moda
   const darkModeContext = useDarkMode();
   const isDarkMode = darkModeContext ? darkModeContext.isDarkMode : false;
@@ -36,6 +36,7 @@ export default function UserList() {
   const [show, setShow] = useState<boolean>(false);
   const handleClose = (): void => setShow(false);
   const handleShow = (): void => setShow(true);
+  const [pageNumber, setPageNumber] = useState(1);
   // state for handel close modal Taks
   const [show2, setShow2] = useState<boolean>(false);
   const handleClose2 = (): void => setShow2(false);
@@ -116,9 +117,25 @@ export default function UserList() {
     setsearcByGroup(+e.target.value);
     getuserlist(1, searchName, +e.target.value);
   };
+  //  handle Previous button click
+  const handlePreviousPage = () => {
+    if (pageNumber > 1) {
+      const prevPage = pageNumber - 1;
+      setPageNumber(prevPage);
+      getuserlist(prevPage, '', 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (pageNumber < Pagination.length) {
+      const nextPage = pageNumber + 1;
+      setPageNumber(nextPage);
+      getuserlist(nextPage, '', 1);
+    }
+  };
 
   useEffect(() => {
-    getuserlist(1, "", 1);
+    getuserlist(pageNumber, "", 1);
   }, []);
 
   if (!darkModeContext) {
@@ -328,13 +345,18 @@ export default function UserList() {
             <nav aria-label="Page navigation example">
               <ul className="pagination">
                 <li className="page-item">
-                  <a className="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">«</span>
-                  </a>
+                  <button
+                    className="page-link"
+                    onClick={handlePreviousPage}
+                    aria-label="Previous"
+                  >
+                    <span aria-hidden="true">&laquo;</span>
+                  </button>
                 </li>
-                {Pagination.map((page) => {
+                {Pagination.map((page , index) => {
                   return (
                     <li
+                      key={index}
                       onClick={() => getuserlist(page, "", 1)}
                       className="page-item"
                     >
@@ -344,9 +366,13 @@ export default function UserList() {
                 })}
 
                 <li className="page-item">
-                  <a className="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">»</span>
-                  </a>
+                  <button
+                    className="page-link"
+                    onClick={handleNextPage}
+                    aria-label="Next"
+                  >
+                    <span aria-hidden="true">&raquo;</span>
+                  </button>
                 </li>
               </ul>
             </nav>

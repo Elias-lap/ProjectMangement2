@@ -17,7 +17,8 @@ interface progectListType {
 
 export default function ProjectModule() {
   const { userRole } = useUser();
-
+  //  pagination 
+  
   // dark Light moda
   const darkModeContext = useDarkMode();
   const isDarkMode = darkModeContext ? darkModeContext.isDarkMode : false;
@@ -42,6 +43,7 @@ export default function ProjectModule() {
 
   const [projecList, setprojecList] = useState<progectListType[]>([]);
   const [pagesArray, setpagesArray] = useState<number[]>([]);
+  
 
   const getProjects = async (
     pageNo: number,
