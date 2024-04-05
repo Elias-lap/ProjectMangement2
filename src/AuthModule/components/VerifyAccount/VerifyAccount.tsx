@@ -38,7 +38,7 @@ const onSubmit = async (data: FormDataVerify) => {
 };
 return (
   <div className="Auth-container vh-100 row align-items-center justify-content-center overflow-auto gx-0 flex-nowrap ">
-  <div className="logo  col-md-5 text-center">
+  <div className="logo  col-md-5 text-center col-sm-10">
     <img src={logo} alt="logo" className="mb-3" />
   </div>
 

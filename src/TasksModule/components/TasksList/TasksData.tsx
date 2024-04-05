@@ -68,8 +68,8 @@ export default function TasksData() {
 
   return (
     <>
-      <div className=" container">
-        <div className="  py-4 ">
+      <div className={` ${isDarkMode ? "dark-mode" : "bg-white"} py-4`} >
+        <div className=" container" >
           {/* <div className={` ${isDarkMode ? "dark-mode" : "light-mode"}  title mb-3 mt-1 `}> */}
 
           <h6
@@ -89,7 +89,7 @@ export default function TasksData() {
         </div>
       </div>
 
-      <div className={`${styleTasks.bgGray} my-3 py-4 bgGray `}>
+      <div className={` my-3 py-4  `}>
         <div
           className={`${styleTasks.conForm}  container bg-white py-3   rounded-3 `}
         >

@@ -117,21 +117,21 @@ export default function Dasxboard() {
 
      {userRole === "Manager" ?
        <div className={` ${isDarkMode ? " dark-mode" : "light-mode"} container-fluid  py-5 `}>
-       <div className=" row dashboaed-charts  justify-content-around ">
-         <div className={  `col-md-5  rounded-4 ${isDarkMode ? " dark-mode" : "bg-white"} `}>
+       <div className=" row dashboaed-charts  justify-content-around gap-1  ">
+         <div className={  `px-5    col-sm-10  col-md-5 rounded-4 ${isDarkMode ? " dark-mode" : "bg-white"} `}>
          <div className="titles pt-3 ">
              <h3>Users</h3>
              <p>List of all users</p>
            </div>
-           <div className="row users-count my-5 ">
-             <div className="col-md-5  mb-1">
+           <div className="row users-count my-5  ">
+             <div className="col-md-4  mb-1">
                <div className="  user  d-flex flex-column  rounded-4 p-3">
                  <i className="fa-solid fa-user-large my-2"></i>
                  <span className="py-1 ps-1 text-dark-light">Active users</span>
                  <h3 className="ps-1 text-dark-light ">{activatedEmployeeCount}</h3>
                </div>
              </div>
-              <div className="col-md-4">
+              <div className="col-md-4 mb-1">
                <div className="  user1 d-flex flex-column  rounded-4 p-3">
                  <i className="fa-solid fa-user-slash my-2"></i>
                  <span className="py-1 ps-1 text-dark-light"> De-active users</span>
@@ -142,7 +142,7 @@ export default function Dasxboard() {
            </div>
          </div>
 
-         <div className={  `col-md-6  rounded-4 ${isDarkMode ? " dark-mode" : "bg-white"} `}>
+         <div className={  ` px-5  col-sm-10  col-md-5 rounded-4 ${isDarkMode ? " dark-mode" : "bg-white"} `}>
            <div className=" tasks-charts pt-5 d-flex justify-content-center  align-items-center">      
          <DonutChart
              data={[

@@ -90,7 +90,7 @@ export default function Register() {
 
   return (
     <div className="Auth-container vh-100 row align-items-center justify-content-center overflow-auto gx-0 flex-nowrap ">
-      <div className="logo  col-md-5 text-center  ">
+      <div className="logo  col-md-5 col-sm-10 text-center  ">
         <img src={logo} alt="logo" className="mb-3" />
       </div>
 

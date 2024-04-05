@@ -1,0 +1,44 @@
+.inputSearch{
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #26385A40;
+    border-radius: 5rem;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 0.2rem 0.7rem !important;
+
+
+  }
+
+  .btnNotActive{
+    background-color: #922E25B2 !important;
+  }
+
+  .iconTasks{
+    color: #22554a !important;
+  
+  }
+
+
+  /* table */
+
+
+.tableThead{
+  background-color: #315951E5 !important;
+  color: white !important;
+}
+
+.WordsTheadTable ,.fontChevron {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.iconTasks{
+color: #22554a !important;
+
+}
+
+

@@ -71,7 +71,7 @@ const ChangePassword: React.FC<ChangPassProps> = ({ handleClose }) => {
   return (
     <>
       <div className="  row justify-content-center align-items-center">
-        <div className=" col-md-12">
+        <div className=" col-md-12 col-sm-10">
           <div className="  rounded-3 px-5 py-4">
             <small className=" text-white">welcome to PMS</small>
 
