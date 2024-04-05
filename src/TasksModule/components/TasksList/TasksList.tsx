@@ -210,34 +210,34 @@ export default function TasksList() {
               </form>
 
               <div className=" table-responsive">
-                <Table className=" mt-4 text-center table">
-                  <thead className={`${styleTasks.tableThead}`}>
-                    <tr>
-                      <th className={`${styleTasks.WordsTheadTable}  `}>
+                <Table className=" mt-4 text-center table  ">
+                  <thead className={`${styleTasks.tableThead}  `}>
+                    <tr className="">
+                      <th className={`${styleTasks.WordsTheadTable} py-4  `}>
                         Title
                         <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                         ></i>
                       </th>
-                      <th className={`${styleTasks.WordsTheadTable}  `}>
+                      <th className={`${styleTasks.WordsTheadTable}  py-4 `}>
                         Statues
                         <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                         ></i>
                       </th>
-                      <th className={`${styleTasks.WordsTheadTable}  `}>
+                      <th className={`${styleTasks.WordsTheadTable} py-4  `}>
                         User
                         <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                         ></i>
                       </th>
-                      <th className={`${styleTasks.WordsTheadTable}  `}>
+                      <th className={`${styleTasks.WordsTheadTable} py-4  `}>
                         Project
                         <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                         ></i>
                       </th>
-                      <th className={`${styleTasks.WordsTheadTable}  `}>
+                      <th className={`${styleTasks.WordsTheadTable} py-4  `}>
                         Date Created
                         <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}

@@ -216,25 +216,25 @@ export default function ProjectModule() {
           <Table className="mt-4 text-center table">
             <thead className={`${StyleProject.tableThead} `}>
               <tr className=" ">
-                <th className={`${StyleProject.WordsTheadTable}  `}>
+                <th className={`${StyleProject.WordsTheadTable}  py-4 `}>
                   Title
                   <i
                     className={`${StyleProject.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                   ></i>
                 </th>
-                <th className={`${StyleProject.WordsTheadTable}  `}>
+                <th className={`${StyleProject.WordsTheadTable}  py-4 `}>
                   Num Users
                   <i
                     className={`${StyleProject.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                   ></i>
                 </th>
-                <th className={`${StyleProject.WordsTheadTable}  `}>
+                <th className={`${StyleProject.WordsTheadTable}  py-4 `}>
                   Description
                   <i
                     className={`${StyleProject.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                   ></i>
                 </th>
-                <th className={`${StyleProject.WordsTheadTable}  `}>
+                <th className={`${StyleProject.WordsTheadTable} py-4  `}>
                   Date Created
                   <i
                     className={`${StyleProject.fontChevron}  fa-solid fa-chevron-down ms-3 `}
