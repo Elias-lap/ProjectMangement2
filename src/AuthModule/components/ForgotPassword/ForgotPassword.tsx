@@ -43,7 +43,7 @@ export default function ForgotPassword() {
       <img src={logo} alt="logo" className="mb-3" />
     </div>
 
-    <div className="login-container col-md-5 col-sm-10 rounded-4 px-5 py-5">
+    <div className="login-container col-md-5 col-sm-10 rounded-4 px-5 py-5 ">
       <p className="text-white">Welcome Back!</p>
       <h3 className="color-text mb-3">Forget Password </h3>
       <form onSubmit={handleSubmit(onSubmit)}>

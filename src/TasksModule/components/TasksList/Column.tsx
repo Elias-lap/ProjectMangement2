@@ -41,7 +41,7 @@ export default function Column({  status, cards, updateCards }: ColumnProps) {
             isDraggingOver ? "custom-box-shadow" : ""
           }`}
         >
-          <h2 className=" text-muted"> To Do </h2>
+          <h2 className=" text-muted"> {status} </h2>
           <div className=" color-box-Taks p-3  rounded-1">
             {filteredCards &&
               filteredCards.map((task) => {
