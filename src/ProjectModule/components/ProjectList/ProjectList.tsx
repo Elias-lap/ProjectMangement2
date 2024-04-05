@@ -277,7 +277,7 @@ export default function ProjectModule() {
                       {userRole == "Manager" ? (
                         <div className="btn-group">
                           <a
-                            className="dropdown-toggle"
+                            className="dropdown-toggle fa-2x"
                             href="#"
                             role="button"
                             id="dropdownMenuLink"

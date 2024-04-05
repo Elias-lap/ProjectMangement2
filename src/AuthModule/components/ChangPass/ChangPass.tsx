@@ -41,7 +41,7 @@ const ChangePassword: React.FC<ChangPassProps> = ({ handleClose }) => {
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setSpinner(true);
-    // console.log(data);
+    console.log(data);
     const token = localStorage.getItem("adminToken");
     if (!token) {
       throw new Error("User is not authenticated");
