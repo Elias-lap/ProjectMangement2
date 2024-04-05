@@ -96,21 +96,22 @@ export default function ProjectsData() {
   return (
     <>
       <div className="project-form ">
-        <div className="title mb-3 mt-1 bgProjectLightModa ">
+        <div   className={` ${
+              isDarkMode ? "dark-mode" : "bg-white"
+            }  title mb-3 mt-1 `}>
           <div className="container  py-3 ">
             <p
-              className={` ${isDarkMode ? "dark-mode" : ""} `}
+              className=""
               onClick={goToProject}
             >
               {" "}
               <i
-                className={` ${
-                  isDarkMode ? "dark-mode" : ""
-                }  fa-solid mx-2 fa-left-long `}
+                className=""
+                
               ></i>{" "}
               View All Projects
             </p>
-            <h3 className={` ${isDarkMode ? "dark-mode" : ""} `}>
+            <h3 >
               Add a New Project
             </h3>
           </div>

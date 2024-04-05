@@ -7,6 +7,9 @@ import { useToast } from "../../../context/TostifyContext";
 import { Button, Modal } from "react-bootstrap";
 import { InfinitySpin } from "react-loader-spinner";
 import { useDarkMode } from "../../../context/DarkLightModa";
+import styleUser from "./UserList.module.css";
+import Table from "react-bootstrap/Table";
+import ImgNotData from "../../../SharedModule/components/ImgNotData/ImgNotData";
 
 interface UserListTypes {
   country: string;
@@ -17,16 +20,21 @@ interface UserListTypes {
   isActivated: boolean;
   task: [];
   userName: string;
+  creationDate: string;
 }
 
 export default function UserList() {
   const [userlist, setUserList] = useState<UserListTypes[]>([]);
+  console.log(userlist);
   const [userid, setUserid] = useState<number | undefined>();
+
   const [isActivated, setisActivated] = useState<boolean | undefined>();
   const [Pagination, setPagination] = useState<number[]>([]);
   const [searchName, setsearchName] = useState<string | undefined>("");
   const [searcByGroup, setsearcByGroup] = useState<number>(1);
-   console.log(searcByGroup)
+  // console.log(searcByGroup);
+  const [loading, setLoading] = useState(true);
+
   // dark Light moda
   const darkModeContext = useDarkMode();
   const isDarkMode = darkModeContext ? darkModeContext.isDarkMode : false;
@@ -118,7 +126,10 @@ export default function UserList() {
   };
 
   useEffect(() => {
-    getuserlist(1, "", 1);
+    setLoading(true); // Set loading state to true before fetching data
+    getuserlist(1, "", 1)
+      .then(() => setLoading(false)) // Set loading state to false after fetching data
+      .catch(() => setLoading(false)); // Set loading state to false if there's an error
   }, []);
 
   if (!darkModeContext) {
@@ -130,32 +141,37 @@ export default function UserList() {
   }
 
   return (
-    <div className="container-userList  w-100 ">
-      <div className=" box-header pt-1">
-        <div className={` ${isDarkMode ? "dark-mode" : "light-mode"}   `}>
-          <p
+    <div className="   ">
+      <div className="  box-header pt-1 ">
+        <div className={`${isDarkMode ? " dark-mode" : `bg-white }`}  `}>
+          <h3
             className={` ${
               isDarkMode ? "text-white" : " text-muted "
-            }  header  py-3 ps-4 fs-2  `}
+            }  header  py-3 ps-4 fs-2 container `}
           >
             Users
-          </p>
+          </h3>
         </div>
       </div>
       {/* Modal for Active ANd deActive */}
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body>
-          <h2 className=" text-white"> Are you sure ✋✋✋</h2>{" "}
+        <Modal.Header className=" bg-white" closeButton></Modal.Header>
+        <Modal.Body className="bgForModalBody">
+          <h2 className=" "> Are you sure ✋✋✋</h2>{" "}
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className=" bg-white  ">
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
           <Button
-            variant="primary"
+            style={{
+              backgroundColor: isActivated ? "red" : "green",
+              color: "white", 
+              border:" 1px solid transparent"
+            }}
             onClick={() => {
-              ToggleActivated(userid), handleClose();
+              ToggleActivated(userid);
+              handleClose();
             }}
           >
             {isActivated ? "Block" : "Active"}
@@ -165,56 +181,219 @@ export default function UserList() {
 
       {/* Modal for view Tasks  */}
       <Modal show={show2} onHide={handleClose2}>
-        <Modal.Header closeButton>
+        <Modal.Header className=" bg-white" closeButton>
           <Modal.Title>Tasks Overview</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="bgForModalBody">
           {" "}
-          <p className=" text-white fs-1">Total tasks: {lengthOfTask}</p>
+          <p className="  fs-1">Total tasks: {lengthOfTask}</p>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className=" bg-white"> 
           <Button variant="secondary" onClick={handleClose2}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
-      <div className="row m-3  thead-userList rounded-2 overflow-hidden">
-        <div className="col-md-3 thead-userList ">
-          <div className="input-group mb-3 text-black">
-            <input
-              type="text"
-              className="form-control "
-              placeholder="Search By Name"
-              aria-label="Username"
-              onChange={SearchByName}
-            />
-            <div className="border_bottom"></div>
+      <div
+        className={`${
+          isDarkMode ? " dark-mode" : `bg-white }`
+        } container rounded-3 BoxShadowForTables py-4 mt-5`}
+      >
+        <div className="  ">
+          <div className="row m-3  ">
+            <div className="col-md-3  ">
+              <div className=" mb-3 text-black">
+                <input
+                  type="text"
+                  className={`${styleUser.inputSearch}`}
+                  placeholder="Search By Name"
+                  aria-label="Username"
+                  onChange={SearchByName}
+                />
+                <div className="border_bottom"></div>
+              </div>
+            </div>
+
+            <div className="col-md-2 ">
+              <div className=" input-group">
+                <select
+                  className={`${styleUser.inputSearch} py-2 text-muted`}
+                  onChange={handleSelectChange}
+                  title=" select user"
+                >
+                  <option className="  " value="1" selected>
+                    Select a Role
+                  </option>
+                  <option className="  " value="1">
+                    manager
+                  </option>
+                  <option className="  " value="2">
+                    employee
+                  </option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="col-md-3 thead-userList">
-          <div className="input-group">
-            <select
-              className="form-control"
-              onChange={handleSelectChange}
-              title=" select user"
-            >
-              <option className="thead-userList text-white " value="1" selected>
-                Select a Role
-              </option>
-              <option className="thead-userList text-white " value="1">
-                manager
-              </option>
-              <option className="thead-userList text-white " value="2">
-                employee
-              </option>
-            </select>
-          </div>
+        <div className=" table-responsive ">
+          <Table className=" container  text-center table ">
+            <thead className={`${styleUser.tableThead}`}>
+              <tr>
+                <th className={`${styleUser.WordsTheadTable}  `}>
+                  User Name
+                  <i
+                    className={`${styleUser.fontChevron}  fa-solid fa-chevron-down ms-3 `}
+                  ></i>
+                </th>
+                <th className={`${styleUser.WordsTheadTable}  `}>
+                  Statues
+                  <i
+                    className={`${styleUser.fontChevron}  fa-solid fa-chevron-down ms-3 `}
+                  ></i>
+                </th>
+                <th className={`${styleUser.WordsTheadTable}  `}>
+                  Phone Number
+                  <i
+                    className={`${styleUser.fontChevron}  fa-solid fa-chevron-down ms-3 `}
+                  ></i>
+                </th>
+                <th className={`${styleUser.WordsTheadTable}  `}>
+                  Email
+                  <i
+                    className={`${styleUser.fontChevron}  fa-solid fa-chevron-down ms-3 `}
+                  ></i>
+                </th>
+                <th className={`${styleUser.WordsTheadTable}  `}>
+                  Date Created
+                  <i
+                    className={`${styleUser.fontChevron}  fa-solid fa-chevron-down ms-3 `}
+                  ></i>
+                </th>
+                {/* Add an empty th for the actions column */}
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr className="  ">
+                  <td colSpan={parseInt("6")}>
+                    <div className="d-flex justify-content-center align-items-center">
+                      <InfinitySpin />
+                    </div>
+                  </td>
+                </tr>
+              ) : userlist.length > 0 ? (
+                userlist.map((user, index) => (
+                  <tr
+                    className=" "
+                    key={index}
+                    style={{
+                      backgroundColor: index % 2 === 0 ? "#FFFFFF" : "#F8F9FB",
+                    }}
+                  >
+                    <td className="TdTable ">{user.userName}</td>
+                    <td className="TdTable">
+                      {user.isActivated ? (
+                        <button className=" btn btn-success">Active</button>
+                      ) : (
+                        <button
+                          className={`${styleUser.btnNotActive} btn btn text-white`}
+                        >
+                          Not Active
+                        </button>
+                      )}
+                    </td>
+                    <td className="TdTable">{user.phoneNumber}</td>
+                    <td className="TdTable">{user.email}</td>
+
+                    <td className="TdTable">
+                      {user && user.creationDate
+                        ? user.creationDate.substring(0, 10)
+                        : "N/A"}
+                    </td>
+
+                    {/* Actions column */}
+                    <td>
+                      <div className="btn-group">
+                        <a
+                          className=" dropdown-toggle fa-2x"
+                          href="#"
+                          role="button"
+                          id="dropdownMenuLink"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          <i
+                            className={`${styleUser.iconTasks} fa-solid fa-ellipsis-vertical `}
+                          ></i>
+                        </a>
+                        <ul className="dropdown-menu">
+                          <li className="dropdown-item ">
+                            <button
+                              type="button"
+                              className="btn "
+                              data-bs-toggle="modal"
+                              data-bs-target="#exampleModal"
+                              onClick={() => {
+                                setUserid(user.id);
+                                setisActivated(user.isActivated);
+                                handleShow();
+                              }}
+                            >
+                              {user.isActivated ? (
+                                // <span>
+                                //   <i className="fa-solid fa-xmark me-2 "></i>
+                                //   Block
+                                // </span>
+                                <span
+                                  className={`${styleUser.btnCursor}  border-0 px-2 `}
+                                >
+                                  <i className="fa-solid fa-xmark   me-1 text-danger "></i>
+                                  Block
+                                </span>
+                              ) : (
+                                <span>
+                                  <i className="fa-solid fa-check  text-success"></i>{" "}
+                                  Active
+                                </span>
+                              )}
+                            </button>
+                          </li>
+                          <li className="dropdown-item ">
+                            <button
+                              className=" btn "
+                              onClick={() => {
+                                handleShow2(),
+                                  setlengthOfTask(user.task.length);
+                              }}
+                            >
+                              <i
+                                className={`${styleUser.iconTasks} fa-solid fa-street-view me-1`}
+                              ></i>{" "}
+                              View
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={parseInt("6")}>
+                    <ImgNotData />
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </Table>
         </div>
       </div>
 
       {/* start Tabel  */}
-      {spinner ? (
+      {/* {spinner ? (
         <div className="d-flex justify-content-center align-items-center">
           <InfinitySpin />
         </div>
@@ -351,9 +530,9 @@ export default function UserList() {
               </ul>
             </nav>
           </div>
-        </div>
-        // Your table content here
-      )}
+        </div> 
+
+       )}  */}
     </div>
   );
 }
