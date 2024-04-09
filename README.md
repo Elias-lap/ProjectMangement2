@@ -29,3 +29,5 @@
 ✅Forms with Validation: Ensure data integrity with form validations for a seamless user experience.
 ✅CRUD Operations API Calling: Interact seamlessly with the backend through Axios for CRUD operations.
 ✅Auth/Master Layout: Create a consistent and user-friendly layout for the application.
+
+Email for Manager : manager@email.com // pass : @Password123!
