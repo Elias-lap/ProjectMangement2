@@ -134,7 +134,7 @@ export default function TasksList() {
       {userRole == "Manager" ? (
         <section className=" ">
           {/* <div className={`${isDarkMode ? " dark-mode" : `bg-white }`}  `}>
-            <div className="container d-flex justify-content-between py-4 ">
+            <div className="container d-flex justify-content-between ">
               <h3 className={`${ isDarkMode ? "text-white" : " text-muted "} mt-1 `}
               >Tasks</h3>
               <button
@@ -213,31 +213,31 @@ export default function TasksList() {
                 <Table className=" mt-4 text-center table  ">
                   <thead className={`${styleTasks.tableThead}  `}>
                     <tr className="">
-                      <th className={`${styleTasks.WordsTheadTable} py-4  `}>
+                      <th className={`${styleTasks.WordsTheadTable}  `}>
                         Title
                         <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                         ></i>
                       </th>
-                      <th className={`${styleTasks.WordsTheadTable}  py-4 `}>
+                      <th className={`${styleTasks.WordsTheadTable}  `}>
                         Statues
                         <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                         ></i>
                       </th>
-                      <th className={`${styleTasks.WordsTheadTable} py-4  `}>
+                      <th className={`${styleTasks.WordsTheadTable}  `}>
                         User
                         <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                         ></i>
                       </th>
-                      <th className={`${styleTasks.WordsTheadTable} py-4  `}>
+                      <th className={`${styleTasks.WordsTheadTable}  `}>
                         Project
                         <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                         ></i>
                       </th>
-                      <th className={`${styleTasks.WordsTheadTable} py-4  `}>
+                      <th className={`${styleTasks.WordsTheadTable}  `}>
                         Date Created
                         <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}

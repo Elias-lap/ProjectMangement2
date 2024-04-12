@@ -240,31 +240,31 @@ export default function UserList() {
           <Table className=" container  text-center table ">
             <thead className={`${styleUser.tableThead}`}>
               <tr>
-                <th className={`${styleUser.WordsTheadTable} py-4  `}>
+                <th className={`${styleUser.WordsTheadTable}   `}>
                   User Name
                   <i
                     className={`${styleUser.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                   ></i>
                 </th>
-                <th className={`${styleUser.WordsTheadTable} py-4  `}>
+                <th className={`${styleUser.WordsTheadTable}   `}>
                   Statues
                   <i
                     className={`${styleUser.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                   ></i>
                 </th>
-                <th className={`${styleUser.WordsTheadTable} py-4  `}>
+                <th className={`${styleUser.WordsTheadTable}   `}>
                   Phone Number
                   <i
                     className={`${styleUser.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                   ></i>
                 </th>
-                <th className={`${styleUser.WordsTheadTable} py-4  `}>
+                <th className={`${styleUser.WordsTheadTable}   `}>
                   Email
                   <i
                     className={`${styleUser.fontChevron}  fa-solid fa-chevron-down ms-3 `}
                   ></i>
                 </th>
-                <th className={`${styleUser.WordsTheadTable} py-4  `}>
+                <th className={`${styleUser.WordsTheadTable}   `}>
                   Date Created
                   <i
                     className={`${styleUser.fontChevron}  fa-solid fa-chevron-down ms-3 `}
