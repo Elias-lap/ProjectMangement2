@@ -169,8 +169,8 @@
 .ps-menuitem-root:hover {
   background-color: #EF9B284D !important;
   border-radius: 10px;
-}
-.ps-menuitem-root:first-of-type:hover {
+} 
+ .ps-menuitem-root:first-of-type:hover {
   background-color: transparent !important;
 }
 
@@ -359,6 +359,15 @@ background-color: #e9e9df;
 
 .dropdown-item.active, .dropdown-item:active {
   background-color: rgb(175, 169, 169) !important;
+}
+
+
+.sideBarBtn {
+  right: -10px !important;
+  top: 10px !important;
+  cursor: pointer !important;
+
+
 }
 
 
