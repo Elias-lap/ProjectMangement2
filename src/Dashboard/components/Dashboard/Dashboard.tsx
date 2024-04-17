@@ -142,7 +142,7 @@ export default function Dasxboard() {
            </div>
          </div>
 
-         <div className={  ` px-5  col-sm-10  col-md-5 rounded-4 ${isDarkMode ? " dark-mode" : "bg-white"} `}>
+         <div className={  ` px-5  col-sm-10  col-md-5 rounded-4 bg-white ${isDarkMode ? " dark-mode" : "bg-white"} `}>
            <div className=" tasks-charts pt-5 d-flex justify-content-center  align-items-center">      
          <DonutChart
              data={[
