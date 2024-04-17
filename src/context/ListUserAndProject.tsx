@@ -19,14 +19,14 @@ export function ListUserAndProject ({ children }: { children: ReactNode }){
 
   const [userList, setUserList] = useState<User[]>([]);
   const [userProject, setUserProject] = useState<Project[]>([]);
-
+  console.log(userList)
   // context
   const baceUrlContext = useContext(BaceUrlCon);
   const BaceUrl = baceUrlContext as string;
 
   const getUserList = async () => {
     try {
-      const response = await axios.get(`${BaceUrl}/Users/Manager?pageSize=10&pageNumber=1`, {
+      const response = await axios.get(`${BaceUrl}/Users/?pageSize=100&pageNumber=1`, {
         headers: {
           Authorization: localStorage.getItem("adminToken"),
         },
@@ -39,7 +39,7 @@ export function ListUserAndProject ({ children }: { children: ReactNode }){
 
   const getProjectList = async () => {
     try {
-      const response = await axios.get(`${BaceUrl}/Project/manager?pageSize=10&pageNumber=1`, {
+      const response = await axios.get(`${BaceUrl}/Project/?pageSize=100&pageNumber=1`, {
         headers: {
           Authorization: localStorage.getItem("adminToken"),
         },

@@ -83,7 +83,7 @@
   background-color: #EF9B28 !important;
 }
 
-/*custom color for text  */
+/* custom color for text 
 .color-text {
   color: #EF9B28 !important;
 }
@@ -95,8 +95,33 @@
 .dragging {
   cursor: grabbing; /* Change cursor to grabbing while dragging */
 }
+/* side bar    */
+/* Sidebar */
 
-.sidbar-icon .chevron-right {
+ .sidbar-icon {
+  color: white;
+  position: relative;
+
+} 
+.toggle-sidebar-btn {
+  position: absolute ;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  cursor: pointer;
+  /* Add any additional styling as needed */
+}
+
+.toggle-sidebar-btn  {
+  transition: transform 0.3s ease;
+}
+
+.collapsed .toggle-sidebar-btn {
+  transform: rotate(180deg);
+}
+
+
+ /* .sidbar-icon .chevron-right {
   color: white;
   background-color: #EF9B28;
   padding: 8px;
@@ -131,7 +156,7 @@
   .sidbar-icon .chevron-left {
     left: 69% !important;
   }
-}
+} */
 @media only screen and (max-width: 876px) {
   .sidbar-icon .chevron-left {
     left: 67% !important;
@@ -139,7 +164,8 @@
   .sidbar-icon{
     display: none !important;
   }
-}
+}  
+
 @media only screen and (min-width: 876px) {
   
   .display-none{
@@ -156,9 +182,7 @@
 .sidebar-style {
   background-color: #0E382F !important;
 }
-.sidbar-icon {
-  color: white;
-}
+
 .sideBar-container {
   overflow: hidden;
   background-color: #0E382F !important;
