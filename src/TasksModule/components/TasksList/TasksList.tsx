@@ -153,7 +153,7 @@ export default function TasksList() {
           >
             <div className="container d-flex justify-content-between py-4 ">
               <h3 className={`${isDarkMode ? "text-white" : " text-muted "} `}>
-              Tasks
+                Tasks
               </h3>
               <button
                 onClick={goNewTask}
@@ -165,9 +165,7 @@ export default function TasksList() {
             </div>
           </div>
 
-          <div
-          className=" mt-5"
-          >
+          <div className=" mt-5">
             <div
               className={`${
                 isDarkMode ? " dark-mode" : `bg-white }`

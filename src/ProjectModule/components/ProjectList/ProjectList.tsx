@@ -75,7 +75,7 @@ export default function ProjectModule() {
         setprojecList(response.data.data);
       } else if (userRole == "Manager") {
         const response = await axios.get(
-          `https://upskilling-egypt.com:3003/api/v1/Project/manager?pageSize=${pageSize}&pageNumber=${pageNo}`,
+          `https://upskilling-egypt.com:3003/api/v1/Project/?pageSize=${pageSize}&pageNumber=${pageNo}`,
           {
             headers: { Authorization: `Bearer ${Token}` },
             params: {

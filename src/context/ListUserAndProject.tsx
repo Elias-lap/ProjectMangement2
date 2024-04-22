@@ -26,7 +26,7 @@ export function ListUserAndProject ({ children }: { children: ReactNode }){
 
   const getUserList = async () => {
     try {
-      const response = await axios.get(`${BaceUrl}/Users/Manager?pageSize=10&pageNumber=1`, {
+      const response = await axios.get(`${BaceUrl}/Users/?pageSize=10&pageNumber=1`, {
         headers: {
           Authorization: localStorage.getItem("adminToken"),
         },
@@ -39,7 +39,7 @@ export function ListUserAndProject ({ children }: { children: ReactNode }){
 
   const getProjectList = async () => {
     try {
-      const response = await axios.get(`${BaceUrl}/Project/manager?pageSize=10&pageNumber=1`, {
+      const response = await axios.get(`${BaceUrl}/Project/?pageSize=10&pageNumber=1`, {
         headers: {
           Authorization: localStorage.getItem("adminToken"),
         },
