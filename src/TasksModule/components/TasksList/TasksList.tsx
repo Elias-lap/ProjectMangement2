@@ -134,7 +134,7 @@ export default function TasksList() {
       {userRole == "Manager" ? (
         <section className=" ">
           {/* <div className={`${isDarkMode ? " dark-mode" : `bg-white }`}  `}>
-            <div className="container d-flex justify-content-between py-4 ">
+            <div className="container d-flex justify-content-between ">
               <h3 className={`${ isDarkMode ? "text-white" : " text-muted "} mt-1 `}
               >Tasks</h3>
               <button
@@ -153,7 +153,7 @@ export default function TasksList() {
           >
             <div className="container d-flex justify-content-between py-4 ">
               <h3 className={`${isDarkMode ? "text-white" : " text-muted "} `}>
-              Tasks
+                Tasks
               </h3>
               <button
                 onClick={goNewTask}
@@ -165,9 +165,7 @@ export default function TasksList() {
             </div>
           </div>
 
-          <div
-          className=" mt-5"
-          >
+          <div className=" mt-5">
             <div
               className={`${
                 isDarkMode ? " dark-mode" : `bg-white }`
@@ -213,35 +211,35 @@ export default function TasksList() {
                 <Table className=" mt-4 text-center table  ">
                   <thead className={`${styleTasks.tableThead}  `}>
                     <tr className="">
-                      <th className={`${styleTasks.WordsTheadTable} py-4  `}>
+                      <th className={`${styleTasks.WordsTheadTable}  `}>
                         Title
-                        {/* <i
+                        <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
-                        ></i> */}
+                        ></i>
                       </th>
-                      <th className={`${styleTasks.WordsTheadTable}  py-4 `}>
+                      <th className={`${styleTasks.WordsTheadTable}  `}>
                         Statues
-                        {/* <i
+                        <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
-                        ></i> */}
+                        ></i>
                       </th>
-                      <th className={`${styleTasks.WordsTheadTable} py-4  `}>
+                      <th className={`${styleTasks.WordsTheadTable}  `}>
                         User
-                        {/* <i
+                        <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
-                        ></i> */}
+                        ></i>
                       </th>
-                      <th className={`${styleTasks.WordsTheadTable} py-4  `}>
+                      <th className={`${styleTasks.WordsTheadTable}  `}>
                         Project
-                        {/* <i
+                        <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
-                        ></i> */}
+                        ></i>
                       </th>
-                      <th className={`${styleTasks.WordsTheadTable} py-4  `}>
+                      <th className={`${styleTasks.WordsTheadTable}  `}>
                         Date Created
-                        {/* <i
+                        <i
                           className={`${styleTasks.fontChevron}  fa-solid fa-chevron-down ms-3 `}
-                        ></i> */}
+                        ></i>
                       </th>
                       {/* Add an empty th for the actions column */}
                       <th></th>
