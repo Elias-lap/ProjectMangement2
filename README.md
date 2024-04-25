@@ -13,7 +13,7 @@
 ✅React-Pro-Sidebar: Implement a professional sidebar for improved navigation.
 ✅React-Toastify: Provide users with informative and visually appealing toast notifications.
 ✅JWT-Decode: Securely manage authentication with JSON Web Tokens.
-✅Netlify: Deployed with Netlify for a scalable and reliable hosting solution.
+✅firebase: Deployed with firebase for a scalable and reliable hosting solution.
 
 🚀 Business Features
 ✅Authentication: Ensure secure access with a robust authentication system.
