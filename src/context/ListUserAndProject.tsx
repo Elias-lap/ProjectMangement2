@@ -51,6 +51,8 @@ export function ListUserAndProject ({ children }: { children: ReactNode }){
   };
 
   useEffect(() => {
+    userList
+    userProject
     getUserList();
     getProjectList(); 
   }, []);

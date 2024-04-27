@@ -112,7 +112,8 @@ export default function TakeUpdate() {
         setValue("title", task.title);
         setValue("description", task.description);
         setValue("employeeId", task.employee?.id.toString());
-        setValue("projectId", task.projectId);
+        
+        // setValue("projectId", task.projectId);
       } else {
         console.error("Error retrieving task details:", response.data);
       }
@@ -208,7 +209,7 @@ export default function TakeUpdate() {
             </div>
             <div className="row">
               {/* user */}
-              <div className="col-4 col-md-6">
+              <div className="col-12 col-md-6">
                 <div className="input-group mb-3">
                   <label
                     className={`${styleTasks.colorInputTaskesData} d-block w-100`}
@@ -218,7 +219,7 @@ export default function TakeUpdate() {
                   </label>
                   <select
                     className={`${styleTasks.inputs} form-select d-block rounded-3`}
-                    {...register("employeeId", { required: true })}
+                    // {...register("employeeId", { required: true })}
                   >
                     <option value=""> Choose User</option>
                     {userList.map((user, index) => (
@@ -227,30 +228,30 @@ export default function TakeUpdate() {
                       </option>
                     ))}
                   </select>
-                  {errors.employeeId &&
+                  {/* {errors.employeeId &&
                     errors.employeeId.type === "required" && (
                       <div className="alert alert-danger  d-inline-block w-100 mt-1">
                         User is required
                       </div>
-                    )}
+                    )} */}
                 </div>
               </div>
             </div>
 
             <div className={`${styleTasks.line}`}></div>
 
-            <div className="row">
-              <div className="col-md-6">
-                <button
+           
+
+
+
+<div className="d-flex justify-content-between  pt-5">
+<button
                   onClick={() => navigate("/dashboard/tasks")}
                   className="btn btn-outline-secondary rounded-4 py-2 px-4"
                   title=" btn close"
                 >
                   Close
                 </button>
-              </div>
-
-              <div className="col-md-6 text-end">
                 <button
                   type="submit"
                   className="btn btn-outline-warning rounded-4 py-2 px-4"
@@ -258,7 +259,6 @@ export default function TakeUpdate() {
                   Edit
                 </button>
               </div>
-            </div>
           </form>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BaceUrlCon } from "../../../context/BaceUrlContext";
 import styleTasks from "../TasksList/TasksList.module.css";
@@ -65,6 +65,11 @@ export default function TasksData() {
       </div>
     );
   }
+
+  useEffect(() => {
+    userProject
+    userList 
+  }, []);
 
   return (
     <>
@@ -142,7 +147,7 @@ export default function TasksData() {
             </div>
             <div className=" row ">
               {/* user */}
-              <div className="col-4 col-md-6">
+              <div className="col-6 col-md-6">
                 <div className="input-group mb-3">
                   <label
                     className={`${styleTasks.colorInputTaskesData} d-block w-100`}
@@ -174,7 +179,7 @@ export default function TasksData() {
               </div>
               {/*  */}
               {/* Project */}
-              <div className="col-4 col-md-6">
+              <div className="col-6 col-md-6">
                 <div className="input-group mb-3">
                   <label
                     className={`${styleTasks.colorInputTaskesData} d-block w-100`}
@@ -208,18 +213,16 @@ export default function TasksData() {
 
             <div className={`${styleTasks.line}`}> </div>
 
-            <div className=" row">
-              <div className=" col-md-6">
-                <button
+         
+
+<div className="d-flex justify-content-between  pt-5">
+<button
                   onClick={goTaskList}
                   className="btn  btn-outline-secondary rounded-4 py-2 px-4"
                   title=" btn close"
                 >
                   Close
                 </button>
-              </div>
-
-              <div className=" col-md-6 text-end">
                 <button
                   type="submit"
                   className="btn  btn-outline-warning rounded-4 py-2 px-4 "
@@ -227,7 +230,6 @@ export default function TasksData() {
                   Save
                 </button>
               </div>
-            </div>
           </form>
         </div>
       </div>
