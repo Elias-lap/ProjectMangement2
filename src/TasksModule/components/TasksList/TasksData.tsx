@@ -49,14 +49,22 @@ export default function TasksData() {
           Authorization: localStorage.getItem("adminToken"),
         },
       });
+      goTaskList();
       toast.success(`You Add a New Task`);
       console.log(response);
-      goTaskList();
+      
     } catch (error) {
       console.log(error);
       toast.error(`You Can't Add New Task`);
     }
   };
+
+ 
+
+  useEffect(() => {
+    userProject
+    userList 
+  }, []);
 
   if (!darkModeContext) {
     return (
@@ -65,11 +73,6 @@ export default function TasksData() {
       </div>
     );
   }
-
-  useEffect(() => {
-    userProject
-    userList 
-  }, []);
 
   return (
     <>

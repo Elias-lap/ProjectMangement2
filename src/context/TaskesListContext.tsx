@@ -69,7 +69,7 @@ export default function TaskesListContext({
   ) => {
     try {
       if (userRole == "Manager") {
-        const response = await axios.get(`${BaceUrl}/Task/manager`, {
+        const response = await axios.get(`${BaceUrl}/Task/manager?`, {
           // const response = await axios.get("https://upskilling-egypt.com:3003/api/v1/Task/manager", {
 
           headers: {
