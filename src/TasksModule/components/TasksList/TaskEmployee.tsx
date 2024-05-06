@@ -34,38 +34,24 @@ export default function TaskEmployee() {
       console.error('Error:', error);
     }
   };
-  const gettasks = async () => {
-    const adminToken = localStorage.getItem("adminToken");
-    const response = await axios.get(
-      "https://upskilling-egypt.com:3003/api/v1/Task",
-      {
-        headers: {
-          Authorization:adminToken
-          ,
-        },
-      }
-    );
-    const AllTasks = response.data.data;
-    setCards(AllTasks);
-    console.log(AllTasks);
-  };
-  gettasks();
+  
+  
   React.useEffect(() => {
-    // const gettasks = async () => {
-    //   const adminToken = localStorage.getItem("adminToken");
-    //   const response = await axios.get(
-    //     "https://upskilling-egypt.com:3003/api/v1/Task",
-    //     {
-    //       headers: {
-    //         Authorization:adminToken
-    //         ,
-    //       },
-    //     }
-    //   );
-    //   const AllTasks = response.data.data;
-    //   setCards(AllTasks);
-    //   console.log(AllTasks);
-    // };
+    const gettasks = async () => {
+      const adminToken = localStorage.getItem("adminToken");
+      const response = await axios.get(
+        "https://upskilling-egypt.com:3003/api/v1/Task",
+        {
+          headers: {
+            Authorization:adminToken
+            ,
+          },
+        }
+      );
+      const AllTasks = response.data.data;
+      setCards(AllTasks);
+      console.log(AllTasks);
+    };
 
     gettasks();
   }, []);
