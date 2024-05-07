@@ -12,6 +12,8 @@ export default function Login() {
   // All states here on the top
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const { showSuccessToast, showErrorToast } = useToast();
+  const [userId, setUserId] = useState(null); // Add state to store user ID
+
 
   const {saveAdminData , adminData} = useUser();
   console.log(adminData)
@@ -39,6 +41,8 @@ export default function Login() {
         data
       );
       localStorage.setItem("adminToken", response?.data?.token);
+      setUserId(response.data.userId); // Store the user ID after login
+
       showSuccessToast("Login successfully");
       localStorage.setItem("token", response.data.token);
       navigate("/dashboard");

@@ -34,8 +34,16 @@ export default function TasksList() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredTasks, setFilteredTasks] = useState<DataTasks[]>([]);
-  console.log(filteredTasks);
+  // console.log(filteredTasks);
   const [filterStatus, setFilterStatus] = useState("");
+  const [userId, setUserId] = useState(null);
+
+  // DeleteModal
+  useEffect(() => {
+    if (adminData) {
+      setUserId(adminData.userId); 
+    }
+  }, [adminData]);
 
   // DeleteModal
   const openDeleteModal = (taskId: number) => {
@@ -64,8 +72,6 @@ export default function TasksList() {
     }
   };
 
-  //
-
   // ViewModal
 
   const openViewModal = (taskTitle: string, taskStatus: string) => {
@@ -86,9 +92,6 @@ export default function TasksList() {
   const navigateToEdit = (taskId: string) => {
     navigate(`/dashboard/takeUpdate/${taskId}`);
   };
-  //
-
-  // ----------------------------------
 
   //  handle Previous button click
   const handlePreviousPage = () => {
@@ -128,6 +131,15 @@ export default function TasksList() {
       })
       .catch((error) => console.error("Error fetching tasks: ", error));
   }, [filterStatus]);
+
+  useEffect(() => {
+    if (userId) {
+      getTasks(userId, currentPage, 10, nameSearch, filterStatus)
+        .then(() => setLoading(false))
+        .catch(() => setLoading(false));
+    }
+  }, [userId, currentPage, nameSearch, filterStatus]);
+
 
   return (
     <>
